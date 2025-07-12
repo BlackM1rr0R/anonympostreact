@@ -1,79 +1,93 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./index.module.css";
-import Wrapper from "../../UI/wrapper/index";
-import Logo from "../../../assets/images/logoeternal.png";
-import { Sling as Hamburger } from "hamburger-react";
-import {
-  
-  InstagramIcon
-} from "../../../icons";
+import Wrapper from "../../UI/wrapper";
 import { Link } from "react-router-dom";
+import { searchPostsByTitle } from "../../../api";
+
 
 const Header = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [user, setUser] = useState(null);
+  const [search, setSearch] = useState("");
+  const [results, setResults] = useState([]);
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
+  useEffect(() => {
+    const userData = localStorage.getItem("user");
+    if (userData) {
+      setUser(JSON.parse(userData));
+    }
+  }, []);
+
+  const handleLogOut = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    setUser(null);
+    window.location.href = "/login";
   };
 
-  const closeMenu = () => {
-    setIsMenuOpen(false);
+  const handleSearchChange = async (e) => {
+    const value = e.target.value;
+    setSearch(value);
+
+    if (value.trim().length > 1) {
+      try {
+        const response = await searchPostsByTitle(value);
+        setResults(response);
+      } catch (error) {
+        console.error("Search error:", error);
+        setResults([]);
+      }
+    } else {
+      setResults([]);
+    }
   };
 
   return (
-    <div className={styles.background}>
-      <Wrapper>
-        <div className={styles.control}>
-          <Link to={"/"} className={styles.images}>
-            <img src={Logo} alt="" />
-            <h2>ETERNAL</h2>
-            <h2>Sağlık Hizmetleri</h2>
-          </Link>
-          <div className={styles.services}>
-            <Link to={"/idiopatik"}>Randevu</Link>
-            <Link to={"/kifoz"}>Hizmetlerimiz</Link>
-            <Link to={"/about"}>Hakkımda</Link>
-            <Link to={"/serumlar"}>Serumlar</Link>
-            <Link to={"/gallery"}>Blog</Link>
-            <Link to={"/contact"}>Iletisim</Link>
-          </div>
-          <div className={styles.phoneHeader}>
-        <h1>ETERNAL</h1>
-        <h2>Sağlık Hizmetleri</h2>
-          </div>
-          <Link to={"https://www.instagram.com/sakaryaevdesaglik.esh/"} className={styles.icons}>
-            <InstagramIcon />
-       
-          </Link>
-          <div className={styles.hamburger}>
-            <Hamburger
-              size={22}
-              distance="lg"
-              toggled={isMenuOpen}
-              toggle={toggleMenu}
-            />
-          </div>
+    <Wrapper>
+      <div className={styles.control}>
+        <div className={styles.leftSide}>
+          <Link to={"/"}>FormDom</Link>
         </div>
-        {isMenuOpen && (
-          <div className={styles.overlay}>
-            <div className={styles.services}>
-              <Link to={"/about"} onClick={closeMenu}>Hakkımda</Link>
-              <Link to={"/idiopatik"} onClick={closeMenu}>Randevu</Link>
-              <Link to={"/kifoz"} onClick={closeMenu}>Hizmetlerimiz</Link>
-              <Link to={"/serumlar"}>Serumlar</Link>
-              <Link to={"/gallery"} onClick={closeMenu}>Blog</Link>
-              <Link to={"/contact"} onClick={closeMenu}>Iletisim</Link>
+
+        <div className={styles.middleSide}>
+          <input
+            type="text"
+            placeholder="Search title"
+            value={search}
+            onChange={handleSearchChange}
+          />
+          {results.length > 0 && (
+            <div className={styles.searchResults}>
+              {results.map((post) => (
+                <Link to={`/post/${post.id}`} key={post.id} className={styles.resultItem}>
+                  <p><strong>{post.title}</strong></p>
+                  <p style={{ fontSize: '12px' }}>{post.author}</p>
+                </Link>
+              ))}
             </div>
-            <Link to={"https://www.instagram.com/sakaryaevdesaglik.esh/"} className={styles.icons}>
-       
-              <InstagramIcon />
-          
-             
-            </Link>
-          </div>
-        )}
-      </Wrapper>
-    </div>
+          )}
+        </div>
+
+        <div className={styles.rightSide}>
+          {user ? (
+            <div>
+              <h2>Welcome, {user.username}</h2>
+              <Link to={"/my-profile"}>My Profile</Link>
+              <h2 onClick={handleLogOut}>LogOut</h2>
+            </div>
+          ) : (
+            <>
+              <Link to={"/login"} className={styles.loginButton}>
+                Login
+              </Link>
+              <span>or</span>
+              <Link to={"/register"} className={styles.registerButton}>
+                Register
+              </Link>
+            </>
+          )}
+        </div>
+      </div>
+    </Wrapper>
   );
 };
 

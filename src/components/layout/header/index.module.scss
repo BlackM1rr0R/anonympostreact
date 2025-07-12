@@ -1,146 +1,128 @@
-* {
+.control {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e0e0e0;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+.leftSide a {
+  font-size: 1.8rem;
+  font-weight: bold;
+  text-decoration: none;
+  color: #007bff;
+}
+
+.middleSide input {
+  padding: 0.6rem 1rem;
+  width: 250px;
+  max-width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  transition: border-color 0.2s ease-in-out;
+}
+
+.middleSide input:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+.rightSide {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.rightSide h2 {
+  font-size: 1rem;
   margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+  cursor: pointer;
+  color: #333;
+}
+
+.rightSide h2:hover {
+  color: #d9534f;
+}
+
+.rightSide a {
+  text-decoration: none;
+  font-size: 0.95rem;
+  color: #007bff;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.rightSide a:hover {
+  color: #0056b3;
+}
+
+.loginButton,
+.registerButton {
+  padding: 0.4rem 0.8rem;
+  border: 1px solid #007bff;
+  border-radius: 6px;
+  background-color: #fff;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.loginButton:hover,
+.registerButton:hover {
+  background-color: #007bff;
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  .control {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  .middleSide input {
+    width: 100%;
+  }
+
+  .rightSide {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+.middleSide {
+  position: relative;
+}
+
+.middleSide input {
+  padding: 8px;
+  width: 250px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.searchResults {
+  background-color: white;
+  border: 1px solid black;
+  color: black;
 }
 
 
-  .background {
-    background-color: #f9f9f8;
-    position: sticky;
-    top: 0;
-    z-index: 1000; 
-    .control {
+.resultItem {
+  padding: 5px 0;
+  border-bottom: 1px solid #eee;
+}
 
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding-top: 20px;
-      padding-bottom: 20px;
-      .images {
-        display: flex;
-        flex-direction: column;
-        text-decoration: none;
-       gap: 5px;
-        align-items: center;
-        h2{
-          display: none;
-          color: black;
-          text-decoration: none;
-          font-weight: 600;
-        }
-     
-        img {
-          width: 70px;
-        }
-      }
-      .services {
-        display: none;
-        a{
-          text-decoration: none;
-          color: black;
-        }
-        
-      }
-      .phoneHeader{
-       display: flex;
-       flex-direction: column;
-       align-items: center;
-       gap: 5px;
-       h1{
-        font-size: 24px;
-        font-weight: 600;
+.resultItem:last-child {
+  border-bottom: none;
+}
 
-       }
-       h2{
-        font-size: 18px;
-       }
-      }
-      .hamburger{
-        display: flex;
-        flex-direction: column;
-      }
-      .icons {
-        display: none;
-       
-      }
-    }
-    .overlay{
-      display: flex;
-      flex-direction: column;
-      .services{
-        display: flex;
-        gap: 10px;
-        flex-direction: column;
-
-        a{
-          text-decoration: none;
-          color: black;
-          padding-bottom: 15px;
-          padding-top: 15px;
-          font-size: 20px;
-          font-weight: 500;
-          border-bottom: 1px solid gray;
-        }
-      }
-      .icons{
-        display: flex;
-        gap: 20px;
-        padding-bottom: 15px;
-        padding-top: 15px;
-        border-bottom: 1px solid gray;
-        svg{
-          width: 20px;
-          height: 20px;
-        }
-      }
-    }
-  }
-  @media(min-width:768px){
-      
-    .background{
-      .control{
-            
-
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding-top: 20px;
-      padding-bottom: 20px;
-      .images {
-        gap: 2px;
-        img {
-          width:50px;
-        }
-        h2{
-          display: block;
-          font-size: 16px;
-        }
-      }
-      .services {
-        display: flex;
-        align-items: center;
-        gap: 30px;
-      }
-      .phoneHeader{
-        display: none;
-      }
-      .hamburger{
-   
-      }
-      .icons {
-        display: flex;
-        align-items: center;
-        gap: 22px;
-        svg {
-          cursor: pointer;
-        }
-      }
-    
-        .hamburger{
-          display: none;
-        }
-      }
-    }
-  }
-
+.resultItem:hover {
+  background-color: #f9f9f9;
+  cursor: pointer;
+}

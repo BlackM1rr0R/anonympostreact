@@ -1,0 +1,40 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.control {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 20%;
+  gap: 15px;
+}
+.control .form form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.control .form form input {
+  border-radius: 30px;
+  padding: 10px 20px;
+  border: 1px solid rgb(200, 200, 200);
+  outline: none;
+}
+.control .form form input::-moz-placeholder {
+  color: black;
+}
+.control .form form input::placeholder {
+  color: black;
+}
+.control .form form button {
+  background-color: rgb(160, 160, 255);
+  text-decoration: none;
+  color: black;
+  padding: 10px 20px;
+  border-radius: 30px;
+  font-weight: 600;
+  border: none;
+}/*# sourceMappingURL=index.module.css.map */

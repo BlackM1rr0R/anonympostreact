@@ -1,0 +1,55 @@
+.postContainer {
+  padding: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.postTitle {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.postAuthor {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #777;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.postContent {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #444;
+  white-space: pre-line;
+  margin-bottom: 1.5rem;
+}
+
+.postImage {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

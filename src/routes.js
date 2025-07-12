@@ -1,15 +1,14 @@
-import LatestArticles from "./components/latestarticles";
+
 import About from "./pages/about";
 import Contact from "./pages/contact";
-import Details from "./pages/detailsblog";
-import Gallery from "./pages/gallery";
+
 import Home from "./pages/home";
-import Idiopatik from "./pages/idiopatik";
-import Kifoz from "./pages/kifoz";
-import NotFound from "./pages/notFound";
-import Serumlar from "./pages/serumlar";
-import SerumlarDetails from "./pages/serumlardetails";
-const routeItem = (id, title, path, component,element) => {
+import Login from "./pages/login";
+import MyProfile from "./pages/myprofile";
+import PostAbout from "./pages/postabout";
+import Register from "./pages/register";
+
+const routeItem = (id, title, path, component, element) => {
   return {
     id,
     title,
@@ -22,14 +21,12 @@ const routeItem = (id, title, path, component,element) => {
 const routes = {
   home: routeItem(1, 'home', "/", Home),
   about: routeItem(2, 'about', "/about", About),
-  notFound: routeItem(3, 'notFound', "*", NotFound),
- contact:routeItem(4,"contact","/contact",Contact),
- gallery:routeItem(5,"gallery","/gallery",Gallery),
- idiopatik:routeItem(6,"idiopatik","/idiopatik",Idiopatik),
- kifoz:routeItem(7,"kifoz","/kifoz",Kifoz),
- detailsbloog:routeItem(8,"detailsblog","/details/:id",Details),
- serumlar:routeItem(9,"serumlar","/serumlar",Serumlar),
- serumlardetails:routeItem(10,"serumlardetails","/serumlar/:id",SerumlarDetails),
+  contact: routeItem(4, "contact", "/contact", Contact),
+  login: routeItem(5, "login", "/login", Login),
+  register: routeItem(6, "register", "/register", Register),
+  myprofile: routeItem(7, "myprofile", "/my-profile", MyProfile),
+  postabout: routeItem(8, "postabout", "/post/:id", PostAbout),
+
 
 };
 
