@@ -4,17 +4,54 @@ import Wrapper from "../../UI/wrapper";
 import { Link } from "react-router-dom";
 import { searchPostsByTitle } from "../../../api";
 
-
 const Header = () => {
   const [user, setUser] = useState(null);
   const [search, setSearch] = useState("");
   const [results, setResults] = useState([]);
 
+  // 🔐 Token süresi kontrolü
+  const isTokenExpired = (token) => {
+    try {
+      const payload = JSON.parse(atob(token.split('.')[1])); // token payload kısmını decode et
+      const expiry = payload.exp * 1000; // exp saniye cinsindedir, milisaniyeye çevir
+      return Date.now() > expiry;
+    } catch (e) {
+      return true; // token geçersizse expired gibi davran
+    }
+  };
+
+  // 🔁 Sayfa yüklendiğinde token süresi kontrolü yap
   useEffect(() => {
     const userData = localStorage.getItem("user");
+    const token = localStorage.getItem("token");
+
+    if (token && isTokenExpired(token)) {
+      // Token süresi dolmuşsa logout yap
+      localStorage.removeItem("token");
+      localStorage.removeItem("user");
+      setUser(null);
+      window.location.href = "/login";
+      return;
+    }
+
     if (userData) {
       setUser(JSON.parse(userData));
     }
+  }, []);
+
+  // 🔁 Opsiyonel: Her 1 dakikada bir token süresi kontrolü yap
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const token = localStorage.getItem("token");
+      if (token && isTokenExpired(token)) {
+        localStorage.removeItem("token");
+        localStorage.removeItem("user");
+        setUser(null);
+        window.location.href = "/login";
+      }
+    }, 60000); // 60 saniyede bir kontrol
+
+    return () => clearInterval(interval); // bileşen kaldırılırsa interval temizlensin
   }, []);
 
   const handleLogOut = () => {
@@ -76,13 +113,9 @@ const Header = () => {
             </div>
           ) : (
             <>
-              <Link to={"/login"} className={styles.loginButton}>
-                Login
-              </Link>
+              <Link to={"/login"} className={styles.loginButton}>Login</Link>
               <span>or</span>
-              <Link to={"/register"} className={styles.registerButton}>
-                Register
-              </Link>
+              <Link to={"/register"} className={styles.registerButton}>Register</Link>
             </>
           )}
         </div>
