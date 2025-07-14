@@ -96,12 +96,15 @@ const Header = () => {
             <div className={styles.searchResults}>
               {results.map((post) => (
                 <Link to={`/post/${post.id}`} key={post.id} className={styles.resultItem}>
-                  <p><strong>{post.title}</strong></p>
-                  <p style={{ fontSize: '12px' }}>{post.author}</p>
+                  <div className={styles.resultContent}>
+                    <h3>{post.title}</h3>
+                    <p className={styles.resultAuthor}>By {post.author}</p>
+                  </div>
                 </Link>
               ))}
             </div>
           )}
+
         </div>
 
         <div className={styles.rightSide}>

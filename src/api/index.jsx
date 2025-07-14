@@ -1,5 +1,5 @@
 import axios from "axios";
-const API_URL = "http://localhost:6059";
+const API_URL = "http://localhost:6060";
 
 export const getAllPosts = async () => {
   try {
@@ -124,7 +124,7 @@ export const searchPostsByTitle = async (title) => {
   }
 };
 
-export const searchPostById=async (id) => {
+export const searchPostById = async (id) => {
   try {
     const token = localStorage.getItem("token");
     const response = await axios.get(`${API_URL}/post/search/post/${id}`, {
@@ -136,6 +136,69 @@ export const searchPostById=async (id) => {
     return response.data;
   } catch (error) {
     console.error("Error fetching post by ID:", error);
+    throw error;
+  }
+}
+
+
+export const allComment = async (postId) => {
+  try {
+    const token = localStorage.getItem("token");
+    const response = await axios.get(`${API_URL}/comment/post/${postId}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      withCredentials: true,
+    });
+    console.log("Comments fetched:", response.data);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching comments:", error);
+    throw error;
+  }
+}
+
+export const addCommentToPost = async (postId, commentText) => {
+  const token = localStorage.getItem("token");
+  const response = await axios.post(`${API_URL}/comment/add`, {
+    comment: commentText,
+    post: { id: postId }
+  }, {
+    headers: { Authorization: `Bearer ${token}` },
+    withCredentials: true,
+  });
+  return response.data;
+};
+
+
+export const toggleLike = async (postId) => {
+  const token = localStorage.getItem("token");
+  try {
+    const response = await axios.post(
+      `${API_URL}/like/toggle`, // backend toggle endpoint
+      { post: { id: postId } },
+      {
+        headers: { Authorization: `Bearer ${token}` },
+        withCredentials: true,
+      }
+    );
+    return response.data; // boolean döner: true = liked, false = unliked
+  } catch (error) {
+    console.error("Error toggling like:", error);
+    throw error;
+  }
+};
+
+export const getAllLikes = async (postId) => {
+  const token = localStorage.getItem("token");
+  try {
+    const response = await axios.get(`${API_URL}/like/post/${postId}`, {
+      headers: { Authorization: `Bearer ${token}` },
+      withCredentials: true,
+    });
+    return response.data; // like sayısını döner
+  } catch (error) {
+    console.error("Error fetching likes:", error);
     throw error;
   }
 }
