@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styles from './index.module.css';
 import Wrapper from '../../components/UI/wrapper';
-import { getMyPosts, editPost } from '../../api';
+import { getMyPosts, editPost, myProfile } from '../../api';
 
 const MyProfile = () => {
   const [user, setUser] = useState(null);
@@ -12,22 +12,20 @@ const MyProfile = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const storedUser = localStorage.getItem('user');
-      if (!storedUser) {
-        window.location.href = '/login';
-      } else {
-        const parsedUser = JSON.parse(storedUser);
-        setUser(parsedUser);
-        try {
-          const response = await getMyPosts();
-          setPosts(response);
-        } catch (error) {
-          console.error("Error fetching posts:", error);
-        }
+      try {
+        const profileData = await myProfile();
+        console.log("Profile data:", profileData); 
+        setUser(profileData);
+        const response = await getMyPosts();
+        setPosts(response);
+      } catch (error) {
+        console.error("Error fetching profile or posts:", error);
       }
     };
+
     fetchData();
   }, []);
+
 
   const handleEdit = (post) => {
     setEditingPost(post);
@@ -61,6 +59,7 @@ const MyProfile = () => {
         <h1>My Profile</h1>
         <p><strong>Username:</strong> {user.username}</p>
         <p><strong>Role:</strong> {user.role}</p>
+        <p><strong>IP-Adress:</strong> {user.ip}</p>
         <p><strong>Password:</strong> <button>Edit</button></p>
         {user.createdAt && (
           <p><strong>Joined:</strong> {new Date(user.createdAt).toLocaleDateString()}</p>

@@ -230,4 +230,18 @@
   .postCard {
     width: 90vw;
   }
+}
+.deleteAllButton {
+  background-color: crimson;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.deleteAllButton:hover {
+  background-color: darkred;
 }/*# sourceMappingURL=index.module.css.map */

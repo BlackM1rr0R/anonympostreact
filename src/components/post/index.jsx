@@ -33,11 +33,14 @@ const Post = () => {
         }
 
         try {
-            await addPost(formData); // import from api.js
+            await addPost(formData); 
+
             alert("Post gönderildi!");
             setTitle('');
             setContent('');
             setImage(null);
+            navigate('/'); 
+
         } catch (error) {
             console.error("Post gönderilemedi:", error);
         }

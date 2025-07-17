@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from "react";
 import styles from './index.module.css'
 import Wrapper from '../UI/wrapper'
-import { allComment, getAllLikes, getAllPosts, toggleLike } from "../../api";
-import { Link } from "react-router-dom";
+import { allComment, deleteAllPosts, getAllLikes, getAllPosts, toggleLike } from "../../api";
+import { Link, useLocation } from "react-router-dom";
 
 const AllPosts = () => {
   const [data, setData] = useState([]);
   const [commentsMap, setCommentsMap] = useState({});
   const [likeCounts, setLikeCounts] = useState({});
-
+  const location=useLocation();
+  const user = JSON.parse(localStorage.getItem("user"));
+  const isAdmin = user?.role === "ADMIN";
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -33,7 +35,7 @@ const AllPosts = () => {
     };
 
     fetchData();
-  }, []);
+  }, [location]);
 
 
   const handleLike = async (postId) => {
@@ -55,6 +57,24 @@ const AllPosts = () => {
     <Wrapper>
       <div className={styles.control}>
         <h1 className={styles.pageTitle}>All Posts</h1>
+        {isAdmin && (
+          <div style={{ marginBottom: '20px' }}>
+            <button
+              onClick={async () => {
+                try {
+                  await deleteAllPosts();
+                  window.location.reload(); 
+                } catch (error) {
+                  console.error("Postları silerken hata:", error);
+                }
+              }}
+              className={styles.deleteAllButton}
+            >
+              🗑️ Remove All Posts
+            </button>
+          </div>
+        )}
+
         <div className={styles.controlPosts}>
           {data.map((post) => (
             <div key={post.id} className={styles.postCard}>
@@ -66,7 +86,7 @@ const AllPosts = () => {
 
                 {post.imageUrl && (
                   <img
-                    src={`http://localhost:6059${post.imageUrl}`}
+                    src={`http://localhost:6060${post.imageUrl}`}
                     alt="Post"
                     className={styles.postImage}
                   />

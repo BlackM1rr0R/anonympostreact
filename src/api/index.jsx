@@ -46,6 +46,7 @@ export const addPost = async (formData) => {
     const token = localStorage.getItem("token");
     const response = await axios.post(`${API_URL}/post/add`, formData, {
       headers: {
+        'Cache-Control': 'no-cache',
         Authorization: `Bearer ${token}`,
         'Content-Type': 'multipart/form-data',
       },
@@ -199,6 +200,20 @@ export const getAllLikes = async (postId) => {
     return response.data; // like sayısını döner
   } catch (error) {
     console.error("Error fetching likes:", error);
+    throw error;
+  }
+}
+
+export const deleteAllPosts = async () => {
+  const token = localStorage.getItem("token");
+  try {
+    const response = await axios.delete(`${API_URL}/post/delete/all`, {
+      headers: { Authorization: `Bearer ${token}` },
+      withCredentials: true,
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error deleting post:", error);
     throw error;
   }
 }
