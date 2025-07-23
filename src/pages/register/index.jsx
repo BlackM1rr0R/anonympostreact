@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Wrapper from "../../components/UI/wrapper";
 import styles from './index.module.css'
 import { registerUser } from "../../api";
+import { ThemeContext } from "../../context/ThemeContext";
 const Register = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-
+    const { darkMode, toggleTheme } = useContext(ThemeContext)
     const generateUsername = () => {
         const random = Math.random().toString(36).substring(2, 14);
         setUsername(random);
@@ -35,7 +36,7 @@ const Register = () => {
                 <h1>Register Page</h1>
                 <div className={styles.form}>
                     <form onSubmit={handleSubmit}>
-   <div className={styles.usernameArea}>
+                        <div className={styles.usernameArea}>
                             <button type="button" onClick={generateUsername}>
                                 Generate Username
                             </button>

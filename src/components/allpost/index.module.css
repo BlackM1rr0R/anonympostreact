@@ -1,13 +1,56 @@
-@charset "UTF-8";
+body.light {
+  --bg-color: #fefefe;
+  --text-color: #222;
+  --title-color: #2c3e50;
+  --author-color: #2980b9;
+  --post-title-color: #222f3e;
+  --preview-color: #444d56;
+  --date-color: #7f8c8d;
+  --image-shadow: rgba(0, 0, 0, 0.1);
+  --comment-bg: #dff1ff;
+  --comment-hover: #b1d3fb;
+  --comment-border: #2980b9;
+  --comment-header: #2471a3;
+  --comment-user: #174a75;
+  --no-comment: #7f8c8d;
+  --like-bg: #ffefef;
+  --like-color: #d00;
+  --post-bg: #ffffff;
+  --delete-bg: crimson;
+  --delete-hover: darkred;
+}
+
+body.dark {
+  --bg-color: #121212;
+  --text-color: #f0f0f0;
+  --title-color: #e0e0e0;
+  --author-color: #81c7f5;
+  --post-title-color: #ffffff;
+  --preview-color: #cccccc;
+  --date-color: #aaaaaa;
+  --image-shadow: rgba(255, 255, 255, 0.08);
+  --comment-bg: #1e2a38;
+  --comment-hover: #33475b;
+  --comment-border: #2980b9;
+  --comment-header: #58a6ff;
+  --comment-user: #a5d6ff;
+  --no-comment: #999;
+  --like-bg: #2a2a2a;
+  --like-color: #ff6b81;
+  --post-bg: #1e1e1e;
+  --delete-bg: #d32f2f;
+  --delete-hover: #9a0007;
+}
+
 /* Genel Container */
 .control {
   max-width: 1200px;
   margin: 0 auto;
   padding: 30px 20px;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  background: #fefefe;
+  background: var(--bg-color);
   min-height: 100vh;
-  color: #222;
+  color: var(--text-color);
 }
 
 .pageTitle {
@@ -15,7 +58,7 @@
   font-weight: 900;
   text-align: center;
   margin-bottom: 45px;
-  color: #2c3e50;
+  color: var(--title-color);
   letter-spacing: 1.3px;
   -webkit-user-select: none;
      -moz-user-select: none;
@@ -23,8 +66,8 @@
 }
 
 .likeButton {
-  background-color: #ffefef;
-  color: #d00;
+  background-color: var(--like-bg);
+  color: var(--like-color);
   padding: 6px 12px;
   border: none;
   border-radius: 5px;
@@ -32,7 +75,6 @@
   margin-top: 10px;
 }
 
-/* Postlar flexbox ile yan yana ve sarmalı */
 .controlPosts {
   display: flex;
   flex-wrap: wrap;
@@ -40,9 +82,8 @@
   gap: 30px;
 }
 
-/* Her post kartı */
 .postCard {
-  background: #ffffff;
+  background: var(--post-bg);
   width: 320px;
   border-radius: 18px;
   box-shadow: 0 15px 45px rgba(0, 0, 0, 0.12);
@@ -51,13 +92,12 @@
   overflow: hidden;
   text-decoration: none;
   color: inherit;
-  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.35s ease;
+  transition: transform 0.35s, box-shadow 0.35s ease;
   cursor: pointer;
   will-change: transform;
   animation: fadeInUp 0.6s ease forwards;
 }
 
-/* Hover animasyonu */
 .postCard:hover,
 .postCard:focus {
   transform: translateY(-10px) scale(1.05);
@@ -65,7 +105,6 @@
   outline: none;
 }
 
-/* Post içeriği (yazılar) */
 .postContent {
   padding: 22px 25px 18px 25px;
   flex-grow: 1;
@@ -73,35 +112,32 @@
   flex-direction: column;
 }
 
-/* Yazar */
 .postAuthor {
   font-weight: 700;
   font-size: 1.05rem;
-  color: #2980b9;
+  color: var(--author-color);
   margin-bottom: 8px;
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
 }
 
-/* Başlık */
 .postTitle {
   font-weight: 900;
   font-size: 1.5rem;
   margin-bottom: 15px;
-  color: #222f3e;
+  color: var(--post-title-color);
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
   letter-spacing: 0.04em;
 }
 
-/* İçerik önizlemesi */
 .postText {
   flex-grow: 1;
   font-size: 1rem;
   line-height: 1.5;
-  color: #444d56;
+  color: var(--preview-color);
   margin-bottom: 20px;
   display: -webkit-box;
   -webkit-line-clamp: 4;
@@ -112,51 +148,44 @@
           user-select: text;
 }
 
-/* Tarih */
 .postDate {
   font-size: 0.85rem;
-  color: #7f8c8d;
+  color: var(--date-color);
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
 }
 
-/* Resim */
 .postImage {
   width: 100%;
   height: 180px;
   -o-object-fit: cover;
      object-fit: cover;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
   border-bottom-left-radius: 18px;
   border-bottom-right-radius: 18px;
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
-  box-shadow: inset 0 -15px 30px -10px rgba(0, 0, 0, 0.1);
+  box-shadow: inset 0 -15px 30px -10px var(--image-shadow);
   transition: transform 0.5s ease;
 }
 
-/* Resim hover zoom */
 .postCard:hover .postImage {
   transform: scale(1.07);
 }
 
-/* Yorumlar bölümü */
 .commentSection {
-  background: #f4f9ff;
+  background: var(--comment-bg);
   padding: 18px 22px;
-  border-top: 2px solid #2980b9;
+  border-top: 2px solid var(--comment-border);
   border-bottom-left-radius: 18px;
   border-bottom-right-radius: 18px;
   box-shadow: inset 0 3px 8px rgba(41, 128, 185, 0.1);
 }
 
-/* Yorum başlığı */
 .commentHeader {
   font-weight: 700;
-  color: #2471a3;
+  color: var(--comment-header);
   font-size: 1.2rem;
   margin-bottom: 15px;
   -webkit-user-select: none;
@@ -165,16 +194,15 @@
   letter-spacing: 0.03em;
 }
 
-/* Tek yorum */
 .comment {
-  background-color: #dff1ff;
+  background-color: var(--comment-bg);
   border-radius: 12px;
   padding: 12px 15px;
   margin-bottom: 14px;
   box-shadow: 0 6px 18px rgba(36, 113, 163, 0.18);
   font-size: 0.95rem;
   line-height: 1.4;
-  color: #1b3559;
+  color: var(--text-color);
   -webkit-user-select: text;
      -moz-user-select: text;
           user-select: text;
@@ -183,23 +211,21 @@
 }
 
 .comment:hover {
-  background-color: #b1d3fb;
+  background-color: var(--comment-hover);
 }
 
-/* Kullanıcı adı */
 .commentUsername {
   font-weight: 700;
-  color: #174a75;
+  color: var(--comment-user);
   margin-right: 8px;
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
 }
 
-/* Yorum yoksa */
 .noComment {
   font-style: italic;
-  color: #7f8c8d;
+  color: var(--no-comment);
   font-size: 1rem;
   padding: 10px 0;
   -webkit-user-select: none;
@@ -207,7 +233,6 @@
           user-select: none;
 }
 
-/* Animasyonlar */
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -218,7 +243,6 @@
     transform: translateY(0);
   }
 }
-/* Responsive */
 @media (max-width: 720px) {
   .control {
     margin: auto;
@@ -232,7 +256,7 @@
   }
 }
 .deleteAllButton {
-  background-color: crimson;
+  background-color: var(--delete-bg);
   color: white;
   border: none;
   padding: 10px 16px;
@@ -243,5 +267,5 @@
 }
 
 .deleteAllButton:hover {
-  background-color: darkred;
+  background-color: var(--delete-hover);
 }/*# sourceMappingURL=index.module.css.map */

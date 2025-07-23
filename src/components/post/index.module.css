@@ -1,17 +1,88 @@
+/* Ortak Temel Ayarlar */
+:root {
+  --background-light: #fefefe;
+  --background-dark: #121212;
+  --text-light: #333;
+  --text-dark: #f1f1f1;
+  --input-bg-light: #ffffff;
+  --input-bg-dark: #1e1e1e;
+  --border-color-light: #ccc;
+  --border-color-dark: #444;
+  --button-bg-light: #007bff;
+  --button-bg-dark: #3399ff;
+  --button-hover-light: #0056b3;
+  --button-hover-dark: #2277cc;
+  --file-name-light: #555;
+  --file-name-dark: #ccc;
+}
+
+/* Light Mode */
+.light {
+  --background: var(--background-light);
+  --text-color: var(--text-light);
+  --input-bg: var(--input-bg-light);
+  --border-color: var(--border-color-light);
+  --button-bg: var(--button-bg-light);
+  --button-hover: var(--button-hover-light);
+  --file-name: var(--file-name-light);
+}
+
+/* Dark Mode */
+.dark {
+  --background: var(--background-dark);
+  --text-color: var(--text-dark);
+  --input-bg: var(--input-bg-dark);
+  --border-color: var(--border-color-dark);
+  --button-bg: var(--button-bg-dark);
+  --button-hover: var(--button-hover-dark);
+  --file-name: var(--file-name-dark);
+}
+
 .control {
   max-width: 600px;
   margin: 2rem auto;
   padding: 2rem;
-  background-color: #fefefe;
+  background-color: var(--background);
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   text-align: center;
+  color: var(--text-color);
 }
 
 .control h1 {
   font-size: 1.8rem;
   margin-bottom: 1.5rem;
-  color: #333;
+  color: var(--text-color);
+}
+
+.fileInputWrapper {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  position: relative;
+}
+
+.hiddenFileInput {
+  display: none;
+}
+
+.customFileLabel {
+  background-color: var(--button-bg);
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-size: 0.9rem;
+}
+
+.customFileLabel:hover {
+  background-color: var(--button-hover);
+}
+
+.fileName {
+  font-size: 0.9rem;
+  color: var(--file-name);
 }
 
 .postCreate form {
@@ -30,24 +101,27 @@
 .input input[type=text],
 .input textarea {
   padding: 0.8rem 1rem;
-  border: 1px solid #ccc;
+  border: 1px solid var(--border-color);
   border-radius: 8px;
   font-size: 1rem;
-  transition: border-color 0.2s;
+  background-color: var(--input-bg);
+  color: var(--text-color);
+  transition: border-color 0.2s, background-color 0.3s;
 }
 
 .input input[type=text]:focus,
 .input textarea:focus {
-  border-color: #007bff;
+  border-color: var(--button-bg);
   outline: none;
 }
 
 .input input[type=file] {
   border: none;
-  background-color: #fafafa;
+  background-color: var(--input-bg);
   padding: 0.5rem 0;
   font-size: 0.9rem;
   cursor: pointer;
+  color: var(--text-color);
 }
 
 .button {
@@ -58,7 +132,7 @@
 .button button {
   padding: 0.7rem 2rem;
   font-size: 1rem;
-  background-color: #007bff;
+  background-color: var(--button-bg);
   color: white;
   border: none;
   border-radius: 8px;
@@ -67,5 +141,5 @@
 }
 
 .button button:hover {
-  background-color: #0056b3;
+  background-color: var(--button-hover);
 }/*# sourceMappingURL=index.module.css.map */

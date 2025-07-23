@@ -1,32 +1,31 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styles from "./index.module.css";
 import Wrapper from "../../UI/wrapper";
 import { Link } from "react-router-dom";
 import { searchPostsByTitle } from "../../../api";
+import { ThemeContext } from "../../../context/ThemeContext";
 
 const Header = () => {
   const [user, setUser] = useState(null);
   const [search, setSearch] = useState("");
   const [results, setResults] = useState([]);
+  const { darkMode, toggleTheme } = useContext(ThemeContext);
 
-  // 🔐 Token süresi kontrolü
   const isTokenExpired = (token) => {
     try {
-      const payload = JSON.parse(atob(token.split('.')[1])); // token payload kısmını decode et
-      const expiry = payload.exp * 1000; // exp saniye cinsindedir, milisaniyeye çevir
+      const payload = JSON.parse(atob(token.split('.')[1]));
+      const expiry = payload.exp * 1000;
       return Date.now() > expiry;
     } catch (e) {
-      return true; // token geçersizse expired gibi davran
+      return true;
     }
   };
 
-  // 🔁 Sayfa yüklendiğinde token süresi kontrolü yap
   useEffect(() => {
     const userData = localStorage.getItem("user");
     const token = localStorage.getItem("token");
 
     if (token && isTokenExpired(token)) {
-      // Token süresi dolmuşsa logout yap
       localStorage.removeItem("token");
       localStorage.removeItem("user");
       setUser(null);
@@ -39,7 +38,6 @@ const Header = () => {
     }
   }, []);
 
-  // 🔁 Opsiyonel: Her 1 dakikada bir token süresi kontrolü yap
   useEffect(() => {
     const interval = setInterval(() => {
       const token = localStorage.getItem("token");
@@ -49,9 +47,9 @@ const Header = () => {
         setUser(null);
         window.location.href = "/login";
       }
-    }, 60000); // 60 saniyede bir kontrol
+    }, 60000);
 
-    return () => clearInterval(interval); // bileşen kaldırılırsa interval temizlensin
+    return () => clearInterval(interval);
   }, []);
 
   const handleLogOut = () => {
@@ -80,7 +78,7 @@ const Header = () => {
 
   return (
     <Wrapper>
-      <div className={styles.control}>
+      <div className={`${styles.control} ${darkMode ? styles.dark : styles.light}`}>
         <div className={styles.leftSide}>
           <Link to={"/"}>FormDom</Link>
         </div>
@@ -104,10 +102,12 @@ const Header = () => {
               ))}
             </div>
           )}
-
         </div>
 
         <div className={styles.rightSide}>
+          <button onClick={toggleTheme} className={styles.toggleButton}>
+            {darkMode ? '☀️ Light' : '🌙 Dark'}
+          </button>
           {user ? (
             <div>
               <h2>Welcome, {user.username}</h2>

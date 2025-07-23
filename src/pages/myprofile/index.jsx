@@ -1,20 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import styles from './index.module.css';
 import Wrapper from '../../components/UI/wrapper';
 import { getMyPosts, editPost, myProfile } from '../../api';
-
+import { ThemeContext } from '../../context/ThemeContext';
 const MyProfile = () => {
   const [user, setUser] = useState(null);
   const [posts, setPosts] = useState([]);
   const [editingPost, setEditingPost] = useState(null);
   const [editTitle, setEditTitle] = useState('');
   const [editContent, setEditContent] = useState('');
-
+  const { darkMode, toggleTheme } = useContext(ThemeContext)
   useEffect(() => {
     const fetchData = async () => {
       try {
         const profileData = await myProfile();
-        console.log("Profile data:", profileData); 
+        console.log("Profile data:", profileData);
         setUser(profileData);
         const response = await getMyPosts();
         setPosts(response);
@@ -55,7 +55,8 @@ const MyProfile = () => {
 
   return (
     <Wrapper>
-      <div className={styles.profile}>
+      <div className={styles.control} data-theme={darkMode ? 'dark' : 'light'}>
+
         <h1>My Profile</h1>
         <p><strong>Username:</strong> {user.username}</p>
         <p><strong>Role:</strong> {user.role}</p>
@@ -74,7 +75,7 @@ const MyProfile = () => {
               <p><strong>Author:</strong> {post.author}</p>
               {post.imageUrl && (
                 <img
-                  src={`http://localhost:6059${post.imageUrl}`}
+                  src={`http://localhost:6060${post.imageUrl}`}
                   alt="My Post"
                   style={{ maxWidth: '300px', marginTop: '10px' }}
                 />

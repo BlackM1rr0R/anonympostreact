@@ -1,3 +1,17 @@
-body{
-    font-family: "Exo 2", sans-serif !important;
+body {
+  margin: 0;
+font-family: "Exo 2", sans-serif !important;
+  background-color: white;
+  color: black;
+  transition: all 0.3s;
+}
+
+body.dark {
+  background-color: #121212;
+  color: white;
+}
+
+.dark .card {
+  background-color: #1e1e1e;
+  color: white;
 }

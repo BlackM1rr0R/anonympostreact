@@ -1,16 +1,24 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styles from './index.module.css'
 import Wrapper from '../UI/wrapper'
 import { allComment, deleteAllPosts, getAllLikes, getAllPosts, toggleLike } from "../../api";
 import { Link, useLocation } from "react-router-dom";
-
-const AllPosts = () => {
+import { ThemeContext } from '../../context/ThemeContext'
+const AllPosts = ({ newPost }) => {
   const [data, setData] = useState([]);
   const [commentsMap, setCommentsMap] = useState({});
   const [likeCounts, setLikeCounts] = useState({});
-  const location=useLocation();
+  const location = useLocation();
   const user = JSON.parse(localStorage.getItem("user"));
   const isAdmin = user?.role === "ADMIN";
+  const { darkMode, toggleTheme } = useContext(ThemeContext)
+
+  useEffect(() => {
+    if (newPost) {
+      setData(prev => [newPost, ...prev]);
+    }
+  }, [newPost]);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -26,9 +34,8 @@ const AllPosts = () => {
           const likeCount = await getAllLikes(post.id);
           likeCountsObj[post.id] = likeCount;
         }
-
         setCommentsMap(commentResults);
-        setLikeCounts(likeCountsObj); // BU SATIR EKLENDİ
+        setLikeCounts(likeCountsObj);
       } catch (error) {
         console.error("Error fetching posts or comments:", error);
       }
@@ -37,25 +44,23 @@ const AllPosts = () => {
     fetchData();
   }, [location]);
 
-
   const handleLike = async (postId) => {
     try {
       const isLiked = await toggleLike(postId);
       setLikeCounts((prev) => ({
         ...prev,
         [postId]: isLiked
-          ? (prev[postId] || 0) + 1    // like eklendi
-          : Math.max((prev[postId] || 1) - 1, 0) // like kaldırıldı
+          ? (prev[postId] || 0) + 1
+          : Math.max((prev[postId] || 1) - 1, 0)
       }));
     } catch (error) {
       console.error("Error toggling like:", error);
     }
   };
 
-
   return (
     <Wrapper>
-      <div className={styles.control}>
+      <div className={styles.control} data-theme={darkMode ? 'dark' : 'light'}>
         <h1 className={styles.pageTitle}>All Posts</h1>
         {isAdmin && (
           <div style={{ marginBottom: '20px' }}>
@@ -63,7 +68,7 @@ const AllPosts = () => {
               onClick={async () => {
                 try {
                   await deleteAllPosts();
-                  window.location.reload(); 
+                  window.location.reload();
                 } catch (error) {
                   console.error("Postları silerken hata:", error);
                 }
@@ -111,12 +116,12 @@ const AllPosts = () => {
               >
                 ❤️ Like ({Array.isArray(likeCounts[post.id]) ? likeCounts[post.id].length : likeCounts[post.id] || 0})
               </button>
-
             </div>
           ))}
         </div>
       </div>
     </Wrapper>
+
   );
 };
 

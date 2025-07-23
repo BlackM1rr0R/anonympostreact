@@ -357,3 +357,31 @@
   cursor: not-allowed;
   box-shadow: none;
 }
+/* Tema class'ları */
+.dark {
+  background-color: #1e1e1e;
+  color: #f1f1f1;
+}
+
+.light {
+  background-color: #ffffff;
+  color: #222222;
+}
+
+/* İstersen özel alanlar için de koyu stil tanımlayabilirsin */
+.dark .postTitle {
+  color: #ffdd57;
+}
+
+.dark .postContent,
+.dark .comment,
+.dark .commentInput,
+.dark .commentButton {
+  background-color: #2a2a2a;
+  color: #eee;
+  border-color: #555;
+}
+
+.dark .commentInput::placeholder {
+  color: #aaa;
+}
