@@ -4,6 +4,7 @@ import Wrapper from '../UI/wrapper'
 import { allComment, deleteAllPosts, getAllLikes, getAllPosts, toggleLike } from "../../api";
 import { Link, useLocation } from "react-router-dom";
 import { ThemeContext } from '../../context/ThemeContext'
+import { useTranslation } from "react-i18next";
 const AllPosts = ({ newPost }) => {
   const [data, setData] = useState([]);
   const [commentsMap, setCommentsMap] = useState({});
@@ -12,7 +13,7 @@ const AllPosts = ({ newPost }) => {
   const user = JSON.parse(localStorage.getItem("user"));
   const isAdmin = user?.role === "ADMIN";
   const { darkMode, toggleTheme } = useContext(ThemeContext)
-
+  const { t } = useTranslation()
   useEffect(() => {
     if (newPost) {
       setData(prev => [newPost, ...prev]);
@@ -61,7 +62,7 @@ const AllPosts = ({ newPost }) => {
   return (
     <Wrapper>
       <div className={styles.control} data-theme={darkMode ? 'dark' : 'light'}>
-        <h1 className={styles.pageTitle}>All Posts</h1>
+        <h1 className={styles.pageTitle}>{t("allPosts")}</h1>
         {isAdmin && (
           <div style={{ marginBottom: '20px' }}>
             <button
@@ -83,23 +84,23 @@ const AllPosts = ({ newPost }) => {
         <div className={styles.controlPosts}>
           {data.map((post) => (
             <div key={post.id} className={styles.postCard}>
-              <Link to={`/post/${post.id}`} className={styles.postContent}>
-                <p className={styles.postAuthor}><strong>Author:</strong> {post.author}</p>
-                <p className={styles.postTitle}><strong>Title:</strong> {post.title}</p>
-                <p className={styles.postText}>{post.content}</p>
-                <p className={styles.postDate}>{new Date(post.createdAt).toLocaleDateString()}</p>
+              {post.imageUrl && (
+                <img
+                  src={`http://localhost:6060${post.imageUrl}`}
+                  alt="Post"
+                  className={styles.postImage}
+                />
+              )}
 
-                {post.imageUrl && (
-                  <img
-                    src={`http://localhost:6060${post.imageUrl}`}
-                    alt="Post"
-                    className={styles.postImage}
-                  />
-                )}
+              <Link to={`/post/${post.id}`} className={styles.postContent}>
+                <p className={styles.postTitle}>{t("title")}:{post.title}</p>
+                <p className={styles.postAuthor}><strong>{t("username")}:</strong> {post.author}</p>
+                <p className={styles.postText}>{t("content")}:{post.content}</p>
+                <p className={styles.postDate}>{t("date")}:{new Date(post.createdAt).toLocaleDateString()}</p>
               </Link>
 
               <div className={styles.commentSection}>
-                <h4 className={styles.commentHeader}>Comments ({commentsMap[post.id]?.length || 0})</h4>
+                <h4 className={styles.commentHeader}>{t("comments")} ({commentsMap[post.id]?.length || 0})</h4>
                 {Array.isArray(commentsMap[post.id]) && commentsMap[post.id].length > 0 ? (
                   commentsMap[post.id].slice(0, 2).map((com) => (
                     <p key={com.id} className={styles.comment}>
@@ -107,16 +108,15 @@ const AllPosts = ({ newPost }) => {
                     </p>
                   ))
                 ) : (
-                  <p className={styles.noComment}>No comments yet.</p>
+                  <p className={styles.noComment}>{t("noComments")}</p>
                 )}
               </div>
-              <button
-                onClick={() => handleLike(post.id)}
-                className={styles.likeButton}
-              >
-                ❤️ Like ({Array.isArray(likeCounts[post.id]) ? likeCounts[post.id].length : likeCounts[post.id] || 0})
+
+              <button onClick={() => handleLike(post.id)} className={styles.likeButton}>
+                ❤️ {t("like")} ({Array.isArray(likeCounts[post.id]) ? likeCounts[post.id].length : likeCounts[post.id] || 0})
               </button>
             </div>
+
           ))}
         </div>
       </div>

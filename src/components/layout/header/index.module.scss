@@ -10,6 +10,27 @@
   transition: all 0.3s ease;
 }
 
+.languageSelect {
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  margin: 0 10px;
+  background-color: white;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.dark .languageSelect {
+  background-color: #333;
+  color: #fff;
+  border: 1px solid #555;
+}
+
+.languageSelect:hover {
+  transform: scale(1.02);
+}
+
 /* LIGHT MODE */
 .light {
   background-color: #ffffff;
@@ -185,6 +206,7 @@
     opacity: 0;
     transform: translateY(-4px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);

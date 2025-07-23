@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import Wrapper from "../../components/UI/wrapper";
 import styles from './index.module.css'
 import { loginUser } from "../../api";
+import { useTranslation } from "react-i18next";
 const Login = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const { t } = useTranslation();
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
@@ -23,12 +25,12 @@ const Login = () => {
         <Wrapper>
 
             <div className={styles.control}>
-                <h1>Login Page</h1>
+                <h1>{t("login")}</h1>
                 <div className={styles.form}>
                     <form onSubmit={handleLogin}>
-                        <input type="text" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} />
-                        <input type="password" placeholder="Password" value={password} onChange={(e)=>setPassword(e.target.value)}/>
-                        <button type="submit">Login</button>
+                        <input type="text" placeholder={t("username")} value={username} onChange={(e) => setUsername(e.target.value)} />
+                        <input type="password" placeholder={t("password")} value={password} onChange={(e)=>setPassword(e.target.value)}/>
+                        <button type="submit">{t("login")}</button>
                     </form>
 
                 </div>

@@ -1,15 +1,23 @@
+// En üst importlar arasında kalsın
 import React, { useContext, useEffect, useState } from "react";
 import styles from "./index.module.css";
 import Wrapper from "../../UI/wrapper";
 import { Link } from "react-router-dom";
 import { searchPostsByTitle } from "../../../api";
 import { ThemeContext } from "../../../context/ThemeContext";
+import { useTranslation } from "react-i18next";
 
 const Header = () => {
   const [user, setUser] = useState(null);
   const [search, setSearch] = useState("");
   const [results, setResults] = useState([]);
   const { darkMode, toggleTheme } = useContext(ThemeContext);
+  const { t, i18n } = useTranslation();
+
+  const changeLanguage = (e) => {
+    const lng = e.target.value;
+    i18n.changeLanguage(lng);
+  };
 
   const isTokenExpired = (token) => {
     try {
@@ -86,7 +94,7 @@ const Header = () => {
         <div className={styles.middleSide}>
           <input
             type="text"
-            placeholder="Search title"
+            placeholder={t('searchTitle')}
             value={search}
             onChange={handleSearchChange}
           />
@@ -108,17 +116,28 @@ const Header = () => {
           <button onClick={toggleTheme} className={styles.toggleButton}>
             {darkMode ? '☀️ Light' : '🌙 Dark'}
           </button>
+
+          <select
+            onChange={changeLanguage}
+            className={styles.languageSelect}
+            defaultValue={i18n.language}
+          >
+            <option value="tr">Türkçe</option>
+            <option value="de">Deutsch</option>
+            <option value="en">English</option>
+          </select>
+
           {user ? (
             <div>
-              <h2>Welcome, {user.username}</h2>
-              <Link to={"/my-profile"}>My Profile</Link>
-              <h2 onClick={handleLogOut}>LogOut</h2>
+              <h2>{t("welcome")}, {user.username}</h2>
+              <Link to={"/my-profile"}>{t("myProfile")}</Link>
+              <h2 onClick={handleLogOut}>{t("logout")}</h2>
             </div>
           ) : (
             <>
-              <Link to={"/login"} className={styles.loginButton}>Login</Link>
-              <span>or</span>
-              <Link to={"/register"} className={styles.registerButton}>Register</Link>
+              <Link to={"/login"} className={styles.loginButton}>{t('login')}</Link>
+              <span>{t('or')}</span>
+              <Link to={"/register"} className={styles.registerButton}>{t('register')}</Link>
             </>
           )}
         </div>

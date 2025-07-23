@@ -4,6 +4,7 @@ import Wrapper from '../UI/wrapper';
 import { addPost } from '../../api';
 import { useNavigate } from 'react-router-dom';
 import { ThemeContext } from '../../context/ThemeContext';
+import { useTranslation } from 'react-i18next';
 
 const Post = ({ onPostCreated }) => {
   const [content, setContent] = useState('');
@@ -12,7 +13,7 @@ const Post = ({ onPostCreated }) => {
   const [image, setImage] = useState(null);
   const navigate = useNavigate();
   const { darkMode } = useContext(ThemeContext);
-
+  const { t } = useTranslation();
   useEffect(() => {
     const storedUser = localStorage.getItem('user');
     if (!storedUser) {
@@ -50,26 +51,26 @@ const Post = ({ onPostCreated }) => {
   return (
     <Wrapper>
       <div className={`${styles.control} ${darkMode ? styles.dark : styles.light}`}>
-        <h1>Add Your Anonym Post</h1>
+        <h1>{t("addAnonymPost")}</h1>
         <div className={styles.postCreate}>
           <form onSubmit={handleSubmit}>
             <div className={styles.input}>
               <input
                 type="text"
-                placeholder='Your Title'
+                placeholder={t('title')}
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
               />
               <input
                 type="text"
-                placeholder='Write your post...'
+                placeholder={t('content')}
                 value={content}
                 onChange={(e) => setContent(e.target.value)}
               />
 
               <div className={styles.fileInputWrapper}>
                 <label htmlFor="fileUpload" className={styles.customFileLabel}>
-                  📷 Add Photo
+                  📷 {t("addPhoto")}
                 </label>
                 <input
                   type="file"
@@ -83,7 +84,7 @@ const Post = ({ onPostCreated }) => {
             </div>
 
             <div className={styles.button}>
-              <button type='submit'>Post</button>
+              <button type='submit'>{t("share")}</button>
             </div>
           </form>
         </div>
