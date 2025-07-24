@@ -77,7 +77,7 @@ const MyProfile = () => {
               <p><strong>{t("username")}:</strong> {post.author}</p>
               {post.imageUrl && (
                 <img
-                  src={`http://localhost:6060${post.imageUrl}`}
+                  src={`http://172.104.237.15:6060${post.imageUrl}`}
                   alt="My Post"
                   style={{ maxWidth: '300px', marginTop: '10px' }}
                 />
