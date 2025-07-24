@@ -14,6 +14,9 @@ const AllPosts = ({ newPost }) => {
   const isAdmin = user?.role === "ADMIN";
   const { darkMode, toggleTheme } = useContext(ThemeContext)
   const { t } = useTranslation()
+  const [page, setPage] = useState(0);
+  const [totalPages, setTotalPages] = useState(0);
+  const pageSize = 3;
   useEffect(() => {
     if (newPost) {
       setData(prev => [newPost, ...prev]);
@@ -23,9 +26,9 @@ const AllPosts = ({ newPost }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const posts = await getAllPosts();
-        setData(posts);
-
+        const posts = await getAllPosts(page, pageSize);
+        setData(posts.content);
+        setTotalPages(posts.totalPages);
         const commentResults = {};
         const likeCountsObj = {};
         for (const post of posts) {
@@ -43,7 +46,7 @@ const AllPosts = ({ newPost }) => {
     };
 
     fetchData();
-  }, [location]);
+  }, [location, page]);
 
   const handleLike = async (postId) => {
     try {
@@ -119,6 +122,19 @@ const AllPosts = ({ newPost }) => {
 
           ))}
         </div>
+        <div className={styles.paginationContainer}>
+          {Array.from({ length: totalPages }, (_, index) => (
+            <button
+              key={index}
+              onClick={() => setPage(index)}
+              className={`${styles.pageButton} ${page === index ? styles.active : ""}`}
+            >
+              {index + 1}
+            </button>
+          ))}
+        </div>
+
+
       </div>
     </Wrapper>
 

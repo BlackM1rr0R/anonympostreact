@@ -1,9 +1,9 @@
 import axios from "axios";
 const API_URL = "http://localhost:6060";
 
-export const getAllPosts = async () => {
+export const getAllPosts = async (page = 0, size = 5) => {
   try {
-    const response = await axios.get(`${API_URL}/post/all`, {
+    const response = await axios.get(`${API_URL}/post/all?page=${page}&size=${size}`, {
       withCredentials: true,
     });
     return response.data;
@@ -11,7 +11,8 @@ export const getAllPosts = async () => {
     console.log("Posts can not found", error);
     throw error;
   }
-}
+};
+
 
 export const registerUser = async (userData) => {
   try {
