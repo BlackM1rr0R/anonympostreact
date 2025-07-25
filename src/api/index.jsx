@@ -1,5 +1,5 @@
 import axios from "axios";
-const API_URL = "http://172.104.237.15:6060";
+const API_URL = "http://localhost:6060";
 
 export const getAllPosts = async (page = 0, size = 5) => {
   try {
@@ -177,19 +177,21 @@ export const toggleLike = async (postId) => {
   const token = localStorage.getItem("token");
   try {
     const response = await axios.post(
-      `${API_URL}/like/toggle`, // backend toggle endpoint
-      { post: { id: postId } },
+      `${API_URL}/like/toggle`,
+      { post: { id: postId } },  // burada obje oluştur
       {
         headers: { Authorization: `Bearer ${token}` },
         withCredentials: true,
       }
     );
-    return response.data; // boolean döner: true = liked, false = unliked
+    return response.data;
   } catch (error) {
     console.error("Error toggling like:", error);
     throw error;
   }
 };
+
+
 
 export const getAllLikes = async (postId) => {
   const token = localStorage.getItem("token");
@@ -215,6 +217,20 @@ export const deleteAllPosts = async () => {
     return response.data;
   } catch (error) {
     console.error("Error deleting post:", error);
+    throw error;
+  }
+}
+
+export const getLikeCount = async (postId) => {
+  const token = localStorage.getItem("token");
+  try {
+    const response = await axios.get(`${API_URL}/like/post/${postId}/count`, {
+      headers: { Authorization: `Bearer ${token}` },
+      withCredentials: true,
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching likes:", error);
     throw error;
   }
 }
