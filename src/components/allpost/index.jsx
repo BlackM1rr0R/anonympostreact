@@ -91,7 +91,7 @@ const AllPosts = ({ newPost }) => {
             <div key={post.id} className={styles.postCard}>
               {post.imageUrl && (
                 <img
-                  src={`http://localhost:6060${post.imageUrl}`}
+                  src={`http://172.104.237.15:6060${post.imageUrl}`}
                   alt="Post"
                   className={styles.postImage}
                 />
