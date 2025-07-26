@@ -65,7 +65,7 @@ const PostAbout = () => {
 
         {post.imageUrl && (
           <img
-            src={`http://172.104.237.15:6060${post.imageUrl}`}
+            src={`http://localhost:6060${post.imageUrl}`}
             alt="Post"
             className={styles.postImage}
           />
@@ -116,7 +116,7 @@ const PostAbout = () => {
                       <div className={styles.cardFront}>
                         {post.imageUrl ? (
                           <img
-                            src={`http://172.104.237.15:6060${post.imageUrl}`}
+                            src={`http://localhost:6060${post.imageUrl}`}
                             alt="Post"
                             className={styles.sameTitleImage}
                           />

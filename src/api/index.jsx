@@ -1,5 +1,5 @@
 import axios from "axios";
-const API_URL = "http://172.104.237.15:6060";
+const API_URL = "http://localhost:6060";
 
 export const getAllPosts = async (page = 0, size = 5) => {
   try {
@@ -231,6 +231,76 @@ export const getLikeCount = async (postId) => {
     return response.data;
   } catch (error) {
     console.error("Error fetching likes:", error);
+    throw error;
+  }
+}
+
+export const addDailyQuestion=async (questionData) => {
+  const token = localStorage.getItem("token");
+  try {
+    const response = await axios.post(`${API_URL}/daily/addDailyQuestion`, questionData, {
+      headers: { Authorization: `Bearer ${token}` },
+      withCredentials: true,
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error adding daily question:", error);
+    throw error;
+  }
+}
+
+export const getDailyQuestion = async () => {
+  const token = localStorage.getItem("token");
+  try {
+    const response = await axios.get(`${API_URL}/daily/question`, {
+      headers: { Authorization: `Bearer ${token}` },
+      withCredentials: true,
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching daily question:", error);
+    throw error;
+  }
+}
+
+export const addAnswerToDailyQuestion = async (answerData) => {
+  const token = localStorage.getItem("token");
+  try {
+    const response = await axios.post(`${API_URL}/answer/add`, answerData, {
+      headers: { Authorization: `Bearer ${token}` },
+      withCredentials: true,
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error adding answer to daily question:", error);
+    throw error;
+  }
+}
+
+export const getAllAnswers = async () => {
+  const token = localStorage.getItem("token");
+  try {
+    const response = await axios.get(`${API_URL}/answer/allAnswer`, {
+      headers: { Authorization: `Bearer ${token}` },
+      withCredentials: true,
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching all answers:", error);
+    throw error;
+  }
+}
+
+export const getDailyQuestionById = async (id) => {
+  const token = localStorage.getItem("token");
+  try {
+    const response = await axios.get(`${API_URL}/daily/question/${id}`, {
+      headers: { Authorization: `Bearer ${token}` },
+      withCredentials: true,
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching daily question by id:", error);
     throw error;
   }
 }

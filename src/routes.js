@@ -1,5 +1,6 @@
 
 import About from "./pages/about";
+import AboutDailyQuestion from "./pages/aboutdailyquestion";
 import Contact from "./pages/contact";
 
 import Home from "./pages/home";
@@ -26,6 +27,7 @@ const routes = {
   register: routeItem(6, "register", "/register", Register),
   myprofile: routeItem(7, "myprofile", "/my-profile", MyProfile),
   postabout: routeItem(8, "postabout", "/post/:id", PostAbout),
+  dailyquestion:routeItem(9,"dailyquestion","/daily-question/:id",AboutDailyQuestion)
 
 
 };
