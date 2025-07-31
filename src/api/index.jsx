@@ -1,5 +1,5 @@
 import axios from "axios";
-const API_URL = "http://172.104.237.15:6060";
+const API_URL = "http://localhost:6060";
 
 export const getAllPosts = async (page = 0, size = 5) => {
   try {
@@ -301,6 +301,47 @@ export const getDailyQuestionById = async (id) => {
     return response.data;
   } catch (error) {
     console.error("Error fetching daily question by id:", error);
+    throw error;
+  }
+}
+export const adminGetAllUsers = async () => {
+  const token = localStorage.getItem("token");
+  try {
+    const response = await axios.get(`${API_URL}/admin/allUsers`, {
+      headers: { Authorization: `Bearer ${token}` },
+      withCredentials: true,
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching daily question by id:", error);
+    throw error;
+  }
+}
+
+export const adminEditProfile = async (userData) => {
+  const token = localStorage.getItem("token");
+  try {
+    const response = await axios.put(`${API_URL}/admin/edit-admin-profile`, userData, {
+      headers: { Authorization: `Bearer ${token}` },
+      withCredentials: true,
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error editing profile:", error);
+    throw error;
+  }
+}
+
+export const adminDeleteUser = async (userId) => {
+  const token = localStorage.getItem("token");
+  try {
+    const response = await axios.delete(`${API_URL}/admin/users/${userId}`, {
+      headers: { Authorization: `Bearer ${token}` },
+      withCredentials: true,
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error deleting user:", error);
     throw error;
   }
 }

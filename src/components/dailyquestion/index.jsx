@@ -17,8 +17,6 @@ const DailyQuestion = () => {
       await addDailyQuestion({ question: questionText });
       setQuestionText("");
       alert("Yeni soru başarıyla eklendi!");
-      // Burada sayfa yenilemek yerine başka state güncelleme yapılabilir, 
-      // ama bu component sadece ekleme yapıyor, parent component refresh işini yapmalı.
     } catch (error) {
       console.error("Error adding daily question:", error);
       alert("Soru eklenirken hata oluştu.");

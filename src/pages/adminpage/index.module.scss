@@ -1,0 +1,153 @@
+/* Genel container */
+.container {
+  max-width: 900px;
+  margin: 30px auto;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  border-radius: 12px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+}
+
+/* Başlık */
+.title {
+  text-align: center;
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 30px;
+  color: #2c3e50;
+}
+
+/* Form */
+.editForm {
+  background-color: #f9f9f9;
+  padding: 25px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.05);
+}
+
+.editForm h3 {
+  margin-bottom: 20px;
+  color: #34495e;
+}
+
+.editForm label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 8px;
+  margin-top: 12px;
+  color: #555;
+}
+
+.editForm input[type="text"],
+.editForm input[type="password"],
+.editForm select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1.8px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.editForm input[type="text"]:focus,
+.editForm input[type="password"]:focus,
+.editForm select:focus {
+  outline: none;
+  border-color: #2980b9;
+  box-shadow: 0 0 6px #2980b9aa;
+}
+
+/* Butonlar */
+.editForm button {
+  margin-top: 20px;
+  padding: 10px 22px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.25s ease;
+}
+
+.editForm button[type="submit"] {
+  background-color: #2980b9;
+  color: white;
+  margin-right: 12px;
+}
+
+.editForm button[type="submit"]:hover {
+  background-color: #1c5980;
+}
+
+.editForm button[type="button"] {
+  background-color: #bdc3c7;
+  color: #2c3e50;
+}
+
+.editForm button[type="button"]:hover {
+  background-color: #95a5a6;
+}
+
+/* Tablo tasarımı */
+.usersTable {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 12px;
+  font-size: 1rem;
+}
+
+.usersTable thead tr {
+  background-color: #2980b9;
+  color: white;
+  text-align: left;
+  border-radius: 10px;
+}
+
+.usersTable thead th {
+  padding: 14px 20px;
+}
+
+.usersTable tbody tr {
+  background-color: #fefefe;
+  box-shadow: 0 4px 10px rgb(0 0 0 / 0.1);
+  border-radius: 10px;
+  transition: transform 0.2s ease;
+}
+
+.usersTable tbody tr:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 20px rgb(0 0 0 / 0.15);
+}
+
+.usersTable tbody td {
+  padding: 14px 20px;
+  vertical-align: middle;
+}
+
+/* İşlem butonları */
+.actionButton {
+  background-color: #e74c3c;
+  border: none;
+  padding: 7px 14px;
+  margin-left: 10px;
+  border-radius: 6px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.25s ease;
+}
+
+.actionButton.edit {
+  background-color: #27ae60;
+}
+
+.actionButton:hover.edit {
+  background-color: #1e8449;
+}
+
+.actionButton:hover {
+  background-color: #c0392b;
+}
