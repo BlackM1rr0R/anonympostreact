@@ -345,3 +345,57 @@ export const adminDeleteUser = async (userId) => {
     throw error;
   }
 }
+export const adminGetAllPosts = async () => {
+  const token = localStorage.getItem("token");
+  try {
+    const response = await axios.get(`${API_URL}/admin/all-post-for-admin`, {
+      headers: { Authorization: `Bearer ${token}` },
+      withCredentials: true,
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching daily question by id:", error);
+    throw error;
+  }
+}
+
+export const adminDeletePost = async (postId) => {
+  const token = localStorage.getItem("token");
+  try {
+    const response = await axios.delete(`${API_URL}/admin/delete-post/${postId}`, {
+      headers: { Authorization: `Bearer ${token}` },
+      withCredentials: true,
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error deleting post:", error);
+    throw error;
+  }
+}
+
+export const adminEditPost = async (postId, updatedPost) => {
+  const token = localStorage.getItem("token");
+  try {
+    const response = await axios.put(`${API_URL}/admin/edit-post/${postId}`, updatedPost, {
+      headers: { Authorization: `Bearer ${token}` },
+      withCredentials: true,
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error editing post:", error);
+    throw error;
+  }
+};
+export const adminAddNewUser = async (userData) => {
+  const token = localStorage.getItem("token");
+  try {
+    const response = await axios.post(`${API_URL}/admin/add-new-user`, userData, {
+      headers: { Authorization: `Bearer ${token}` },
+      withCredentials: true,
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error adding new user:", error);
+    throw error;
+  }
+}
