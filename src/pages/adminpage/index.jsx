@@ -11,25 +11,31 @@ import {
 import styles from "./index.module.css";
 
 const AdminPage = () => {
+  //For all users and editing;
   const [users, setUsers] = useState([]);
   const [editUser, setEditUser] = useState(null);
   const [editedUsername, setEditedUsername] = useState("");
   const [editedRole, setEditedRole] = useState("");
   const [editedPassword, setEditedPassword] = useState("");
+ //For all posts and editing;
   const [posts, setPosts] = useState([]);
   const [editPost, setEditPost] = useState(null);
   const [editedTitle, setEditedTitle] = useState("");
   const [editedContent, setEditedContent] = useState("");
+  //For adding new user;
   const [newUsername, setNewUsername] = useState("");
   const [newRole, setNewRole] = useState("USER");
   const [newPassword, setNewPassword] = useState("");
+
   useEffect(() => {
+    //Come allUsers and allPosts;
     fetchUsers();
     fetchPosts();
   }, []);
 
   const fetchUsers = async () => {
     try {
+      //Come all users from the API;
       const allUsers = await adminGetAllUsers();
       setUsers(allUsers);
 
@@ -38,8 +44,10 @@ const AdminPage = () => {
       console.error("Error fetching users or posts:", error);
     }
   };
+
   const fetchPosts = async () => {
     try {
+      //Come all posts from the API;
       const allPosts = await adminGetAllPosts();
       setPosts(allPosts);
     } catch (error) {
@@ -49,6 +57,7 @@ const AdminPage = () => {
 
   const handleRemovePost = async (postId) => {
     try {
+      //Delete post by ID;
       await adminDeletePost(postId);
       setPosts(posts.filter((post) => post.id !== postId));
     } catch (error) {
@@ -57,6 +66,7 @@ const AdminPage = () => {
   };
 
   const handleEditPost = (postId) => {
+    //Find the post to edit by ID; Post have oben;
     const postToEdit = posts.find((p) => p.id === postId);
     if (postToEdit) {
       setEditPost(postToEdit);
@@ -68,15 +78,15 @@ const AdminPage = () => {
   const handleEditPostSubmit = async (e) => {
     e.preventDefault();
     console.log("Submit tetiklendi")
-    try {
+    try { //Object gonderir
       const updatedPost = {
-        id: editPost.id,
-        title: editedTitle,
-        content: editedContent,
+        id: editPost.id, // Düzenlenen postun ID'si
+        title: editedTitle, // Düzenlenen başlık
+        content: editedContent, // Düzenlenen içerik
       };
       await adminEditPost(editPost.id, updatedPost);
-      setEditPost(null);
-      fetchUsers(); // reload
+      setEditPost(null); // Edit formunu kapat
+      fetchUsers(); // reload users
       fetchPosts(); // reload posts
     } catch (error) {
       console.error("Post güncellenemedi:", error);
@@ -85,18 +95,18 @@ const AdminPage = () => {
 
   const handleDelete = async (id) => {
     try {
-      await adminDeleteUser(id);
-      fetchUsers();
+      await adminDeleteUser(id); // ID’ye göre kullanıcıyı siler
+      fetchUsers(); // Kullanıcı listesini yeniden çeker
     } catch (error) {
       console.error("Error deleting user:", error);
     }
   };
 
   const handleEditClick = (user) => {
-    setEditUser(user);
-    setEditedUsername(user.username);
-    setEditedRole(typeof user.roles === "string" ? user.roles : user.roles[0]);
-    setEditedPassword("");
+    setEditUser(user); // Düzenlenecek kullanıcıyı state'e atar
+    setEditedUsername(user.username); // Form için username'i doldurur
+    setEditedRole(typeof user.roles === "string" ? user.roles : user.roles[0]);  // Rol bilgisi string değilse, ilk rolü alır
+    setEditedPassword("");     // Şifre alanı boş başlatılır
   };
 
   const handleEditSubmit = async (e) => {
@@ -108,9 +118,9 @@ const AdminPage = () => {
         role: editedRole,
         password: editedPassword,
       };
-      await adminEditProfile(updatedUser);
-      setEditUser(null);
-      fetchUsers();
+      await adminEditProfile(updatedUser); // Güncellenmiş kullanıcı bilgilerini API’ye gönderir
+      setEditUser(null);    // Formu kapatır
+      fetchUsers(); // Güncellenmiş kullanıcıları yeniden yükler
     } catch (error) {
       console.error("Error updating user:", error);
     }

@@ -4,6 +4,8 @@ import styles from './index.module.css'
 import { registerUser } from "../../api";
 import { ThemeContext } from "../../context/ThemeContext";
 import { useTranslation } from "react-i18next";
+import Logo from '../../assets/images/673e7d618507b496c9abfece_Studio-Logo 2.png'
+import { Link } from "react-router-dom";
 const Register = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -34,8 +36,14 @@ const Register = () => {
     return (
         <Wrapper>
 
-            <div className={styles.control}>
-                <h1>{t("register")}</h1>
+            <div className={`${styles.control} ${darkMode ? styles.dark : styles.light}`}>
+                <button onClick={toggleTheme} className={styles.toggleButton}>
+                    {darkMode ? '☀️' : '🌙 '}
+                </button>
+                <img src={Logo} alt="Logo" className={styles.logo} />
+                <h1 className={styles.welcomeText}>{t("loginWelcome")}</h1>
+                <p className={styles.aboutLogin}>Saytın xidmətlərindən istifadə etmək üçün özünə
+                    hesab yaratmalısan.</p>
                 <div className={styles.form}>
                     <form onSubmit={handleSubmit}>
                         <div className={styles.usernameArea}>
@@ -51,8 +59,8 @@ const Register = () => {
                         <input type="password" placeholder={t("password")} value={password} onChange={(e) => setPassword(e.target.value)} required />
                         <button type="submit">{t("register")}</button>
                     </form>
-
                 </div>
+                <p>Hesabin var? <Link to={"/login"}>Daxil ol</Link></p>
             </div>
         </Wrapper>
     )

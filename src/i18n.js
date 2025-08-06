@@ -46,6 +46,7 @@ i18n
                     cancel: "İptal",
                     noPostFound: "Gönderi bulunamadı",
                     like: "Beğen",
+                    loginWelcome:"FormDom'a xoş geldin!",
                 },
             },
             de: {
@@ -81,6 +82,7 @@ i18n
                     cancel: "Abbrechen",
                     noPostFound: "Keine Beiträge gefunden",
                     like: "Gefällt mir",
+                    loginWelcome:"Willkommen bei FormDom!",
                 },
             },
             en: {
@@ -116,6 +118,7 @@ i18n
                     cancel: "Cancel",
                     noPostFound: "No posts found",
                     like: "Like",
+                    loginWelcome:"Welcome to FormDom!",
                 },
             },
         },

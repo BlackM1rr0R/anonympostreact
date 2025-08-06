@@ -12,6 +12,26 @@
   padding-top: 20%;
   gap: 15px;
 }
+.control .toggleButton {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+.control .welcomeText {
+  font-size: 30px;
+  font-weight: 700;
+}
+.control .aboutLogin {
+  font-size: 16px;
+  color: rgb(100, 100, 100);
+  text-align: center;
+  width: 300px;
+  line-height: 24px;
+}
 .control .form form {
   display: flex;
   flex-direction: column;
@@ -20,6 +40,7 @@
 .control .form form input {
   border-radius: 30px;
   padding: 10px 20px;
+  width: 250px;
   border: 1px solid rgb(200, 200, 200);
   outline: none;
 }
@@ -30,11 +51,23 @@
   color: black;
 }
 .control .form form button {
-  background-color: rgb(255, 140, 125);
+  background-color: #2F7FFF;
   text-decoration: none;
-  color: black;
-  padding: 10px 20px;
-  border-radius: 30px;
+  color: white;
+  width: 250px;
+  padding: 15px 28px;
+  border-radius: 40px;
   font-weight: 600;
   border: none;
+}
+.control a {
+  text-decoration: none;
+  color: #2F7FFF;
+  font-weight: 700;
+}
+
+@media (max-width: 498px) {
+  .control {
+    padding-top: 70%;
+  }
 }/*# sourceMappingURL=index.module.css.map */

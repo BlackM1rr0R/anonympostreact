@@ -10,13 +10,14 @@ import MyProfile from "./pages/myprofile";
 import PostAbout from "./pages/postabout";
 import Register from "./pages/register";
 
-const routeItem = (id, title, path, component, element) => {
+const routeItem = (id, title, path, component, element, showHeaderFooter = true) => {
   return {
     id,
     title,
     path,
     component,
-    element
+    element,
+    showHeaderFooter
   };
 };
 
@@ -24,12 +25,12 @@ const routes = {
   home: routeItem(1, 'home', "/", Home),
   about: routeItem(2, 'about', "/about", About),
   contact: routeItem(4, "contact", "/contact", Contact),
-  login: routeItem(5, "login", "/login", Login),
-  register: routeItem(6, "register", "/register", Register),
-  myprofile: routeItem(7, "myprofile", "/my-profile", MyProfile),
-  postabout: routeItem(8, "postabout", "/post/:id", PostAbout),
-  dailyquestion:routeItem(9,"dailyquestion","/daily-question/:id",AboutDailyQuestion),
-  adminpage:routeItem(10,"admin","/admin",AdminPage)
+  login: routeItem(5, "login", "/login", Login,undefined, false),
+  register: routeItem(6, "register", "/register", Register,undefined, false),
+  myprofile: routeItem(7, "myprofile", "/my-profile", MyProfile ),
+  postabout: routeItem(8, "postabout", "/post/:id", PostAbout ),
+  dailyquestion: routeItem(9, "dailyquestion", "/daily-question/:id", AboutDailyQuestion),
+  adminpage: routeItem(10, "admin", "/admin", AdminPage )
 
 
 };

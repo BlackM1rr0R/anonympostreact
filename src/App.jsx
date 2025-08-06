@@ -67,20 +67,36 @@ function AnimatedRoutes() {
               path={item.path}
               key={item.id}
               element={
-                <>
-                  <Header />
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -20 }}
-                    transition={{ duration: 0.5 }}
-                  >
-                    <Component />
-                  </motion.div>
-                  <Footer />
-                </>
+                item.path === "/admin" ? (
+                  <PrivateAdminRoute>
+                    {item.showHeaderFooter && <Header />}
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -20 }}
+                      transition={{ duration: 0.5 }}
+                    >
+                      <Component />
+                    </motion.div>
+                    {item.showHeaderFooter && <Footer />}
+                  </PrivateAdminRoute>
+                ) : (
+                  <>
+                    {item.showHeaderFooter && <Header />}
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -20 }}
+                      transition={{ duration: 0.5 }}
+                    >
+                      <Component />
+                    </motion.div>
+                    {item.showHeaderFooter && <Footer />}
+                  </>
+                )
               }
             />
+
           );
         })}
       </Routes>
