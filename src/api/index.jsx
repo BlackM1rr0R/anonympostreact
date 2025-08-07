@@ -399,3 +399,18 @@ export const adminAddNewUser = async (userData) => {
     throw error;
   }
 }
+
+
+export const userEditPassword = async (userData) => {
+  const token = localStorage.getItem("token");
+  try {
+    const response = await axios.put(`${API_URL}/user/edit-profile`, userData, {
+      headers: { Authorization: `Bearer ${token}` },
+      withCredentials: true,
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error editing password:", error);
+    throw error;
+  }
+}

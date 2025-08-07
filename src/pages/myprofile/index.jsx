@@ -1,34 +1,25 @@
 import React, { useContext, useEffect, useState } from 'react';
 import styles from './index.module.css';
 import Wrapper from '../../components/UI/wrapper';
-import { getMyPosts, editPost, myProfile } from '../../api';
+import { getMyPosts, editPost, myProfile, userEditPassword } from '../../api';
 import { ThemeContext } from '../../context/ThemeContext';
 import { useTranslation } from 'react-i18next';
+
 const MyProfile = () => {
   const [user, setUser] = useState(null);
   const [posts, setPosts] = useState([]);
+  const [editPassword, setEditPassword] = useState('');
   const [editingPost, setEditingPost] = useState(null);
   const [editTitle, setEditTitle] = useState('');
   const [editContent, setEditContent] = useState('');
-  const [editMode, setEditMode] = useState(false);
-  const [userInfo, setUserInfo] = useState({
-    username: '',
-    ip: '',
-    password: '',
-  });
-  const { darkMode, toggleTheme } = useContext(ThemeContext)
+  const { darkMode } = useContext(ThemeContext);
   const { t } = useTranslation();
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         const profileData = await myProfile();
-        console.log("Profile data:", profileData);
         setUser(profileData);
-        setUserInfo({
-          username: profileData.username,
-          ip: profileData.ip,
-          password: profileData.password || '',
-        });
         const response = await getMyPosts();
         setPosts(response);
       } catch (error) {
@@ -38,6 +29,17 @@ const MyProfile = () => {
 
     fetchData();
   }, []);
+
+  const handlePasswordChange = async () => {
+    try {
+      await userEditPassword({ password: editPassword });
+      alert(t("passwordChanged"));
+      setEditPassword('');
+    } catch (error) {
+      console.error("Password change failed:", error);
+      alert(t("passwordChangeFailed"));
+    }
+  };
 
 
   const handleEdit = (post) => {
@@ -69,47 +71,32 @@ const MyProfile = () => {
   return (
     <Wrapper>
       <div className={styles.control} data-theme={darkMode ? 'dark' : 'light'}>
-
         <h1>{t("myProfile")}</h1>
 
         <div className={styles.profileForm}>
           <label>{t("username")}</label>
-          <input
-            type="text"
-            value={userInfo.username}
-            onChange={(e) => setUserInfo({ ...userInfo, username: e.target.value })}
-            readOnly={!editMode}
-          />
+          <input type="text" value={user.username} readOnly />
 
           <label>{t("ipAdress")}</label>
-          <input
-            type="text"
-            value={userInfo.ip}
-            onChange={(e) => setUserInfo({ ...userInfo, ip: e.target.value })}
-            readOnly={!editMode}
-          />
+          <input type="text" value={user.ip} readOnly />
 
           <label>{t("password")}</label>
           <input
             type="password"
-            value={userInfo.password}
-            onChange={(e) => setUserInfo({ ...userInfo, password: e.target.value })}
-            readOnly={!editMode}
+            value={editPassword}
+            onChange={(e) => setEditPassword(e.target.value)}
+            placeholder={t("New Password")}
           />
 
           {user?.createdAt && (
             <p className={styles.joined}><strong>Joined:</strong> {new Date(user.createdAt).toLocaleDateString()}</p>
           )}
 
-          <button onClick={() => setEditMode(!editMode)}>
-            {editMode ? t("save") : t("edit")}
-          </button>
+          <button onClick={handlePasswordChange}>{t("Change Password")}</button>
         </div>
-
 
         <h2>{t("myPosts")}</h2>
         <div className={styles.postsList}>
-
           {posts.length > 0 ? (
             posts.map((post) => (
               <div key={post.id} className={styles.myPost}>
@@ -157,13 +144,13 @@ const MyProfile = () => {
                     <button onClick={() => setEditingPost(null)}>{t("cancel")}</button>
                   </div>
                 )}
+
               </div>
             ))
           ) : (
             <p>{t("noPostFound")}</p>
           )}
         </div>
-
       </div>
     </Wrapper>
   );
