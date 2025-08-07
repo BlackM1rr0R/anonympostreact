@@ -1,43 +1,88 @@
 @charset "UTF-8";
+.light {
+  --background: white;
+  --text-color: #3b82f6;
+  --input-bg: #ffffff;
+  --border-color: #ccc;
+  --button-bg: white;
+  --button-hover: #5c6581;
+  --file-name: #555;
+  --button-color: #121212;
+  --only-text-color: black;
+}
+
+/* Karanlık mod (dark mode) */
+.dark {
+  --background: #1e1e1e;
+  --text-color: #3b82f6;
+  --input-bg: black;
+  --border-color: #444;
+  --button-bg: #3b82f6;
+  --button-hover: #000000;
+  --file-name: #ccc;
+  --button-color: white;
+  --only-text-color: white;
+}
+
+.postWrapper {
+  padding-top: 50px;
+  padding-bottom: 50px;
+  margin-top: 30px;
+}
+
 .postContainer {
   max-width: 800px;
   margin: 0 auto;
   background: #fff;
   padding: 30px 25px;
   border-radius: 18px;
-  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.07);
+  box-shadow: 0 14px 30px rgba(255, 252, 252, 0.082);
   animation: fadeInUp 0.6s ease forwards;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   color: #222;
 }
 
 .postTitle {
-  font-size: 2.8rem;
-  font-weight: 900;
-  color: #2c3e50;
-  margin-bottom: 10px;
-  letter-spacing: 1.5px;
-}
-
-.postAuthor {
-  font-size: 1.1rem;
-  color: #2980b9;
+  font-size: 22px;
+  color: var(--text-color);
   margin-bottom: 20px;
   font-weight: 700;
 }
+.postTitle strong {
+  color: var(--only-text-color);
+  font-size: 18px;
+}
+
+.postAuthor {
+  font-size: 22px;
+  color: var(--text-color);
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+.postAuthor strong {
+  color: var(--only-text-color);
+  font-size: 18px;
+}
 
 .postContent {
-  font-size: 1.1rem;
-  line-height: 1.6;
-  margin-bottom: 30px;
-  color: #444;
+  font-size: 22px;
+  color: var(--text-color);
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+.postContent strong {
+  color: var(--only-text-color);
+  font-size: 18px;
+}
+
+.postImageWrapper {
+  display: flex;
+  justify-content: center;
 }
 
 .postImage {
-  width: 100%;
-  max-height: 350px;
-  -o-object-fit: cover;
-     object-fit: cover;
+  width: 400px;
+  height: auto;
   border-radius: 15px;
   margin-bottom: 25px;
   opacity: 0;
@@ -375,6 +420,7 @@
 .dark {
   background-color: #1e1e1e;
   color: #f1f1f1;
+  border-radius: 30px;
 }
 
 .light {
@@ -383,23 +429,9 @@
 }
 
 /* İstersen özel alanlar için de koyu stil tanımlayabilirsin */
-.dark .postTitle {
-  color: #ffdd57;
-}
-
-.dark .postContent,
-.dark .comment,
-.dark .commentInput,
-.dark .commentButton {
-  background-color: #2a2a2a;
-  color: #eee;
-  border-color: #555;
-}
-
 .dark .commentInput::-moz-placeholder {
   color: #aaa;
 }
-
 .dark .commentInput::placeholder {
   color: #aaa;
 }/*# sourceMappingURL=index.module.css.map */

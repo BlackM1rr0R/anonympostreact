@@ -1,17 +1,21 @@
 @charset "UTF-8";
 .control {
+  margin-top: 20px;
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 1rem 2rem;
-  position: sticky;
   top: 0;
   z-index: 999;
-  border-radius: 30px;
+  border: none;
+  background-color: white;
   transition: all 0.3s ease;
+  border-radius: 30px;
 }
 
-.languageSelect {
+.languageSelect,
+.userMenu {
   padding: 6px 10px;
   border-radius: 8px;
   border: 1px solid #ccc;
@@ -22,17 +26,19 @@
   transition: all 0.2s ease;
 }
 
-.dark .languageSelect {
+.languageSelect:hover,
+.userMenu:hover {
+  transform: scale(1.02);
+}
+
+.dark .languageSelect,
+.dark .userMenu {
   background-color: #333;
   color: #fff;
   border: 1px solid #555;
 }
 
-.languageSelect:hover {
-  transform: scale(1.02);
-}
-
-/* LIGHT MODE */
+/* MODE TEMA */
 .light {
   background-color: #ffffff;
   border-bottom: 1px solid #e0e0e0;
@@ -40,7 +46,6 @@
   color: #333;
 }
 
-/* DARK MODE */
 .dark {
   background-color: #1e1e1e;
   border-bottom: 1px solid #444;
@@ -123,16 +128,18 @@
   color: #fff;
 }
 
-/* Toggle button */
-.toggleButton {
+.toggleButton,
+.hamburgerButton {
   background: none;
   border: none;
-  font-size: 1.2rem;
+  font-size: 1.8rem;
   cursor: pointer;
+  color: inherit;
   transition: transform 0.3s;
 }
 
-.toggleButton:hover {
+.toggleButton:hover,
+.hamburgerButton:hover {
   transform: scale(1.1);
 }
 
@@ -180,7 +187,7 @@
   color: #777;
 }
 
-/* Dark mod arama sonuçları */
+/* Dark mod search */
 .dark .middleSide input {
   border: 1px solid #555;
   background-color: #2a2a2a;
@@ -201,6 +208,76 @@
   background-color: #333;
 }
 
+/* Hamburger menu */
+.hamburgerButton {
+  display: none;
+}
+
+/* Mobil menü (konumlandırma ve görünüm) */
+.mobileMenu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background-color: inherit;
+  display: flex;
+  /* BURAYI 'none' YAPMA! */
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem 2rem;
+  border-top: 1px solid #ccc;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+  z-index: 998;
+  animation: fadeIn 0.2s ease-in-out;
+  border-radius: 0 0 12px 12px;
+}
+
+/* aktif olduğunda göster */
+.mobileMenu.active {
+  display: flex;
+}
+
+.active {
+  display: flex;
+  /* aktifken göster */
+}
+
+/* Mobil içeriği */
+.mobileSearch input {
+  width: 100%;
+  padding: 0.6rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: inherit;
+  color: inherit;
+}
+
+.mobileOptions {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .control {
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 1rem;
+    align-items: center;
+  }
+  .hamburgerButton {
+    display: block;
+  }
+  .middleSide,
+  .rightSide {
+    display: none;
+  }
+  .middleSide input {
+    width: 100%;
+  }
+}
 /* Animasyon */
 @keyframes fadeIn {
   from {
@@ -210,20 +287,5 @@
   to {
     opacity: 1;
     transform: translateY(0);
-  }
-}
-/* Responsive */
-@media (max-width: 768px) {
-  .control {
-    flex-direction: column;
-    gap: 1rem;
-    align-items: flex-start;
-  }
-  .middleSide input {
-    width: 100%;
-  }
-  .rightSide {
-    flex-direction: column;
-    align-items: flex-start;
   }
 }/*# sourceMappingURL=index.module.css.map */

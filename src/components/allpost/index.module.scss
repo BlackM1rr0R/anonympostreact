@@ -1,19 +1,22 @@
 .control {
   padding: 2rem;
-  max-width: 1200px;
+  width: 100%;
   margin: 0 auto;
   font-family: 'Inter', sans-serif;
 }
 
 [data-theme="dark"] {
+  --only-color: white;
   background-color: #121212;
   color: #f1f1f1;
 }
 
 [data-theme="light"] {
-  background-color: #f9f9f9;
+  --only-color: black;
+  background: white;
   color: #222;
 }
+
 
 .pageTitle {
   font-size: 2.5rem;
@@ -47,10 +50,12 @@
 
 .postCard {
   background-color: white;
+  padding: 36px;
   border-radius: 1rem;
   overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.205);
   transition: transform 0.2s ease;
+  text-decoration: none;
 }
 
 [data-theme="dark"] .postCard {
@@ -62,9 +67,10 @@
 }
 
 .postImage {
+  border-radius: 20px;
   width: 100%;
-  height: 220px;
-  object-fit: cover;
+  height: 350px;
+
 }
 
 .postContent {
@@ -73,20 +79,45 @@
   flex-direction: column;
   gap: 0.6rem;
   text-decoration: none;
-  color: inherit;
+  color: var(--only-color);
+
 }
 
-.postTitle {
-  font-size: 1.3rem;
+.postText {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-height: 4.8em;
+  /* 3 satır yüksekliği sabitle */
+
+  strong {
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--only-color);
+  }
+
+  font-size: 20px;
+  color: #2F7FFF;
   font-weight: 600;
-  color: #4f46e5;
 }
+
+
 
 .postAuthor,
-.postText,
+
+.postTitle,
 .postDate {
-  font-size: 0.95rem;
-  line-height: 1.4;
+  strong {
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--only-color);
+  }
+
+  font-size: 20px;
+  color: #2F7FFF;
+  font-weight: 600;
 }
 
 .commentSection {
@@ -116,16 +147,30 @@
 }
 
 .likeButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
   width: 100%;
   padding: 0.8rem;
   font-size: 1rem;
-  background-color: #4f46e5;
+  background-color: #2F7FFF;
   color: white;
   border: none;
   border-top: 1px solid #ddd;
-  border-radius: 0 0 1rem 1rem;
+  border-radius: 30px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+
+  img {
+    width: 30px;
+    background-color: transparent;
+    border: white;
+  }
+
+  h2 {
+    text-align: center;
+  }
 }
 
 .likeButton:hover {

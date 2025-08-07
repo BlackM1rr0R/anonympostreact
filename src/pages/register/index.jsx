@@ -51,7 +51,7 @@ const Register = () => {
                                 {t("generateUsername")}
                             </button>
                             {username && (
-                                <p>
+                                <p className={styles.generatedUsername}>
                                     {t("username")}: <strong>{username}</strong>
                                 </p>
                             )}

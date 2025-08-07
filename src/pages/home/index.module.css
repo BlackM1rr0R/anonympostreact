@@ -1,1 +1,40 @@
-/*# sourceMappingURL=index.module.css.map */
+@charset "UTF-8";
+.light {
+  --background: white;
+  --text-color: #121212;
+  --input-bg: #ffffff;
+  --border-color: #ccc;
+  --button-bg: white;
+  --button-hover: #5c6581;
+  --file-name: #555;
+  --button-color: #121212;
+}
+
+/* Karanlık mod (dark mode) */
+.dark {
+  --background: #121212;
+  --text-color: #f1f1f1;
+  --input-bg: #1e1e1e;
+  --border-color: #444;
+  --button-bg: #3b82f6;
+  --button-hover: #000000;
+  --file-name: #ccc;
+  --button-color: white;
+}
+
+/* Ana sütunlar */
+.column {
+  background-color: var(--background);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+/* Her bileşen kutusu */
+.columnItem {
+  flex: 1;
+  min-width: 300px;
+  background-color: var(--background);
+}/*# sourceMappingURL=index.module.css.map */

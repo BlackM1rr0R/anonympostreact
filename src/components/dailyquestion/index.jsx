@@ -16,7 +16,6 @@ const DailyQuestion = () => {
     try {
       await addDailyQuestion({ question: questionText });
       setQuestionText("");
-      alert("Yeni soru başarıyla eklendi!");
     } catch (error) {
       console.error("Error adding daily question:", error);
       alert("Soru eklenirken hata oluştu.");

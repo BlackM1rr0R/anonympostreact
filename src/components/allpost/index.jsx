@@ -5,7 +5,7 @@ import { allComment, deleteAllPosts, getAllPosts, getLikeCount, toggleLike } fro
 import { Link, useLocation } from "react-router-dom";
 import { ThemeContext } from '../../context/ThemeContext';
 import { useTranslation } from "react-i18next";
-
+import Like from '../../assets/images/like (1).svg'
 const AllPosts = ({ newPost }) => {
   const [data, setData] = useState([]);
   const [commentsMap, setCommentsMap] = useState({});
@@ -17,7 +17,7 @@ const AllPosts = ({ newPost }) => {
   const { t } = useTranslation();
   const [page, setPage] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
-  const pageSize = 3;
+  const pageSize = 16;
 
   useEffect(() => {
     if (newPost) {
@@ -89,19 +89,22 @@ const AllPosts = ({ newPost }) => {
         <div className={styles.controlPosts}>
           {data.map((post) => (
             <div key={post.id} className={styles.postCard}>
+              <Link to={`/post/${post.id}`}>
               {post.imageUrl && (
                 <img
-                  src={`http://localhost:6060${post.imageUrl}`}
-                  alt="Post"
-                  className={styles.postImage}
+                src={`http://localhost:6060${post.imageUrl}`}
+                alt="Post"
+                
+                className={styles.postImage}
                 />
               )}
+              </Link>
 
               <Link to={`/post/${post.id}`} className={styles.postContent}>
-                <p className={styles.postTitle}>{t("title")}: {post.title}</p>
                 <p className={styles.postAuthor}><strong>{t("username")}:</strong> {post.author}</p>
-                <p className={styles.postText}>{t("content")}: {post.content}</p>
-                <p className={styles.postDate}>{t("date")}: {new Date(post.createdAt).toLocaleDateString()}</p>
+                <p className={styles.postTitle}><strong>{t("title")}</strong>: {post.title}</p>
+                <p className={styles.postText}><strong>{t("content")}</strong>: {post.content}</p>
+                <p className={styles.postDate}><strong>{t("date")}</strong>: {new Date(post.createdAt).toLocaleDateString()}</p>
               </Link>
 
               <div className={styles.commentSection}>
@@ -118,7 +121,8 @@ const AllPosts = ({ newPost }) => {
               </div>
 
               <button onClick={() => handleLike(post.id)} className={styles.likeButton}>
-                ❤️ {t("like")} ({likeCounts[post.id] || 0})
+                <img src={Like} alt="" />
+                <h2>{t("like")} ({likeCounts[post.id] || 0})</h2>
               </button>
             </div>
           ))}

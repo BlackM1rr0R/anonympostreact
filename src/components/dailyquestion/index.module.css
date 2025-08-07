@@ -1,7 +1,9 @@
-/*# sourceMappingURL=index.module.css.map */.container {
+/*# sourceMappingURL=index.module.css.map */
+.container {
   display: flex;
   gap: 12px;
   align-items: center;
+  background-color: #F1F3F7;
 }
 
 .input {
@@ -20,7 +22,7 @@
 }
 
 .addButton {
-  background-color: #4f46e5;
+  background-color: #2F7FFF;
   border: none;
   color: white;
   padding: 11px 20px;

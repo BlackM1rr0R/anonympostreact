@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getDailyQuestionById } from "../../api";
 import Wrapper from "../../components/UI/wrapper";
-import styles from './index.module.css'
-
+import styles from './index.module.css';
+import { ThemeContext } from "../../context/ThemeContext";
 const AboutDailyQuestion = () => {
     const { id } = useParams();
     const [question, setQuestion] = useState(null);
-
+    const {darkMode}=useContext(ThemeContext)
     useEffect(() => {
         const fetchQuestion = async () => {
             try {
@@ -20,29 +20,33 @@ const AboutDailyQuestion = () => {
         fetchQuestion();
     }, [id]);
 
-    if (!question) return <p>Yükleniyor...</p>;
+    if (!question) return <p className={styles.loading}>Yükleniyor...</p>;
 
     return (
-        <Wrapper className={styles.wrapper}>
-            <div>
-                <h1 className={styles.h1}>{question.question}</h1>
-                <h3 className={styles.h3}>Cevaplar:</h3>
-                <ul className={styles.ul}>
+        <Wrapper>
+            <div className={`${styles.container} ${darkMode ? styles.dark : styles.light}`}>
+                <h1 className={styles.title}>{question.question}</h1>
+
+                <h3 className={styles.answersTitle}>
+                    Cevaplar ({question.answers?.length || 0})
+                </h3>
+
+                <ul className={styles.answerList}>
                     {question.answers.length > 0 ? (
-                        question.answers.map(ans => (
-                            <li key={ans.id} className={styles.li}>
-                                <strong>{ans.username || "Anonim"}:</strong>
-                                {ans.answer}
-                            </li>
-                        ))
+                        question.answers
+                            .slice()
+                            .reverse()
+                            .map((ans) => (
+                                <li key={ans.id} className={styles.answerItem}>
+                                    <strong className={styles.username}>{ans.username || "Anonim"}:</strong> {ans.answer}
+                                </li>
+                            ))
                     ) : (
-                        <li className={styles.li}>Henüz cevap yok.</li>
+                        <li className={styles.answerItem}>Henüz cevap yok.</li>
                     )}
                 </ul>
             </div>
         </Wrapper>
-
-
     );
 };
 

@@ -1,17 +1,18 @@
-/* Ortak Temel Ayarlar */
 :root {
-  --background-light: #fefefe;
-  --background-dark: #121212;
-  --text-light: #333;
+  --background-light: #2F7FFF;
+  --background-dark: #1e1e1e;
+  --text-light: white;
   --text-dark: #f1f1f1;
   --input-bg-light: #ffffff;
   --input-bg-dark: #1e1e1e;
   --border-color-light: #ccc;
   --border-color-dark: #444;
-  --button-bg-light: #007bff;
-  --button-bg-dark: #3399ff;
-  --button-hover-light: #0056b3;
-  --button-hover-dark: #2277cc;
+  --button-bg-light: white;
+  --button-bg-dark: #3b82f6;
+  --button-color-light: black;
+  --button-color-dark: white;
+  --button-hover-light: #5c6581;
+  --button-hover-dark: #2563eb;
   --file-name-light: #555;
   --file-name-dark: #ccc;
 }
@@ -25,6 +26,7 @@
   --button-bg: var(--button-bg-light);
   --button-hover: var(--button-hover-light);
   --file-name: var(--file-name-light);
+  --button-color: var(--button-color-light);
 }
 
 /* Dark Mode */
@@ -36,10 +38,11 @@
   --button-bg: var(--button-bg-dark);
   --button-hover: var(--button-hover-dark);
   --file-name: var(--file-name-dark);
+  --button-color: var(--button-color-dark);
 }
 
 .control {
-  max-width: 600px;
+  width: 100%;
   margin: 2rem auto;
   padding: 2rem;
   background-color: var(--background);
@@ -68,12 +71,14 @@
 
 .customFileLabel {
   background-color: var(--button-bg);
-  color: white;
+  color: var(--button-color);
   padding: 0.6rem 1.2rem;
   border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.3s;
   font-size: 0.9rem;
+  text-align: center;
+  font-weight: 600;
 }
 
 .customFileLabel:hover {
@@ -133,7 +138,8 @@
   padding: 0.7rem 2rem;
   font-size: 1rem;
   background-color: var(--button-bg);
-  color: white;
+  color: var(--button-color);
+  font-weight: 600;
   border: none;
   border-radius: 8px;
   cursor: pointer;
