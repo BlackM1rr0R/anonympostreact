@@ -141,6 +141,7 @@ const Header = () => {
             <option value="de">Deutsch</option>
             <option value="en">English</option>
             <option value="tr">Turkish</option>
+            <option value="ru">Russian</option>
           </select>
 
           {user ? (
@@ -202,9 +203,12 @@ const Header = () => {
                 className={styles.languageSelect}
                 defaultValue={i18n.language}
               >
-                <option value="tr">Türkçe</option>
+                <option value="az">Azerbaijan</option>
+                <option value="tr">Turkish</option>
                 <option value="de">Deutsch</option>
                 <option value="en">English</option>
+                <option value="ru">Russian</option>
+
               </select>
 
               {user ? (

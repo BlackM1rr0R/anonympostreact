@@ -34,18 +34,16 @@ const Login = () => {
                 </button>
                 <img src={Logo} alt="Logo" className={styles.logo} />
                 <h1 className={styles.welcomeText}>{t("loginWelcome")}</h1>
-                <p className={styles.aboutLogin}>Saytın xidmətlərindən istifadə etmək üçün
-                    hesabına daxil olmalısan.</p>
+                <p className={styles.aboutLogin}>{t("loginAbout")}</p>
                 <div className={styles.form}>
                     <form onSubmit={handleLogin}>
                         <input type="text" placeholder={t("username")} value={username} onChange={(e) => setUsername(e.target.value)} />
                         <input type="password" placeholder={t("password")} value={password} onChange={(e) => setPassword(e.target.value)} />
-                        <Link to={""} className={styles.passwordReset}>Şifrəmi unutdum 😞</Link>
                         <button type="submit">{t("login")}</button>
                     </form>
 
                 </div>
-                <p className={styles.registerLink}>Hesabin yoxdur? <Link to={"/register"}>Qeydiyyatdan kec</Link></p>
+                <p className={styles.registerLink}>{t("haveAccount")} <Link to={"/register"}>{t("register")}</Link></p>
             </div>
         </Wrapper>
     )

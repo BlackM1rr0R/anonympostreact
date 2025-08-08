@@ -56,21 +56,6 @@
   transition: background 0.3s;
 }
 
-.myPostsAll {
-  font-size: 32px;
-  font-weight: 600;
-  text-align: center;
-}
-
-.imageWrapper {
-  width: 100%;
-}
-
-.postImage {
-  width: 600px;
-  height: 40vh;
-}
-
 .control button:hover {
   background-color: var(--button-hover);
 }
@@ -177,11 +162,12 @@
 }
 
 .myPost img {
-  width: 100%;
-  height: 42vh;
+  width: 30%;
+  height: auto;
   margin-top: 1.5rem;
   border-radius: 12px;
-  object-fit: fill;
+  -o-object-fit: cover;
+     object-fit: cover;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
   transition: transform 0.4s ease;
 }
@@ -282,19 +268,12 @@
   .myPost {
     width: 100%;
   }
-
   .postsList {
     flex-direction: column;
     align-items: center;
   }
-  
-.myPost img {
-  width: 100%;
-  height: 26vh;
-  margin-top: 1.5rem;
-  border-radius: 12px;
-  object-fit: fill;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-  transition: transform 0.4s ease;
-}
-}
+  .postImage {
+    width: 400px;
+    height: 40vh;
+  }
+}/*# sourceMappingURL=index.module.css.map */

@@ -1,5 +1,5 @@
 import axios from "axios";
-const API_URL = "http://localhost:6060";
+const API_URL = "/api";
 
 export const getAllPosts = async (page = 0, size = 5) => {
   try {

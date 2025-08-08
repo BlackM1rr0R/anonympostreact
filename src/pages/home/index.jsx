@@ -13,20 +13,18 @@ const Home = () => {
   return (
     <div className={darkMode ? styles.dark : styles.light}>
       <DailyQuestion />
-      <Wrapper>
         <div className={styles.column}>
           <div className={styles.columnItem}>
             <DailyQuestionView />
           </div>
           <div className={styles.columnItem}>
             <div className={styles.postWrapper}>
-
             <Post />
             <img className={styles.images1} src={ArrowIcon} alt="" />
             </div>
           </div>
         </div>
-      </Wrapper>
+      
       <AllPosts />
     </div>
   );

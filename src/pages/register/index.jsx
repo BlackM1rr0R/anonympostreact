@@ -33,12 +33,9 @@ const Register = () => {
         try {
             await registerUser(newUser);
             console.log("Kayıt başarılı.");
-
-            // Otomatik giriş:
             const loginResponse = await loginUser({ username, password });
             localStorage.setItem("token", loginResponse.token);
             localStorage.setItem("user", JSON.stringify(loginResponse));
-            alert(`${t("username")}: ${username}`);
             window.location.href = "/";
         } catch (error) {
             console.error("Kayıt veya giriş başarısız:", error);
@@ -53,8 +50,7 @@ const Register = () => {
                 </button>
                 <img src={Logo} alt="Logo" className={styles.logo} />
                 <h1 className={styles.welcomeText}>{t("loginWelcome")}</h1>
-                <p className={styles.aboutLogin}>Saytın xidmətlərindən istifadə etmək üçün özünə
-                    hesab yaratmalısan.</p>
+                <p className={styles.aboutLogin}>{t("registerAbout")}</p>
                 <div className={styles.form}>
                     <form onSubmit={handleSubmit}>
                         <div className={styles.usernameArea}>
@@ -71,7 +67,7 @@ const Register = () => {
                         <button type="submit">{t("register")}</button>
                     </form>
                 </div>
-                <p>Hesabin var? <Link to="/login">Daxil ol</Link></p>
+                <p className={styles.haveAcc}>{t("haveNotAccount")} <Link to="/login">Daxil ol</Link></p>
             </div>
         </Wrapper>
     );

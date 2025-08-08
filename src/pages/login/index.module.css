@@ -33,7 +33,6 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding-top: 12%;
   gap: 15px;
   background-color: var(--background);
 }
@@ -47,14 +46,14 @@
   cursor: pointer;
 }
 .control .welcomeText {
-  font-size: 30px;
+  font-size: 22px;
   font-weight: 700;
 }
 .control .aboutLogin {
-  font-size: 16px;
+  font-size: 14px;
   color: rgb(100, 100, 100);
   text-align: center;
-  width: 300px;
+  width: 250px;
   line-height: 24px;
 }
 .control .form form {
@@ -85,7 +84,7 @@
   text-decoration: none;
   color: white;
   padding: 15px 28px;
-  border-radius: 40px;
+  border-radius: 20px;
   font-weight: 500;
   font-size: 15px;
   border: none;
@@ -93,14 +92,15 @@
 .control a {
   text-decoration: none;
   color: #2F7FFF;
-  font-weight: 700;
+  font-weight: 600;
 }
 .control .registerLink {
   text-align: start;
+  font-weight: 700;
 }
 
 @media (max-width: 498px) {
   .control {
-    min-height: 100vh;
+    height: 90vh;
   }
 }/*# sourceMappingURL=index.module.css.map */
