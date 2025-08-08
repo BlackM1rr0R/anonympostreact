@@ -40,7 +40,7 @@ const Login = () => {
                     <form onSubmit={handleLogin}>
                         <input type="text" placeholder={t("username")} value={username} onChange={(e) => setUsername(e.target.value)} />
                         <input type="password" placeholder={t("password")} value={password} onChange={(e) => setPassword(e.target.value)} />
-                        <Link to={""}>Şifrəmi unutdum 😞</Link>
+                        <Link to={""} className={styles.passwordReset}>Şifrəmi unutdum 😞</Link>
                         <button type="submit">{t("login")}</button>
                     </form>
 

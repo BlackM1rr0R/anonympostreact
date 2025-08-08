@@ -4,10 +4,12 @@ import { addAnswerToDailyQuestion, getDailyQuestion } from '../../api';
 import { Link } from 'react-router-dom';
 import styles from './index.module.css'
 import { ThemeContext } from '../../context/ThemeContext';
+import { useTranslation } from 'react-i18next';
 const DailyQuestionView = () => {
     const [latestQuestion, setLatestQuestion] = useState(null);
     const [answer, setAnswer] = useState('');
     const { darkMode } = useContext(ThemeContext);
+    const { t } = useTranslation();
     useEffect(() => {
         const fetchQuestion = async () => {
             try {
@@ -50,8 +52,7 @@ const DailyQuestionView = () => {
                 {latestQuestion ? (
                     <>
                         <h2 className={styles.title}>
-                            <Link to={`/daily-question/${latestQuestion.id}`}>Günün Sorusu</Link>
-                            <Link className={styles.getLink} to={`/daily-question/${latestQuestion.id}`}>All Comments</Link>
+                            <Link className={styles.dailyQuestTitle} to={`/daily-question/${latestQuestion.id}`}>{t("dailyQuestion")}</Link>
                         </h2>
                         <p className={styles.question}>{latestQuestion.question}</p>
 
@@ -59,16 +60,16 @@ const DailyQuestionView = () => {
                             className={styles.textarea}
                             value={answer}
                             onChange={(e) => setAnswer(e.target.value)}
-                            placeholder="Cevabınızı yazın..."
+                            placeholder={t("writeAnswer")}
                             rows={4}
                             style={{ width: '100%', marginTop: '1rem' }}
                         />
                         <button className={styles.button} onClick={handleAnswerSubmit}>
-                            Cevabı Gönder
+                            {t("sendAnswer")}
                         </button>
 
                         <h3 className={styles.answersTitle}>
-                            Bu sorunun cevapları ({latestQuestion.answers?.length || 0})
+                            {t("answerQuestions")} ({latestQuestion.answers?.length || 0})
                         </h3>
                         <ul className={styles.answerList}>
                             {latestQuestion.answers.length > 0 ? (
@@ -81,10 +82,16 @@ const DailyQuestionView = () => {
                                             <p className={styles.answerUser}>{ans.answer}</p>
                                         </Link>
                                     ))
+
                             ) : (
-                                <li className={styles.answerItem}>Henüz cevap yok.</li>
+                                <li className={styles.answerItem}>{t("noComment")}</li>
                             )}
                         </ul>
+                        <div className={styles.linkContainer}>
+
+                            <Link className={styles.getLink} to={`/daily-question/${latestQuestion.id}`}>{t("allComments")}</Link>
+                        </div>
+
                     </>
                 ) : (
                     <p>Soru yükleniyor...</p>

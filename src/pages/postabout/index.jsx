@@ -38,15 +38,15 @@ const PostAbout = () => {
     fetchPostAndComments();
   }, [id]);
   const handleDeleteComment = async (commentId) => {
-    const confirmed = window.confirm("Yorumu silmek istediğine emin misin?");
+    const confirmed = window.confirm(t("removeComment"));
     if (!confirmed) return;
 
     try {
       await deleteComment(commentId);
       setComments(prev => prev.filter(c => c.id !== commentId));
     } catch (error) {
-      console.error("Silme hatası:", error);
-      alert("Yorum silinirken hata oluştu.");
+      console.error(t("errorRemove"), error);
+      alert(t("errorRemove"));
     }
   };
 
@@ -58,8 +58,8 @@ const PostAbout = () => {
       setComments(prev => [...prev, newCommentFromServer]);
       setAddedComment("");
     } catch (error) {
-      console.error("Error adding comment:", error);
-      alert("Yorum eklenirken hata oluştu.");
+      console.error(t("errorAddComment"), error);
+      alert(t("errorAddComment"));
     } finally {
       setAddingComment(false);
     }
@@ -102,7 +102,7 @@ const PostAbout = () => {
                     onClick={() => handleDeleteComment(com.id)}
                     className={styles.deleteButton}
                   >
-                    {t("delete") || "Delete"}
+                    {t("removeComments") || "Delete"}
                   </button>
                 </div>
               ))

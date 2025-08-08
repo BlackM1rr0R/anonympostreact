@@ -6,7 +6,7 @@ import styles from "./index.module.css";
 import Wrapper from "../../components/UI/wrapper/index.jsx";
 import { useContext } from "react";
 import { ThemeContext } from "../../context/ThemeContext.jsx";
-
+import ArrowIcon from '../../assets/images/arrowicononly.png'
 const Home = () => {
   const { darkMode } = useContext(ThemeContext);
 
@@ -19,7 +19,11 @@ const Home = () => {
             <DailyQuestionView />
           </div>
           <div className={styles.columnItem}>
+            <div className={styles.postWrapper}>
+
             <Post />
+            <img className={styles.images1} src={ArrowIcon} alt="" />
+            </div>
           </div>
         </div>
       </Wrapper>

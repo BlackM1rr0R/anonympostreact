@@ -4,13 +4,14 @@ import { deleteAnswer, getDailyQuestionById } from "../../api";
 import Wrapper from "../../components/UI/wrapper";
 import styles from './index.module.css';
 import { ThemeContext } from "../../context/ThemeContext";
+import { useTranslation } from "react-i18next";
 
 const AboutDailyQuestion = () => {
   const { id } = useParams();
   const [question, setQuestion] = useState(null);
   const [deletingAnswerId, setDeletingAnswerId] = useState(null);
   const { darkMode } = useContext(ThemeContext);
-
+  const { t } = useTranslation();
   // Burada user objesini JSON parse ile alıyoruz
   const user = JSON.parse(localStorage.getItem("user"));
 
@@ -27,7 +28,8 @@ const AboutDailyQuestion = () => {
   }, [id]);
 
   const handleDeleteAnswer = async (answerId) => {
-    const confirmed = window.confirm("Cevabı silmek istediğinize emin misiniz?");
+   const confirmed = window.confirm(t("removeComment"));
+
     if (!confirmed) return;
 
     setDeletingAnswerId(answerId);
@@ -38,7 +40,7 @@ const AboutDailyQuestion = () => {
         answers: prev.answers.filter((ans) => ans.id !== answerId),
       }));
     } catch (error) {
-      alert("Cevap silinirken hata oluştu.");
+      alert(t("errorRemove"));
     } finally {
       setDeletingAnswerId(null);
     }
@@ -52,7 +54,7 @@ const AboutDailyQuestion = () => {
         <h1 className={styles.title}>{question.question}</h1>
 
         <h3 className={styles.answersTitle}>
-          Cevaplar ({question.answers?.length || 0})
+          {t("allComments")} ({question.answers?.length || 0})
         </h3>
 
         <ul className={styles.answerList}>
@@ -70,7 +72,7 @@ const AboutDailyQuestion = () => {
                       disabled={deletingAnswerId === ans.id}
                       className={styles.deleteButton}
                     >
-                      {deletingAnswerId === ans.id ? "Siliniyor..." : "Sil"}
+                      {deletingAnswerId === ans.id ? t("deletinAnswer") : "Sil"}
                     </button>
                   )}
                 </li>

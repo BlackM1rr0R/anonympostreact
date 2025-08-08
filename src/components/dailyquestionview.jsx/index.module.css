@@ -35,7 +35,7 @@
 }
 
 .title {
-  font-size: 1.25rem;
+  font-size: 32px;
   font-weight: 700;
   color: var(--text-color);
   margin-bottom: 1rem;
@@ -43,18 +43,29 @@
   padding-bottom: 0.4rem;
   animation: slideDown 0.8s ease;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   transition: all 0.3s ease;
 }
-.title .getLink {
-  color: #2F7FFF;
+
+.linkContainer {
+  display: flex;
+  justify-self: center;
+}
+.linkContainer .getLink {
+  color: white;
+  background-color: #2F7FFF;
+  padding: 16px;
+  border-radius: 20px;
+  font-weight: 600;
+  text-decoration: none;
 }
 
-.title a {
+.dailyQuestTitle {
   color: var(--text-color);
-  -webkit-text-decoration: dotted;
-          text-decoration: dotted;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  text-align: center;
 }
 
 .title a:hover {

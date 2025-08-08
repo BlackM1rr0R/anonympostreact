@@ -106,7 +106,7 @@
 }
 
 @media(max-width:498px) {
-    .control {
-        padding-top: 65%;
-    }
+ .control{
+    min-height: 100vh;
+ }
 }

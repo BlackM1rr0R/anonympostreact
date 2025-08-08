@@ -51,7 +51,7 @@ const Post = ({ onPostCreated }) => {
   return (
     <Wrapper>
       <div className={`${styles.control} ${darkMode ? styles.dark : styles.light}`}>
-        <h1>{t("addAnonymPost")}</h1>
+        <h1 className={styles.titleAnonym}>{t("addAnonymPost")}</h1>
         <div className={styles.postCreate}>
           <form onSubmit={handleSubmit}>
             <div className={styles.input}>

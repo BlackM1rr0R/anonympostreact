@@ -27,7 +27,7 @@
   background-color: var(--background);
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   gap: 2rem;
   flex-wrap: wrap;
 }
@@ -37,4 +37,13 @@
   flex: 1;
   min-width: 300px;
   background-color: var(--background);
+}
+.columnItem .postWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.images1 {
+  width: 44%;
 }/*# sourceMappingURL=index.module.css.map */
