@@ -23,6 +23,16 @@
   --only-text-color: white;
 }
 
+.deleteButton {
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  padding: 4px 10px;
+  margin-left: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 12px;
+}
 
 
 .postWrapper {

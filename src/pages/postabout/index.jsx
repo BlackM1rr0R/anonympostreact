@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import { searchPostById, allComment, getAllPosts, addCommentToPost } from "../../api"; // addCommentToPost API fonksiyonunu eklemelisin
+import { searchPostById, allComment, getAllPosts, addCommentToPost, deleteComment } from "../../api"; // addCommentToPost API fonksiyonunu eklemelisin
 import Wrapper from "../../components/UI/wrapper";
 import styles from './index.module.css';
 import { ThemeContext } from "../../context/ThemeContext";
@@ -37,6 +37,18 @@ const PostAbout = () => {
 
     fetchPostAndComments();
   }, [id]);
+  const handleDeleteComment = async (commentId) => {
+    const confirmed = window.confirm("Yorumu silmek istediğine emin misin?");
+    if (!confirmed) return;
+
+    try {
+      await deleteComment(commentId);
+      setComments(prev => prev.filter(c => c.id !== commentId));
+    } catch (error) {
+      console.error("Silme hatası:", error);
+      alert("Yorum silinirken hata oluştu.");
+    }
+  };
 
   const handleAddComment = async () => {
     if (!addedComment.trim()) return;
@@ -68,7 +80,7 @@ const PostAbout = () => {
 
             {post.imageUrl && (
               <img
-                src={`http://localhost:6060${post.imageUrl}`}
+                src={`/api${post.imageUrl}`}
                 alt="Post"
                 className={styles.postImage}
               />
@@ -82,13 +94,22 @@ const PostAbout = () => {
             <h3 className={styles.commentHeader}>{t("comments")} ({comments.length})</h3>
             {comments.length > 0 ? (
               comments.map((com) => (
-                <p key={com.id} className={styles.comment}>
+                <div key={com.id} className={styles.comment}>
                   <strong className={styles.commentUsername}>{com.username || "User"}:</strong> {com.comment}
-                </p>
+
+                  {/* Silme butonu */}
+                  <button
+                    onClick={() => handleDeleteComment(com.id)}
+                    className={styles.deleteButton}
+                  >
+                    {t("delete") || "Delete"}
+                  </button>
+                </div>
               ))
             ) : (
               <p className={styles.noComment}>No comments yet.</p>
             )}
+
 
             <div style={{ marginTop: '15px', display: 'flex', gap: '10px' }}>
               <input
@@ -120,7 +141,7 @@ const PostAbout = () => {
                         <div className={styles.cardFront}>
                           {post.imageUrl ? (
                             <img
-                              src={`http://localhost:6060${post.imageUrl}`}
+                              src={`/api${post.imageUrl}`}
                               alt="Post"
                               className={styles.sameTitleImage}
                             />

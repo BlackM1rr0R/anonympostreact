@@ -1,5 +1,5 @@
 import axios from "axios";
-const API_URL = "http://localhost:6060";
+const API_URL = "/api";
 
 export const getAllPosts = async (page = 0, size = 5) => {
   try {
@@ -414,3 +414,31 @@ export const userEditPassword = async (userData) => {
     throw error;
   }
 }
+
+export const deleteComment= async (commentId) => {
+  const token = localStorage.getItem("token");
+  try {
+    const response = await axios.delete(`${API_URL}/comment/delete/${commentId}`, {
+      headers: { Authorization: `Bearer ${token}` },
+      withCredentials: true,
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error deleting comment:", error);
+    throw error;
+  }
+}
+
+export const deleteAnswer = async (answerId) => {
+  const token = localStorage.getItem("token");
+  try {
+    const response = await axios.delete(`${API_URL}/answer/delete/${answerId}`, {
+      headers: { Authorization: `Bearer ${token}` },
+      withCredentials: true,
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error deleting answer:", error);
+    throw error;
+  }
+};

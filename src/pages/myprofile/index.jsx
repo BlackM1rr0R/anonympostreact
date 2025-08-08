@@ -71,7 +71,7 @@ const MyProfile = () => {
   return (
     <Wrapper>
       <div className={styles.control} data-theme={darkMode ? 'dark' : 'light'}>
-        <h1>{t("myProfile")}</h1>
+        <h1 className={styles.myPostsAll}>{t("myProfile")}</h1>
 
         <div className={styles.profileForm}>
           <label>{t("username")}</label>
@@ -95,7 +95,7 @@ const MyProfile = () => {
           <button onClick={handlePasswordChange}>{t("Change Password")}</button>
         </div>
 
-        <h2>{t("myPosts")}</h2>
+        <h2 className={styles.myPostsAll}>{t("myPosts")}</h2>
         <div className={styles.postsList}>
           {posts.length > 0 ? (
             posts.map((post) => (
@@ -117,10 +117,11 @@ const MyProfile = () => {
                 {post.imageUrl && (
                   <div className={styles.imageWrapper}>
                     <img
-                      src={`http://localhost:6060${post.imageUrl}`}
+                      src={`/api${post.imageUrl}`}
                       alt="Post"
                       className={styles.postImage}
                     />
+
                   </div>
                 )}
 

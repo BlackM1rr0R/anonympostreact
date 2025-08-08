@@ -92,7 +92,7 @@ const AllPosts = ({ newPost }) => {
               <Link to={`/post/${post.id}`}>
               {post.imageUrl && (
                 <img
-                src={`http://localhost:6060${post.imageUrl}`}
+                src={`/api${post.imageUrl}`}
                 alt="Post"
                 
                 className={styles.postImage}

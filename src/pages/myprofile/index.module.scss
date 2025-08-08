@@ -59,6 +59,7 @@
 .control button:hover {
   background-color: var(--button-hover);
 }
+
 .profileForm {
   background-color: var(--card-bg);
   padding: 1.5rem;
@@ -105,6 +106,7 @@
   transition: background 0.3s;
 }
 
+
 .profileForm button:hover {
   background-color: var(--button-hover);
 }
@@ -113,13 +115,15 @@
   margin-top: 1rem;
   color: var(--muted-text);
 }
-.postsList{
+
+.postsList {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   gap: 40px;
 }
+
 .myPost {
   background: linear-gradient(135deg, var(--card-bg), var(--card-bg-alt));
   border-radius: 16px;
@@ -185,6 +189,7 @@
   background-color: var(--button-hover);
   transform: translateY(-2px);
 }
+
 .editForm {
   background-color: var(--edit-bg);
   padding: 1.5rem;
@@ -252,4 +257,21 @@
 .editForm button:last-child:hover {
   background-color: var(--button-bg);
   color: white;
+}
+
+@media(max-width: 768px) {
+  .myPost {
+    width: 100%;
+  }
+
+  .postsList {
+    flex-direction: column;
+    align-items: center;
+
+  }
+
+  .postImage {
+    width: 400px;
+    height: 40vh;
+  }
 }

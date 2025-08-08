@@ -1,6 +1,5 @@
 @charset "UTF-8";
 .control {
-  padding: 2rem;
   width: 100%;
   margin: 0 auto;
   font-family: "Inter", sans-serif;
@@ -69,7 +68,9 @@
 .postImage {
   border-radius: 20px;
   width: 100%;
-  height: 350px;
+  height: 40vh;
+  -o-object-fit: fill;
+     object-fit: fill;
 }
 
 .postContent {
@@ -195,4 +196,37 @@
 .active {
   background-color: #4f46e5 !important;
   color: white !important;
+}
+
+@media (max-width: 768px) {
+  .pageTitle {
+    font-size: 2rem;
+  }
+  .postImage {
+    height: 35vh;
+  }
+  .postAuthor {
+    font-size: 16px;
+  }
+  .postAuthor strong {
+    font-size: 14px;
+  }
+  .postTitle {
+    font-size: 16px;
+  }
+  .postTitle strong {
+    font-size: 14px;
+  }
+  .postText {
+    font-size: 16px;
+  }
+  .postText strong {
+    font-size: 14px;
+  }
+  .postDate {
+    font-size: 16px;
+  }
+  .postDate strong {
+    font-size: 14px;
+  }
 }/*# sourceMappingURL=index.module.css.map */

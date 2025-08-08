@@ -22,13 +22,14 @@ const Footer = () => {
               <h2>Bu sehifede butun anonimlik qorunur.</h2>
             </div>
             <div className={styles.logoControl}>
-              <div className={styles.icon}>
-                <img src={Info} alt="Info" />
-              </div>
               <div className={styles.textInfo}>
                 <h1>Tezlikle mobil tetbiqimizi yukle</h1>
                 <h2>IOS & Android ucun istifadeye verilecek</h2>
               </div>
+              <div className={styles.icon}>
+                <img src={Info} alt="Info" />
+              </div>
+
             </div>
           </div>
           <div className={styles.rightSide}>
