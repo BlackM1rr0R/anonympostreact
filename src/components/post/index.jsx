@@ -49,7 +49,7 @@ const Post = ({ onPostCreated }) => {
   };
 
   return (
-    <Wrapper>
+   
       <div className={`${styles.control} ${darkMode ? styles.dark : styles.light}`}>
         <h1 className={styles.titleAnonym}>{t("addAnonymPost")}</h1>
         <div className={styles.postCreate}>
@@ -89,7 +89,7 @@ const Post = ({ onPostCreated }) => {
           </form>
         </div>
       </div>
-    </Wrapper>
+    
   );
 };
 

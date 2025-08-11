@@ -39,9 +39,39 @@
   text-align: center;
 }
 
+.userLogo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.userLogo img {
+  width: 100px;
+  height: auto;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
 .control p {
   font-size: 1rem;
   margin: 0.5rem 0;
+}
+
+.myPostsAll {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 32px;
+  font-weight: 600;
+  gap: 8px;
+}
+
+.myPostsAll span {
+  width: 16px;
+  height: 32px;
+  background-color: #3498db;
+  border-radius: 5px;
 }
 
 .control button {
@@ -275,5 +305,8 @@
   .postImage {
     width: 400px;
     height: 40vh;
+  }
+  .userLogo img {
+    width: 50px;
   }
 }/*# sourceMappingURL=index.module.css.map */

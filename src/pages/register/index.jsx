@@ -11,7 +11,11 @@ const Register = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const { darkMode, toggleTheme } = useContext(ThemeContext);
-    const { t } = useTranslation();
+    const { t, i18n } = useTranslation();
+    const changeLanguage = (e) => {
+        const lng = e.target.value;
+        i18n.changeLanguage(lng);
+    };
 
     const generateUsername = () => {
         const random = Math.random().toString(36).substring(2, 14);
@@ -45,6 +49,18 @@ const Register = () => {
     return (
         <Wrapper>
             <div className={`${styles.control} ${darkMode ? styles.dark : styles.light}`}>
+                <select
+                    onChange={changeLanguage}
+                    className={styles.languageSelect}
+                    defaultValue={i18n.language}
+
+                >
+                    <option value="az">Azerbaijan</option>
+                    <option value="de">Deutsch</option>
+                    <option value="en">English</option>
+                    <option value="tr">Turkish</option>
+                    <option value="ru">Russian</option>
+                </select>
                 <button onClick={toggleTheme} className={styles.toggleButton}>
                     {darkMode ? '☀️' : '🌙 '}
                 </button>

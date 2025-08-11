@@ -13,6 +13,7 @@ const Home = () => {
   return (
     <div className={darkMode ? styles.dark : styles.light}>
       <DailyQuestion />
+      <Wrapper>
         <div className={styles.column}>
           <div className={styles.columnItem}>
             <DailyQuestionView />
@@ -24,7 +25,7 @@ const Home = () => {
             </div>
           </div>
         </div>
-      
+      </Wrapper>
       <AllPosts />
     </div>
   );

@@ -96,8 +96,6 @@ const PostAbout = () => {
               comments.map((com) => (
                 <div key={com.id} className={styles.comment}>
                   <strong className={styles.commentUsername}>{com.username || "User"}:</strong> {com.comment}
-
-                  {/* Silme butonu */}
                   <button
                     onClick={() => handleDeleteComment(com.id)}
                     className={styles.deleteButton}

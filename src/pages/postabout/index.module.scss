@@ -136,6 +136,9 @@
 }
 
 .comment {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   background-color: #f1f9ff;
   border-radius: 12px;
   padding: 14px 18px;

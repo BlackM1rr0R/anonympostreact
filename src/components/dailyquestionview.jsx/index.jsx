@@ -46,7 +46,7 @@ const DailyQuestionView = () => {
     };
 
     return (
-        <Wrapper>
+       
             <div className={`${styles.container} ${darkMode ? styles.dark : styles.light}`}>
 
                 {latestQuestion ? (
@@ -97,7 +97,7 @@ const DailyQuestionView = () => {
                     <p>Soru yükleniyor...</p>
                 )}
             </div>
-        </Wrapper>
+      
 
     );
 };

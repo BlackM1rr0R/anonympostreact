@@ -4,7 +4,7 @@ import Wrapper from '../../components/UI/wrapper';
 import { getMyPosts, editPost, myProfile, userEditPassword } from '../../api';
 import { ThemeContext } from '../../context/ThemeContext';
 import { useTranslation } from 'react-i18next';
-
+import UserLogo from '../../assets/images/user.png'
 const MyProfile = () => {
   const [user, setUser] = useState(null);
   const [posts, setPosts] = useState([]);
@@ -71,9 +71,11 @@ const MyProfile = () => {
   return (
     <Wrapper>
       <div className={styles.control} data-theme={darkMode ? 'dark' : 'light'}>
-        <h1 className={styles.myPostsAll}>{t("myProfile")}</h1>
-
+        <h1 className={styles.myPostsAll}><span></span>{t("myProfile")}</h1>
         <div className={styles.profileForm}>
+          <div className={styles.userLogo}>
+            <img src={UserLogo} alt="" />
+          </div>
           <label>{t("username")}</label>
           <input type="text" value={user.username} readOnly />
 
@@ -95,7 +97,7 @@ const MyProfile = () => {
           <button onClick={handlePasswordChange}>{t("Change Password")}</button>
         </div>
 
-        <h2 className={styles.myPostsAll}>{t("myPosts")}</h2>
+        <h2 className={styles.myPostsAll}><span></span>{t("myPosts")}</h2>
         <div className={styles.postsList}>
           {posts.length > 0 ? (
             posts.map((post) => (

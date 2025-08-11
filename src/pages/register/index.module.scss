@@ -32,9 +32,36 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    min-height: 100vh;
+
     gap: 15px;
     background-color: var(--background);
+   .languageSelect,
+    .userMenu {
+        padding: 6px 10px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        margin: 0 10px;
+        background-color: white;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        position: absolute;
+        top: 20px;
+        left: 20px;
+    }
 
+    .languageSelect:hover,
+    .userMenu:hover {
+        transform: scale(1.02);
+    }
+
+    .dark .languageSelect,
+    .dark .userMenu {
+        background-color: #333;
+        color: #fff;
+        border: 1px solid #555;
+    }
     .generatedUsername {
         font-size: 16px;
         color: red;

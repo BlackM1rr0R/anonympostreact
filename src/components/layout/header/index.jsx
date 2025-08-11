@@ -91,91 +91,14 @@ const Header = () => {
   return (
     <Wrapper>
       <div className={`${styles.control} ${darkMode ? styles.dark : styles.light}`}>
-        <div className={styles.leftSide}>
-          <Link to={"/"}>
-            <img src={Logo} alt="Logo" />
-          </Link>
-        </div>
 
-        {/* Hamburger Button for Mobile */}
-        <button
-          onClick={() => setMenuOpen(!menuOpen)}
-          className={styles.hamburgerButton}
-        >
-          ☰
-        </button>
-
-        {/* Desktop menu */}
-        <div className={styles.middleSide}>
-          <input
-            type="text"
-            placeholder={t('searchTitle')}
-            value={search}
-            onChange={handleSearchChange}
-          />
-          {results.length > 0 && (
-            <div className={styles.searchResults}>
-              {results.map((post) => (
-                <Link to={`/post/${post.id}`} key={post.id} className={styles.resultItem}>
-                  <div className={styles.resultContent}>
-                    <h3>{post.title}</h3>
-                    <p className={styles.resultAuthor}>By {post.author}</p>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          )}
-        </div>
-
-        <div className={styles.rightSide}>
-          <button onClick={toggleTheme} className={styles.toggleButton}>
-            {darkMode ? '☀️' : '🌙'}
-          </button>
-
-          <select
-            onChange={changeLanguage}
-            className={styles.languageSelect}
-            defaultValue={i18n.language}
-          >
-            <option value="az">Azerbaijan</option>
-            <option value="de">Deutsch</option>
-            <option value="en">English</option>
-            <option value="tr">Turkish</option>
-            <option value="ru">Russian</option>
-          </select>
-
-          {user ? (
-            <select className={styles.userMenu}
-              onChange={e => {
-                if (e.target.value === "myProfile") {
-                  window.location.href = "/my-profile";
-                } else if (e.target.value === "logout") {
-                  handleLogOut();
-                }
-              }}
-              defaultValue=""
-            >
-              <option value="">{t("welcome")}, {user.username}</option>
-              <option value="myProfile">{t("myProfile")}</option>
-              <option value="logout">{t("logout")}</option>
-            </select>
-          ) : (
-            <>
-              <Link to={"/login"} className={styles.loginButton}>{t('login')}</Link>
-              <span>{t('or')}</span>
-              <Link to={"/register"} className={styles.registerButton}>{t('register')}</Link>
-            </>
-          )}
-        </div>
-
-        {/* Mobile Menu */}
-        {/* MOBILE MENU */}
-        {menuOpen && (
-          <div className={`${styles.mobileMenu} ${menuOpen ? styles.active : ""}`}>
-            <div className={styles.mobileSearch}>
+        <div className={styles.topControl}>
+          {/* Ortada arama kutusu */}
+          <div className={styles.center}>
+            <div className={styles.searchBox}>
               <input
                 type="text"
-                placeholder={t("searchTitle")}
+                placeholder={t('searchTitle')}
                 value={search}
                 onChange={handleSearchChange}
               />
@@ -192,54 +115,138 @@ const Header = () => {
                 </div>
               )}
             </div>
-
-            <div className={styles.mobileOptions}>
-              <button onClick={toggleTheme} className={styles.toggleButton}>
-                {darkMode ? "☀️" : "🌙"}
-              </button>
-
-              <select
-                onChange={changeLanguage}
-                className={styles.languageSelect}
-                defaultValue={i18n.language}
-              >
-                <option value="az">Azerbaijan</option>
-                <option value="tr">Turkish</option>
-                <option value="de">Deutsch</option>
-                <option value="en">English</option>
-                <option value="ru">Russian</option>
-
-              </select>
-
-              {user ? (
-                <select
-                  className={styles.userMenu}
-                  onChange={(e) => {
-                    if (e.target.value === "myProfile") {
-                      window.location.href = "/my-profile";
-                    } else if (e.target.value === "logout") {
-                      handleLogOut();
-                    }
-                  }}
-                  defaultValue=""
-                >
-                  <option value="">{t("welcome")}, {user.username}</option>
-                  <option value="myProfile">{t("myProfile")}</option>
-                  <option value="logout">{t("logout")}</option>
-                </select>
-              ) : (
-                <>
-                  <Link to="/login" className={styles.loginButton}>{t("login")}</Link>
-                  <span>{t("or")}</span>
-                  <Link to="/register" className={styles.registerButton}>{t("register")}</Link>
-                </>
-              )}
-            </div>
           </div>
-        )}
+
+          {/* Sağda dil ve dark mode */}
+          <div className={styles.topBar}>
+            <button onClick={toggleTheme} className={styles.toggleButton}>
+              {darkMode ? '☀️' : '🌙'}
+            </button>
+            <select
+              onChange={changeLanguage}
+              className={styles.languageSelect}
+              defaultValue={i18n.language}
+            >
+              <option value="az">Azerbaijan</option>
+              <option value="de">Deutsch</option>
+              <option value="en">English</option>
+              <option value="tr">Turkish</option>
+              <option value="ru">Russian</option>
+            </select>
+          </div>
+        </div>
+
+        <div className={styles.bottomBar}>
+          <Link to={"/"}>
+            <img src={Logo} alt="Logo" />
+          </Link>
+          {user ? (
+            <select
+              className={styles.userMenu}
+              onChange={(e) => {
+                if (e.target.value === "myProfile") {
+                  window.location.href = "/my-profile";
+                } else if (e.target.value === "logout") {
+                  handleLogOut();
+                }
+              }}
+              defaultValue=""
+            >
+              <option value="">{t("welcome")}, {user.username}</option>
+              <option value="myProfile">{t("myProfile")}</option>
+              <option value="logout">{t("logout")}</option>
+            </select>
+          ) : (
+            <div className={styles.authButtons}>
+              <Link to={"/login"} className={styles.loginButton}>{t('login')}</Link>
+              <span>{t('or')}</span>
+              <Link to={"/register"} className={styles.registerButton}>{t('register')}</Link>
+            </div>
+          )}
+          <button
+            className={`${styles.hamburgerButton} ${menuOpen ? styles.openedHamburger : ""}`}
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
+            title={menuOpen ? "Close menu" : "Open menu"}
+          >
+            <span
+              style={{
+                display: "inline-block",
+                transform: menuOpen ? "rotate(90deg)" : "none",
+                transition: "transform 0.3s ease",
+              }}
+            >
+              {menuOpen ? "✕" : "☰"}
+            </span>
+          </button>
+
+
+
+
+        </div>
+
+
+
+        {/* Mobil Menü Overlay */}
+        <div
+          className={`${styles.mobileOverlay} ${menuOpen ? styles.active : ""}`}
+          onClick={() => setMenuOpen(false)}
+        ></div>
+
+        {/* Mobil Menü İçeriği */}
+        <div className={`${styles.mobileMenu} ${menuOpen ? styles.active : ""}`}>
+          <div className={styles.mobileSearch}>
+            <input
+              type="text"
+              placeholder={t('searchTitle')}
+              value={search}
+              onChange={handleSearchChange}
+            />
+            {results.length > 0 && (
+              <div className={styles.searchResults}>
+                {results.map((post) => (
+                  <Link to={`/post/${post.id}`} key={post.id} className={styles.resultItem}>
+                    <div className={styles.resultContent}>
+                      <h3>{post.title}</h3>
+                      <p className={styles.resultAuthor}>By {post.author}</p>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            )}
+          </div>
+
+          <div className={styles.mobileOptions}>
+            <button onClick={toggleTheme}>
+              {darkMode ? '☀️' : '🌙'}
+            </button>
+            <select onChange={changeLanguage} defaultValue={i18n.language}>
+              <option value="az">Azerbaijan</option>
+              <option value="de">Deutsch</option>
+              <option value="en">English</option>
+              <option value="tr">Turkish</option>
+              <option value="ru">Russian</option>
+            </select>
+            {user ? (
+              <>
+                <button onClick={() => window.location.href = "/my-profile"}>
+                  {t("myProfile")}
+                </button>
+                <button onClick={handleLogOut}>{t("logout")}</button>
+              </>
+            ) : (
+              <>
+                <Link to="/login">{t("login")}</Link>
+                <Link to="/register">{t("register")}</Link>
+              </>
+            )}
+          </div>
+        </div>
+
 
       </div>
     </Wrapper>
+
   );
 };
 
