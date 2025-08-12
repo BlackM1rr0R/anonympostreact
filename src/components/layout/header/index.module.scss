@@ -1,296 +1,314 @@
-.control {
+.header {
+  transition: background-color 0.3s, color 0.3s;
+  border-radius: 20px;
   margin-top: 20px;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1rem 2rem;
-  top: 0;
-  z-index: 999;
-  border: none;
-  background-color: white;
-  transition: all 0.3s ease;
-  border-radius: 30px;
+  margin-bottom: 20px;
+  padding: 15px 15px;
 }
 
-.languageSelect,
-.userMenu {
-  padding: 6px 10px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  margin: 0 10px;
-  background-color: white;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
- 
-.languageSelect:hover,
-.userMenu:hover {
-  transform: scale(1.02);
-}
-
-.dark .languageSelect,
-.dark .userMenu {
-  background-color: #333;
-  color: #fff;
-  border: 1px solid #555;
-}
-
-/* MODE TEMA */
 .light {
-  background-color: #ffffff;
-  border-bottom: 1px solid #e0e0e0;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  background-color: #fff;
   color: #333;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.28);
 }
 
 .dark {
   background-color: #1e1e1e;
-  border-bottom: 1px solid #444;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
   color: #f0f0f0;
+  box-shadow: 0 2px 10px rgba(255, 255, 255, 0.15);
 }
 
-.leftSide a {
-  font-size: 1.8rem;
-  font-weight: bold;
-  text-decoration: none;
-  color: inherit;
+.topBarDesktop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
 }
 
-.middleSide {
+.searchBox {
+  flex: 1;
+  display: flex;
+  justify-content: center;
   position: relative;
 }
 
-.middleSide input {
-  padding: 0.6rem 1rem;
-  width: 250px;
-  max-width: 100%;
+.searchBox, .mobileSearch {
+  width: 100%;
+  position: relative;
+}
+
+.searchBox input, .mobileSearch input {
+  padding: 0.7rem 1rem;
+  border-radius: 12px;
   border: 1px solid #ccc;
-  border-radius: 8px;
   font-size: 0.95rem;
-  background-color: inherit;
-  color: inherit;
-  transition: border-color 0.2s;
-}
-
-.middleSide input:focus {
   outline: none;
+  background-color: var(--input-bg, #f9f9f9);
+  transition: all 0.3s ease;
+}
+
+.searchBox input:focus, .mobileSearch input:focus {
   border-color: #007bff;
+  background-color: #fff;
+  box-shadow: 0 0 0 3px rgba(0,123,255,0.15);
 }
 
-.rightSide {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
+.dark .searchBox input, .dark .mobileSearch input {
+  background: #2a2a2a;
+  border: 1px solid #555;
+  color: #f0f0f0;
 }
 
-.rightSide h2 {
-  font-size: 1rem;
-  margin: 0;
-  cursor: pointer;
-  color: inherit;
-}
-
-.rightSide h2:hover {
-  color: #d9534f;
-}
-
-.rightSide a {
-  text-decoration: none;
-  font-size: 0.95rem;
-  color: #007bff;
-  font-weight: 500;
-  transition: color 0.2s;
-}
-
-.rightSide a:hover {
-  color: #0056b3;
-}
-
-.loginButton,
-.registerButton {
-  padding: 0.4rem 0.8rem;
-  border: 1px solid #007bff;
-  border-radius: 6px;
-  background-color: transparent;
-  font-size: 0.9rem;
-  font-weight: 500;
-  cursor: pointer;
-  color: #007bff;
-}
-
-.loginButton:hover,
-.registerButton:hover {
-  background-color: #007bff;
-  color: #fff;
-}
-
-.toggleButton,
-.hamburgerButton {
-  background: none;
-  border: none;
-  font-size: 1.8rem;
-  cursor: pointer;
-  color: inherit;
-  transition: transform 0.3s;
-}
-
-.toggleButton:hover,
-.hamburgerButton:hover {
-  transform: scale(1.1);
-}
-
-/* Search results */
+/* Sonuç kutusu */
 .searchResults {
   position: absolute;
-  top: 100%;
-  left: 0;
-  width: 100%;
-  max-height: 300px;
-  overflow-y: auto;
-  background-color: white;
-  border: 1px solid #ccc;
-  border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-  margin-top: 8px;
-  z-index: 999;
-  animation: fadeIn 0.2s ease-in-out;
-}
-
-.resultItem {
-  padding: 12px 16px;
-  border-bottom: 1px solid #eee;
-  text-decoration: none;
-  color: #333;
-  transition: background-color 0.2s, transform 0.2s;
-  display: block;
-}
-
-.resultItem:hover {
-  background-color: #f9f9f9;
-  transform: scale(1.01);
-}
-
-.resultContent h3 {
-  margin: 0;
-  font-size: 16px;
-  font-weight: 600;
-  color: inherit;
-}
-
-.resultAuthor {
-  margin: 4px 0 0;
-  font-size: 12px;
-  color: #777;
-}
-
-/* Dark mod search */
-.dark .middleSide input {
-  border: 1px solid #555;
-  background-color: #2a2a2a;
-  color: #f0f0f0;
+  top: calc(100% + 8px);
+  left: 50;
+  transform: translate(-50%, 0);
+  background: #fff;
+  width: 30%;
+  border-radius: 10px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+  overflow: hidden;
+  z-index: 10;
+  animation: fadeInUp 0.25s ease forwards;
 }
 
 .dark .searchResults {
-  background-color: #2a2a2a;
-  border-color: #444;
-}
-
-.dark .resultItem {
+  background: #2a2a2a;
   color: #f0f0f0;
-  border-color: #333;
 }
 
-.dark .resultItem:hover {
-  background-color: #333;
-}
-
-/* Hamburger menu */
-.hamburgerButton {
-  display: none;
-}
-
-/* Mobil menü (konumlandırma ve görünüm) */
-.mobileMenu {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: 100%;
-  background-color: inherit;
+/* Sonuç öğeleri */
+.resultItem {
   display: flex;
-  /* BURAYI 'none' YAPMA! */
-  flex-direction: column;
-  gap: 1rem;
-  padding: 1rem 2rem;
-  border-top: 1px solid #ccc;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
-  z-index: 998;
-  animation: fadeIn 0.2s ease-in-out;
-  border-radius: 0 0 12px 12px;
-}
-
-
-/* aktif olduğunda göster */
-.mobileMenu.active {
-  display: flex;
-}
-
-.active {
-  display: flex;
-  /* aktifken göster */
-}
-
-/* Mobil içeriği */
-.mobileSearch input {
-  width: 100%;
-  padding: 0.6rem 1rem;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  font-size: 0.95rem;
-  background-color: inherit;
+  align-items: center;
+  gap: 10px;
+  padding: 0.75rem 1rem;
+  text-decoration: none;
   color: inherit;
+  transition: background 0.2s ease, transform 0.15s ease;
 }
 
-.mobileOptions {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+.resultItem:hover {
+  background: rgba(0, 123, 255, 0.07);
+  transform: translateX(3px);
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .control {
-    flex-direction: row;
-    justify-content: space-between;
-    gap: 1rem;
-    align-items: center;
-  }
-
-  .hamburgerButton {
-    display: block;
-  }
-
-  .middleSide,
-  .rightSide {
-    display: none;
-  }
-
-  .middleSide input {
-    width: 100%;
-  }
+.resultImage img {
+  width: 35px;
+  height: 35px;
+  border-radius: 6px;
+  object-fit: cover;
 }
 
-/* Animasyon */
-@keyframes fadeIn {
+.resultText h3 {
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+.resultText p {
+  font-size: 0.8rem;
+  margin: 2px 0 0;
+  color: gray;
+}
+
+/* Fade in animasyonu */
+@keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateY(-4px);
+    transform: translateY(6px);
   }
-
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+.dark .searchBox input {
+  background: #2a2a2a;
+  border: 1px solid #555;
+  color: #f0f0f0;
+}
+
+.controls {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.iconButton {
+  font-size: 1.4rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.select {
+  padding: 0.4rem 0.6rem;
+  border-radius: 6px;
+}
+
+.bottomBarDesktop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 5px;
+}
+
+.logo {
+  height: 40px;
+}
+
+.desktopDivider {
+  width: 100%;
+  height: 1px;
+  background-color: rgba(128, 128, 128, 0.3);
+  margin: 0.3rem 0 0.6rem;
+}
+
+.dark .desktopDivider {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.topBarMobile {
+  display: none;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.hamburger {
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 998;
+}
+
+.overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.mobileMenu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  transform: translateX(100%);
+  opacity: 0;
+  width: 70%;
+  height: 100vh;
+  background-color: inherit;
+  box-shadow: -2px 0 8px rgba(0,0,0,0.4);
+  padding: 5rem 2rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  transition: transform 0.35s ease-in-out, opacity 0.35s ease-in-out;
+  z-index: 999;
+  pointer-events: none;
+}
+
+.mobileMenu.active {
+  transform: translateX(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.closeBtn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 1.8rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.mobileSearch input {
+  width: 100%;
+  padding: 0.6rem;
+  border-radius: 8px;
+}
+
+.menuBtn {
+  padding: 0.8rem;
+  border-radius: 8px;
+  background: #007bff;
+  color: white;
+  text-align: center;
+  border: none;
+}
+
+.menuBtn:hover {
+  background: #0056b3;
+}
+.menuToggle {
+  position: relative;
+  width: 32px;
+  height: 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.bar {
+  position: absolute;
+  left: 0;
+  width: 70%;
+  height: 2px;
+  background-color: currentColor;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+/* Çizgilerin başlangıç konumları */
+.bar:nth-child(1) {
+  top: 0;
+}
+.bar:nth-child(2) {
+  top: 10px;
+}
+.bar:nth-child(3) {
+  top: 20px;
+}
+
+/* Menü açıkken X şekline dönüştürme */
+.menuToggle.open .bar:nth-child(1) {
+  transform: rotate(45deg);
+  top: 10px;
+}
+.menuToggle.open .bar:nth-child(2) {
+  opacity: 0;
+}
+.menuToggle.open .bar:nth-child(3) {
+  transform: rotate(-45deg);
+  top: 10px;
+}
+
+@media (max-width: 768px) {
+  .topBarDesktop,
+  .bottomBarDesktop {
+    display: none;
+  }
+  .topBarMobile {
+    display: flex;
+  }
+  .desktopDivider {
+    display: none;
+  }
+  .searchResults {
+    width: 100%;
   }
 }
