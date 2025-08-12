@@ -1,0 +1,99 @@
+/*# sourceMappingURL=index.module.css.map */.categoryPosts {
+  padding: 2rem 1rem;
+  text-align: center;
+}
+
+.pageTitle {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  font-weight: bold;
+}
+
+/* Responsive Grid */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+.postCard {
+  border-radius: 15px;
+  overflow: hidden;
+  border: 1px solid transparent;
+  transition: all 0.25s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.postLink {
+  text-decoration: none;
+  color: inherit;
+}
+
+.postImage {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.postTitle {
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin: 0.8rem 0 0.4rem;
+}
+
+.postContent {
+  font-size: 0.95rem;
+  padding: 0 1rem;
+  flex: 1;
+}
+
+.postAuthor {
+  font-size: 0.85rem;
+  padding: 0.7rem 1rem 1rem;
+  opacity: 0.8;
+}
+
+.noPosts {
+  font-size: 1rem;
+  margin-top: 2rem;
+  color: gray;
+}
+
+/* Light Tema */
+[data-theme='light'] .postCard {
+  background: #fff;
+  color: #222;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+[data-theme='light'] .postTitle {
+  color: #007bff;
+}
+
+[data-theme='light'] .postCard:hover {
+  transform: translateY(-5px) scale(1.02);
+  border-color: #007bff;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+/* Dark Tema */
+[data-theme='dark'] .postCard {
+  background: #2a2a2a;
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+}
+
+[data-theme='dark'] .postTitle {
+  color: #fff;
+}
+
+[data-theme='dark'] .postContent {
+  color: #ccc;
+}
+
+[data-theme='dark'] .postCard:hover {
+  border-color: #66b2ff;
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.6);
+}

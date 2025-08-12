@@ -1,7 +1,7 @@
 :root {
   --background-light: #2F7FFF;
   --background-dark: #1e1e1e;
-  --text-light: white;
+  --text-light: rgb(0, 0, 0);
   --text-dark: #f1f1f1;
   --input-bg-light: #ffffff;
   --input-bg-dark: #1e1e1e;
@@ -47,7 +47,7 @@
   padding: 2rem;
   background-color: var(--background);
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.267);
   text-align: center;
   color: var(--text-color);
 }

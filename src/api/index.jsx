@@ -442,3 +442,31 @@ export const deleteAnswer = async (answerId) => {
     throw error;
   }
 };
+
+export const getAllCategory=async () => {
+  const token = localStorage.getItem("token");
+  try {
+    const response = await axios.get(`${API_URL}/category/all-category`, {
+      headers: { Authorization: `Bearer ${token}` },
+      withCredentials: true,
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching categories:", error);
+    throw error;
+  }
+}
+
+export const getCategoryById = async (id) => {
+  const token = localStorage.getItem("token");
+  try {
+    const response = await axios.get(`${API_URL}/post/category/${id}`, {
+      headers: { Authorization: `Bearer ${token}` },
+      withCredentials: true,
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching category by ID:", error);
+    throw error;
+  }
+}

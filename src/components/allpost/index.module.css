@@ -8,12 +8,14 @@
   --only-color: #f1f1f1;
   background-color: #121212;
   color: var(--only-color);
+  --only-title:white ;
 }
 
 [data-theme=light] {
   --only-color: white;
   background: white;
   color: var(--only-color);
+  --only-title:black ;
 }
 
 .pageTitle {
@@ -21,7 +23,7 @@
   margin-bottom: 1.5rem;
   font-weight: 700;
   text-align: center;
-  color: var(--only-color);
+  color: var(--only-title);
 }
 
 .deleteAllButton {

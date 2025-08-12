@@ -90,20 +90,24 @@ const AllPosts = ({ newPost }) => {
           {data.map((post) => (
             <div key={post.id} className={styles.postCard}>
               <Link to={`/post/${post.id}`}>
-              {post.imageUrl && (
-                <img
-                src={`/api${post.imageUrl}`}
-                alt="Post"
-                
-                className={styles.postImage}
-                />
-              )}
+                {post.imageUrl && (
+                  <img
+                    src={`/api${post.imageUrl}`}
+                    alt="Post"
+
+                    className={styles.postImage}
+                  />
+                )}
               </Link>
 
               <Link to={`/post/${post.id}`} className={styles.postContent}>
                 <p className={styles.postAuthor}><strong>{t("username")}:</strong> {post.author}</p>
                 <p className={styles.postTitle}><strong>{t("title")}</strong>: {post.title}</p>
                 <p className={styles.postText}><strong>{t("content")}</strong>: {post.content}</p>
+                <p className={styles.postText}>
+                  <strong>Category</strong>: {post.category?.categoryName || "No category"}
+                </p>
+
                 <p className={styles.postDate}><strong>{t("date")}</strong>: {new Date(post.createdAt).toLocaleDateString()}</p>
               </Link>
 

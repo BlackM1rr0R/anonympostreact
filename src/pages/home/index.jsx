@@ -7,6 +7,7 @@ import Wrapper from "../../components/UI/wrapper/index.jsx";
 import { useContext } from "react";
 import { ThemeContext } from "../../context/ThemeContext.jsx";
 import ArrowIcon from '../../assets/images/arrowicononly.png'
+import AllCategory from "../../components/allcategory/index.jsx";
 const Home = () => {
   const { darkMode } = useContext(ThemeContext);
 
@@ -26,6 +27,7 @@ const Home = () => {
           </div>
         </div>
       </Wrapper>
+      <AllCategory/>
       <AllPosts />
     </div>
   );
