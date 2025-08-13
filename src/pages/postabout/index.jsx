@@ -76,6 +76,7 @@ const PostAbout = () => {
           <p className={styles.postAuthor}><strong>{t("username")}:</strong> {post.author}</p>
           <h1 className={styles.postTitle}><strong>{t("title")}</strong>:{post.title}</h1>
           <p className={styles.postContent}><strong>{t("content")}</strong>:{post.content}</p>
+          <p className={styles.postContent}><strong>{t("category")}</strong>:{post.categoryName}</p>
           <div className={styles.postImageWrapper}>
 
             {post.imageUrl && (

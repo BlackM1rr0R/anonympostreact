@@ -1,99 +1,107 @@
-/*# sourceMappingURL=index.module.css.map */.categoryPosts {
-  padding: 2rem 1rem;
-  text-align: center;
+@charset "UTF-8";
+.categoryPosts {
+  padding: 2rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Light tema */
+.categoryPosts[data-theme=light] {
+  background-color: #f8f9fa;
+  color: #2d2d2d;
+}
+
+/* Dark tema */
+.categoryPosts[data-theme=dark] {
+  background-color: #1b1b28;
+  color: #f0f0f0;
 }
 
 .pageTitle {
-  font-size: 2rem;
+  text-align: center;
+  font-size: 2.2rem;
   margin-bottom: 2rem;
-  font-weight: bold;
+  font-weight: 700;
+  letter-spacing: 0.5px;
 }
 
-/* Responsive Grid */
+/* Grid yapısı */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.8rem;
 }
 
+/* Post kartı */
 .postCard {
-  border-radius: 15px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
   overflow: hidden;
-  border: 1px solid transparent;
-  transition: all 0.25s ease;
   display: flex;
   flex-direction: column;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
+/* Dark tema kart */
+.categoryPosts[data-theme=dark] .postCard {
+  background-color: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.postCard:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+/* Post link (başlık + görsel) */
 .postLink {
-  text-decoration: none;
   color: inherit;
+  text-decoration: none;
+  display: block;
 }
 
+/* Resim */
 .postImage {
   width: 100%;
   height: 180px;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
+  display: block;
 }
 
+/* Başlık */
 .postTitle {
   font-size: 1.3rem;
-  font-weight: bold;
-  margin: 0.8rem 0 0.4rem;
+  font-weight: 600;
+  padding: 1rem 1rem 0.5rem 1rem;
+  transition: color 0.25s;
 }
 
-.postContent {
-  font-size: 0.95rem;
-  padding: 0 1rem;
-  flex: 1;
-}
-
-.postAuthor {
-  font-size: 0.85rem;
-  padding: 0.7rem 1rem 1rem;
-  opacity: 0.8;
-}
-
-.noPosts {
-  font-size: 1rem;
-  margin-top: 2rem;
-  color: gray;
-}
-
-/* Light Tema */
-[data-theme='light'] .postCard {
-  background: #fff;
-  color: #222;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-}
-
-[data-theme='light'] .postTitle {
+/* Hover’da başlık rengi değişsin */
+.postCard:hover .postTitle {
   color: #007bff;
 }
 
-[data-theme='light'] .postCard:hover {
-  transform: translateY(-5px) scale(1.02);
-  border-color: #007bff;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+/* İçerik */
+.postContent {
+  padding: 0 1rem 1rem 1rem;
+  font-size: 0.95rem;
+  color: inherit;
+  opacity: 0.9;
+  line-height: 1.5;
 }
 
-/* Dark Tema */
-[data-theme='dark'] .postCard {
-  background: #2a2a2a;
-  color: #fff;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+/* Yazar bilgisi */
+.postAuthor {
+  padding: 0.5rem 1rem 1rem;
+  font-size: 0.8rem;
+  opacity: 0.7;
 }
 
-[data-theme='dark'] .postTitle {
-  color: #fff;
-}
-
-[data-theme='dark'] .postContent {
-  color: #ccc;
-}
-
-[data-theme='dark'] .postCard:hover {
-  border-color: #66b2ff;
-  transform: translateY(-5px) scale(1.02);
-  box-shadow: 0 8px 25px rgba(0,0,0,0.6);
-}
+/* Boş kategori */
+.noPosts {
+  text-align: center;
+  font-size: 1.1rem;
+  opacity: 0.8;
+  margin-top: 2rem;
+}/*# sourceMappingURL=index.module.css.map */

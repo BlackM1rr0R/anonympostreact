@@ -1,15 +1,18 @@
 import React, { useEffect, useState, useContext } from "react";
-import { useParams, Link } from "react-router-dom";
-import { getCategoryById } from "../../api"; 
-import Wrapper from '../../components/UI/wrapper'; 
+import { useParams, Link, useLocation } from "react-router-dom";
+import { getCategoryById } from "../../api";
+import Wrapper from '../../components/UI/wrapper';
 import styles from './index.module.css';
 import { ThemeContext } from "../../context/ThemeContext";
+import { useTranslation } from "react-i18next";
 
 const CategoryPosts = () => {
   const { categoryId } = useParams();
+  const location = useLocation();
+  const categoryNameFromState = location.state?.categoryName || "";
   const [posts, setPosts] = useState([]);
   const { darkMode } = useContext(ThemeContext);
-
+  const { t } = useTranslation();
   useEffect(() => {
     const fetchPosts = async () => {
       try {
@@ -28,7 +31,11 @@ const CategoryPosts = () => {
         className={styles.categoryPosts}
         data-theme={darkMode ? "dark" : "light"}
       >
-        <h1 className={styles.pageTitle}>Kategoriye Ait Postlar</h1>
+        <h1 className={styles.pageTitle}>
+          {categoryNameFromState
+            ? `${categoryNameFromState} ${t("categoryPost")}`
+            : "Kategoriye Ait Postlar"}
+        </h1>
 
         {posts.length > 0 ? (
           <div className={styles.grid}>
@@ -38,7 +45,7 @@ const CategoryPosts = () => {
                   {post.imageUrl && (
                     <img
                       src={`/api${post.imageUrl}`}
-                      alt={post.title}
+                      alt=""
                       className={styles.postImage}
                     />
                   )}

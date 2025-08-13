@@ -66,7 +66,10 @@ i18n
                     errorRemove: "Cavab silinirken xəta baş verdi.",
                     deletinAnswer: "Silinir...",
                     errorAddComment: "Şərh əlavə edilərkən xəta baş verdi.",
-                    removeComments: "Şərhi sil"
+                    removeComments: "Şərhi sil",
+                    allcategories: "Bütün kateqoriyalar",
+                    selectCategories: "Kateqoriya Seç",
+                    categoryPost: "Kateqoriyasındakı Postlar"
                 },
             },
             tr: {
@@ -121,7 +124,10 @@ i18n
                     errorRemove: "Cevap silinirken hata oluştu.",
                     deletinAnswer: "Siliniyor...",
                     errorAddComment: "Yorum eklenirken hata oluştu.",
-                    removeComments: "Yorumu sil"
+                    removeComments: "Yorumu sil",
+                    allcategories: "Tüm Kategoriler",
+                    selectCategories: "Kategori Seç",
+                    categoryPost: "Kategorideki Postlar",
                 },
             },
 
@@ -177,7 +183,10 @@ i18n
                     errorRemove: "Fehler beim Löschen der Antwort.",
                     deletinAnswer: "Wird gelöscht...",
                     errorAddComment: "Fehler beim Hinzufügen des Kommentars.",
-                    removeComments: "Kommentar löschen"
+                    removeComments: "Kommentar löschen",
+                    allcategories: "Alle Kategorien",
+                    selectCategories: "Kategorie auswählen",
+                    categoryPost: "Beiträge in der Kategorie",
                 },
             },
 
@@ -233,7 +242,10 @@ i18n
                     errorRemove: "Произошла ошибка при удалении ответа.",
                     deletinAnswer: "Удаляется...",
                     errorAddComment: "Произошла ошибка при добавлении комментария.",
-                    removeComments: "Удалить комментарий"
+                    removeComments: "Удалить комментарий",
+                    allcategories: "Все Категории",
+                    selectCategories: "Выбрать категорию",
+                    categoryPost: "Посты в категории",
                 },
             }, en: {
                 translation: {
@@ -287,7 +299,10 @@ i18n
                     errorRemove: "An error occurred while deleting the answer.",
                     deletinAnswer: "Deleting...",
                     errorAddComment: "An error occurred while adding the comment.",
-                    removeComments: "Delete comment"
+                    removeComments: "Delete comment",
+                    allcategories: "All Categories",
+                    selectCategories: "Select Category",
+                    categoryPost: "Posts in Category",
                 },
             },
 

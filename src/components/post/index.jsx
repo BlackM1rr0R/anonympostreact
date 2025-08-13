@@ -13,7 +13,7 @@ const Post = ({ onPostCreated }) => {
   const [image, setImage] = useState(null);
 
   const [categories, setCategories] = useState([]);
-  const [category, setCategory] = useState(''); // seçili kategori id
+  const [category, setCategory] = useState(''); 
 
   const navigate = useNavigate();
   const { darkMode } = useContext(ThemeContext);
@@ -98,7 +98,7 @@ const Post = ({ onPostCreated }) => {
               onChange={(e) => setCategory(e.target.value)}
               className={styles.select}
             >
-              <option value="">{t("selectCategory")}</option>
+              <option value="">{t("selectCategories")}</option>
               {categories.map((cat) => (
                 <option key={cat.id} value={cat.id}>
                   {cat.categoryName}

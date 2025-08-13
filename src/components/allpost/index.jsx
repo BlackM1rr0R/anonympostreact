@@ -105,8 +105,9 @@ const AllPosts = ({ newPost }) => {
                 <p className={styles.postTitle}><strong>{t("title")}</strong>: {post.title}</p>
                 <p className={styles.postText}><strong>{t("content")}</strong>: {post.content}</p>
                 <p className={styles.postText}>
-                  <strong>Category</strong>: {post.category?.categoryName || "No category"}
+                  <strong>Category</strong>: {post.categoryName || "No category"}
                 </p>
+
 
                 <p className={styles.postDate}><strong>{t("date")}</strong>: {new Date(post.createdAt).toLocaleDateString()}</p>
               </Link>

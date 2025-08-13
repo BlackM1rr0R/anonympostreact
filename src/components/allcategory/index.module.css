@@ -1,92 +1,100 @@
-.allCategory {
-    text-align: center;
-    padding: 2rem 1rem;
+/*# sourceMappingURL=index.module.css.map */.allCategory {
+  padding: 2rem;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Tema renkleri */
+.allCategory[data-theme="light"] {
+  background-color: white;
+  color: #2f3640;
+}
+
+.allCategory[data-theme="dark"] {
+   background-color: #121212;
+  color: #f5f5f5;
 }
 
 .title {
-    font-size: 2rem;
-    margin-bottom: 2rem;
-    font-weight: bold;
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  font-weight: 700;
+  letter-spacing: 1px;
 }
 
-/* Responsive grid */
+/* Grid düzeni */
 .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
 }
 
+/* Kart tasarımı */
 .categoryCard {
-    padding: 1.5rem;
-    border-radius: 15px;
-    text-decoration: none;
-    border: 1px solid transparent;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-    transition: all 0.25s ease;
+  background: linear-gradient(145deg, rgba(255,255,255,0.1), rgba(0,0,0,0.05));
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-decoration: none;
+  color: inherit;
+
+  /* Hafif gölge ve 3D efekti */
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  border: 1px solid rgba(255,255,255,0.1);
+
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-.categoryCard h3 {
-    margin-bottom: 0.5rem;
-    font-size: 1.3rem;
-    font-weight: bold;
-}
-
-.categoryCard p {
-    font-size: 0.95rem;
-}
-
+/* Hover efekti */
 .categoryCard:hover {
-    transform: translateY(-5px) scale(1.02);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
 }
 
-/* -------- Light Tema -------- */
-[data-theme='light'] .categoryCard {
-    background: #ffffff;
-    color: #222;
+/* Başlık */
+.categoryCard h3 {
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
 }
 
-[data-theme='light'] .categoryCard h3 {
-    color: #007bff;
-    /* Light mode: başlık mavi */
+/* Açıklama */
+.categoryCard p {
+  font-size: 0.95rem;
+  opacity: 0.85;
+  line-height: 1.4;
 }
 
-[data-theme='light'] .categoryCard p {
-    color: #555;
+/* Dark Mod Kart görünümü */
+.allCategory[data-theme="dark"] .categoryCard {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.1);
 }
 
-[data-theme='light'] .categoryCard:hover {
-    border-color: #007bff;
+.allCategory[data-theme="dark"] .categoryCard:hover {
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+}
+.categorySelect {
+  width: 100%;
+  padding: 0.8rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  outline: none;
+  background-color: white;
+  transition: border-color 0.2s ease;
 }
 
-[data-theme='light'] .title {
-    color: black;
-    /* Light mode: başlık mavi */
-}
-[data-theme='dark'] .title {
-    color: white;
-    /* Light mode: başlık mavi */
+.categorySelect:focus {
+  border-color: #007bff;
 }
 
-/* -------- Dark Tema -------- */
-[data-theme='dark'] .categoryCard {
-    background: #2a2a2a;
-    color: #fff;
-    /* Genel yazılar beyaz */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+/* Dark tema select */
+.allCategory[data-theme="dark"] .categorySelect {
+  background-color: #2a2a3d;
+  color: #fff;
+  border: 1px solid #555;
 }
 
-[data-theme='dark'] .categoryCard h3 {
-    color: #fff;
-    /* Dark mode: başlık beyaz */
-}
-
-[data-theme='dark'] .categoryCard p {
-    color: #ccc;
-    /* Açıklama gri */
-}
-
-[data-theme='dark'] .categoryCard:hover {
-    border-color: #66b2ff;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+.allCategory[data-theme="dark"] .categorySelect:focus {
+  border-color: #66b3ff;
 }
