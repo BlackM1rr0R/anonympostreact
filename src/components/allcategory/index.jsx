@@ -63,7 +63,6 @@ const AllCategory = () => {
             ))}
           </select>
         ) : (
-          // 💻 Desktop’ta kart grid görünümü
           <div className={styles.grid}>
             {categories.map((category) => (
               <Link

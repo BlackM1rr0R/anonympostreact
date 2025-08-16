@@ -72,8 +72,9 @@ const Header = () => {
 
   return (
     <Wrapper>
-      <header className={`${styles.header} ${darkMode ? styles.dark : styles.light}`}>
-
+      <header
+        className={`${styles.header} ${darkMode ? styles.dark : styles.light}`}
+      >
         <div className={styles.topBarDesktop}>
           <div className={styles.searchBox}>
             <input
@@ -85,13 +86,19 @@ const Header = () => {
             {results.length > 0 && (
               <div className={styles.searchResults}>
                 {results.map((post) => (
-                  <Link to={`/post/${post.id}`} key={post.id} className={styles.resultItem}>
+                  <Link
+                    to={`/post/${post.id}`}
+                    key={post.id}
+                    className={styles.resultItem}
+                  >
                     <div className={styles.resultImage}>
                       <img src={`/api${post.imageUrl}` || Logo} alt="" />
                     </div>
                     <div className={styles.resultText}>
                       <h3>{post.title}</h3>
-                      <p>{t("by")} {post.author}</p>
+                      <p>
+                        {t("by")} {post.author}
+                      </p>
                     </div>
                   </Link>
                 ))}
@@ -102,7 +109,11 @@ const Header = () => {
             <button onClick={toggleTheme} className={styles.iconButton}>
               {darkMode ? "☀️" : "🌙"}
             </button>
-            <select onChange={changeLanguage} className={styles.select} defaultValue={i18n.language}>
+            <select
+              onChange={changeLanguage}
+              className={styles.select}
+              defaultValue={i18n.language}
+            >
               <option value="az">Azerbaijan</option>
               <option value="de">Deutsch</option>
               <option value="en">English</option>
@@ -121,13 +132,20 @@ const Header = () => {
             <select
               className={styles.select}
               onChange={(e) => {
-                if (e.target.value === "myProfile") window.location.href = "/my-profile";
-                else if (e.target.value === "logout") handleLogOut();
-              }}
+                if (e.target.value === "myProfile")
+                  window.location.href = "/my-profile";
+                else if (e.target.value === "logout") handleLogOut()
+                else if(e.target.value==="all-saved")
+                  window.location.href="/all-saved";
+              }
+            }
               defaultValue=""
             >
-              <option value="">{t("welcome")}, {user.username}</option>
+              <option value="">
+                {t("welcome")}, {user.username}
+              </option>
               <option value="myProfile">{t("myProfile")}</option>
+              <option value="all-saved">{t("allsaved")}</option>
               <option value="logout">{t("logout")}</option>
             </select>
           ) : (
@@ -153,14 +171,14 @@ const Header = () => {
           </button>
         </div>
 
-
         <div
           className={`${styles.overlay} ${menuOpen ? styles.active : ""}`}
           onClick={() => setMenuOpen(false)}
         />
 
-
-        <div className={`${styles.mobileMenu} ${menuOpen ? styles.active : ""}`}>
+        <div
+          className={`${styles.mobileMenu} ${menuOpen ? styles.active : ""}`}
+        >
           <div className={styles.mobileSearch}>
             <input
               type="text"
@@ -171,13 +189,19 @@ const Header = () => {
             {results.length > 0 && (
               <div className={styles.searchResults}>
                 {results.map((post) => (
-                  <Link to={`/post/${post.id}`} key={post.id} className={styles.resultItem}>
+                  <Link
+                    to={`/post/${post.id}`}
+                    key={post.id}
+                    className={styles.resultItem}
+                  >
                     <div className={styles.resultImage}>
                       <img src={`/api${post.imageUrl}` || Logo} alt="" />
                     </div>
                     <div className={styles.resultText}>
                       <h3>{post.title}</h3>
-                      <p>{t("by")} {post.author}</p>
+                      <p>
+                        {t("by")} {post.author}
+                      </p>
                     </div>
                   </Link>
                 ))}
@@ -187,7 +211,11 @@ const Header = () => {
           <button onClick={toggleTheme} className={styles.iconButton}>
             {darkMode ? "☀️" : "🌙"}
           </button>
-          <select onChange={changeLanguage} className={styles.select} defaultValue={i18n.language}>
+          <select
+            onChange={changeLanguage}
+            className={styles.select}
+            defaultValue={i18n.language}
+          >
             <option value="az">Azerbaijan</option>
             <option value="de">Deutsch</option>
             <option value="en">English</option>
@@ -196,7 +224,10 @@ const Header = () => {
           </select>
           {user ? (
             <>
-              <button className={styles.menuBtn} onClick={() => (window.location.href = "/my-profile")}>
+              <button
+                className={styles.menuBtn}
+                onClick={() => (window.location.href = "/my-profile")}
+              >
                 {t("myProfile")}
               </button>
               <button className={styles.menuBtn} onClick={handleLogOut}>
@@ -205,8 +236,12 @@ const Header = () => {
             </>
           ) : (
             <>
-              <Link to="/login" className={styles.menuBtn}>{t("login")}</Link>
-              <Link to="/register" className={styles.menuBtn}>{t("register")}</Link>
+              <Link to="/login" className={styles.menuBtn}>
+                {t("login")}
+              </Link>
+              <Link to="/register" className={styles.menuBtn}>
+                {t("register")}
+              </Link>
             </>
           )}
         </div>

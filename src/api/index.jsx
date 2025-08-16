@@ -3,9 +3,12 @@ const API_URL = "http://localhost:6060";
 
 export const getAllPosts = async (page = 0, size = 5) => {
   try {
-    const response = await axios.get(`${API_URL}/post/all?page=${page}&size=${size}`, {
-      withCredentials: true,
-    });
+    const response = await axios.get(
+      `${API_URL}/post/all?page=${page}&size=${size}`,
+      {
+        withCredentials: true,
+      }
+    );
     return response.data;
   } catch (error) {
     console.log("Posts can not found", error);
@@ -13,21 +16,17 @@ export const getAllPosts = async (page = 0, size = 5) => {
   }
 };
 
-
 export const registerUser = async (userData) => {
   try {
     const response = await axios.post(`${API_URL}/user/register`, userData, {
       withCredentials: true,
-
     });
     return response.data;
-
-  }
-  catch (error) {
+  } catch (error) {
     console.error("Error registering user:", error);
     throw error;
   }
-}
+};
 
 export const loginUser = async (userData) => {
   try {
@@ -39,17 +38,16 @@ export const loginUser = async (userData) => {
     console.error("Error logging in user:", error);
     throw error;
   }
-}
-
+};
 
 export const addPost = async (formData) => {
   try {
     const token = localStorage.getItem("token");
     const response = await axios.post(`${API_URL}/post/add`, formData, {
       headers: {
-        'Cache-Control': 'no-cache',
+        "Cache-Control": "no-cache",
         Authorization: `Bearer ${token}`,
-        'Content-Type': 'multipart/form-data',
+        "Content-Type": "multipart/form-data",
       },
       withCredentials: true,
     });
@@ -59,7 +57,6 @@ export const addPost = async (formData) => {
     throw error;
   }
 };
-
 
 export const myProfile = async () => {
   try {
@@ -75,7 +72,7 @@ export const myProfile = async () => {
     console.error("Error fetching user profile:", error);
     throw error;
   }
-}
+};
 
 export const getMyPosts = async () => {
   try {
@@ -91,7 +88,7 @@ export const getMyPosts = async () => {
     console.error("Error fetching my posts:", error);
     throw error;
   }
-}
+};
 
 export const editPost = async (postData) => {
   try {
@@ -109,7 +106,6 @@ export const editPost = async (postData) => {
   }
 };
 
-
 export const searchPostsByTitle = async (title) => {
   try {
     const token = localStorage.getItem("token");
@@ -117,7 +113,7 @@ export const searchPostsByTitle = async (title) => {
       params: { title },
       headers: {
         Authorization: `Bearer ${token}`,
-      }
+      },
     });
     return response.data;
   } catch (error) {
@@ -140,8 +136,7 @@ export const searchPostById = async (id) => {
     console.error("Error fetching post by ID:", error);
     throw error;
   }
-}
-
+};
 
 export const allComment = async (postId) => {
   try {
@@ -158,27 +153,30 @@ export const allComment = async (postId) => {
     console.error("Error fetching comments:", error);
     throw error;
   }
-}
+};
 
 export const addCommentToPost = async (postId, commentText) => {
   const token = localStorage.getItem("token");
-  const response = await axios.post(`${API_URL}/comment/add`, {
-    comment: commentText,
-    post: { id: postId }
-  }, {
-    headers: { Authorization: `Bearer ${token}` },
-    withCredentials: true,
-  });
+  const response = await axios.post(
+    `${API_URL}/comment/add`,
+    {
+      comment: commentText,
+      post: { id: postId },
+    },
+    {
+      headers: { Authorization: `Bearer ${token}` },
+      withCredentials: true,
+    }
+  );
   return response.data;
 };
-
 
 export const toggleLike = async (postId) => {
   const token = localStorage.getItem("token");
   try {
     const response = await axios.post(
       `${API_URL}/like/toggle`,
-      { post: { id: postId } },  // burada obje oluştur
+      { post: { id: postId } }, // burada obje oluştur
       {
         headers: { Authorization: `Bearer ${token}` },
         withCredentials: true,
@@ -190,8 +188,6 @@ export const toggleLike = async (postId) => {
     throw error;
   }
 };
-
-
 
 export const getAllLikes = async (postId) => {
   const token = localStorage.getItem("token");
@@ -205,7 +201,7 @@ export const getAllLikes = async (postId) => {
     console.error("Error fetching likes:", error);
     throw error;
   }
-}
+};
 
 export const deleteAllPosts = async () => {
   const token = localStorage.getItem("token");
@@ -219,7 +215,7 @@ export const deleteAllPosts = async () => {
     console.error("Error deleting post:", error);
     throw error;
   }
-}
+};
 
 export const getLikeCount = async (postId) => {
   const token = localStorage.getItem("token");
@@ -233,21 +229,25 @@ export const getLikeCount = async (postId) => {
     console.error("Error fetching likes:", error);
     throw error;
   }
-}
+};
 
-export const addDailyQuestion=async (questionData) => {
+export const addDailyQuestion = async (questionData) => {
   const token = localStorage.getItem("token");
   try {
-    const response = await axios.post(`${API_URL}/daily/addDailyQuestion`, questionData, {
-      headers: { Authorization: `Bearer ${token}` },
-      withCredentials: true,
-    });
+    const response = await axios.post(
+      `${API_URL}/daily/addDailyQuestion`,
+      questionData,
+      {
+        headers: { Authorization: `Bearer ${token}` },
+        withCredentials: true,
+      }
+    );
     return response.data;
   } catch (error) {
     console.error("Error adding daily question:", error);
     throw error;
   }
-}
+};
 
 export const getDailyQuestion = async () => {
   const token = localStorage.getItem("token");
@@ -261,7 +261,7 @@ export const getDailyQuestion = async () => {
     console.error("Error fetching daily question:", error);
     throw error;
   }
-}
+};
 
 export const addAnswerToDailyQuestion = async (answerData) => {
   const token = localStorage.getItem("token");
@@ -275,7 +275,7 @@ export const addAnswerToDailyQuestion = async (answerData) => {
     console.error("Error adding answer to daily question:", error);
     throw error;
   }
-}
+};
 
 export const getAllAnswers = async () => {
   const token = localStorage.getItem("token");
@@ -289,7 +289,7 @@ export const getAllAnswers = async () => {
     console.error("Error fetching all answers:", error);
     throw error;
   }
-}
+};
 
 export const getDailyQuestionById = async (id) => {
   const token = localStorage.getItem("token");
@@ -303,7 +303,7 @@ export const getDailyQuestionById = async (id) => {
     console.error("Error fetching daily question by id:", error);
     throw error;
   }
-}
+};
 export const adminGetAllUsers = async () => {
   const token = localStorage.getItem("token");
   try {
@@ -316,21 +316,25 @@ export const adminGetAllUsers = async () => {
     console.error("Error fetching daily question by id:", error);
     throw error;
   }
-}
+};
 
 export const adminEditProfile = async (userData) => {
   const token = localStorage.getItem("token");
   try {
-    const response = await axios.put(`${API_URL}/admin/edit-admin-profile`, userData, {
-      headers: { Authorization: `Bearer ${token}` },
-      withCredentials: true,
-    });
+    const response = await axios.put(
+      `${API_URL}/admin/edit-admin-profile`,
+      userData,
+      {
+        headers: { Authorization: `Bearer ${token}` },
+        withCredentials: true,
+      }
+    );
     return response.data;
   } catch (error) {
     console.error("Error editing profile:", error);
     throw error;
   }
-}
+};
 
 export const adminDeleteUser = async (userId) => {
   const token = localStorage.getItem("token");
@@ -344,7 +348,7 @@ export const adminDeleteUser = async (userId) => {
     console.error("Error deleting user:", error);
     throw error;
   }
-}
+};
 export const adminGetAllPosts = async () => {
   const token = localStorage.getItem("token");
   try {
@@ -357,29 +361,36 @@ export const adminGetAllPosts = async () => {
     console.error("Error fetching daily question by id:", error);
     throw error;
   }
-}
+};
 
 export const adminDeletePost = async (postId) => {
   const token = localStorage.getItem("token");
   try {
-    const response = await axios.delete(`${API_URL}/admin/delete-post/${postId}`, {
-      headers: { Authorization: `Bearer ${token}` },
-      withCredentials: true,
-    });
+    const response = await axios.delete(
+      `${API_URL}/admin/delete-post/${postId}`,
+      {
+        headers: { Authorization: `Bearer ${token}` },
+        withCredentials: true,
+      }
+    );
     return response.data;
   } catch (error) {
     console.error("Error deleting post:", error);
     throw error;
   }
-}
+};
 
 export const adminEditPost = async (postId, updatedPost) => {
   const token = localStorage.getItem("token");
   try {
-    const response = await axios.put(`${API_URL}/admin/edit-post/${postId}`, updatedPost, {
-      headers: { Authorization: `Bearer ${token}` },
-      withCredentials: true,
-    });
+    const response = await axios.put(
+      `${API_URL}/admin/edit-post/${postId}`,
+      updatedPost,
+      {
+        headers: { Authorization: `Bearer ${token}` },
+        withCredentials: true,
+      }
+    );
     return response.data;
   } catch (error) {
     console.error("Error editing post:", error);
@@ -389,17 +400,20 @@ export const adminEditPost = async (postId, updatedPost) => {
 export const adminAddNewUser = async (userData) => {
   const token = localStorage.getItem("token");
   try {
-    const response = await axios.post(`${API_URL}/admin/add-new-user`, userData, {
-      headers: { Authorization: `Bearer ${token}` },
-      withCredentials: true,
-    });
+    const response = await axios.post(
+      `${API_URL}/admin/add-new-user`,
+      userData,
+      {
+        headers: { Authorization: `Bearer ${token}` },
+        withCredentials: true,
+      }
+    );
     return response.data;
   } catch (error) {
     console.error("Error adding new user:", error);
     throw error;
   }
-}
-
+};
 
 export const userEditPassword = async (userData) => {
   const token = localStorage.getItem("token");
@@ -413,29 +427,35 @@ export const userEditPassword = async (userData) => {
     console.error("Error editing password:", error);
     throw error;
   }
-}
+};
 
-export const deleteComment= async (commentId) => {
+export const deleteComment = async (commentId) => {
   const token = localStorage.getItem("token");
   try {
-    const response = await axios.delete(`${API_URL}/comment/delete/${commentId}`, {
-      headers: { Authorization: `Bearer ${token}` },
-      withCredentials: true,
-    });
+    const response = await axios.delete(
+      `${API_URL}/comment/delete/${commentId}`,
+      {
+        headers: { Authorization: `Bearer ${token}` },
+        withCredentials: true,
+      }
+    );
     return response.data;
   } catch (error) {
     console.error("Error deleting comment:", error);
     throw error;
   }
-}
+};
 
 export const deleteAnswer = async (answerId) => {
   const token = localStorage.getItem("token");
   try {
-    const response = await axios.delete(`${API_URL}/answer/delete/${answerId}`, {
-      headers: { Authorization: `Bearer ${token}` },
-      withCredentials: true,
-    });
+    const response = await axios.delete(
+      `${API_URL}/answer/delete/${answerId}`,
+      {
+        headers: { Authorization: `Bearer ${token}` },
+        withCredentials: true,
+      }
+    );
     return response.data;
   } catch (error) {
     console.error("Error deleting answer:", error);
@@ -443,7 +463,7 @@ export const deleteAnswer = async (answerId) => {
   }
 };
 
-export const getAllCategory=async () => {
+export const getAllCategory = async () => {
   const token = localStorage.getItem("token");
   try {
     const response = await axios.get(`${API_URL}/category/all-category`, {
@@ -455,7 +475,7 @@ export const getAllCategory=async () => {
     console.error("Error fetching categories:", error);
     throw error;
   }
-}
+};
 
 export const getCategoryById = async (id) => {
   const token = localStorage.getItem("token");
@@ -469,4 +489,36 @@ export const getCategoryById = async (id) => {
     console.error("Error fetching category by ID:", error);
     throw error;
   }
-}
+};
+
+export const toggleSaved = async (savedId) => {
+  const token = localStorage.getItem("token");
+  try {
+    const response = await axios.post(
+      `${API_URL}/saved/toggle`,
+      { post: { id: savedId } },
+      {
+        headers: { Authorization: `Bearer ${token}` },
+        withCredentials: true,
+      }
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Error toggling like:", error);
+    throw error;
+  }
+};
+
+export const getSaved = async () => {
+  const token = localStorage.getItem("token");
+  try{
+
+    const response = await axios.get(`${API_URL}/saved`, {
+      headers: { Authorization: `Bearer ${token}` },
+      withCredentials: true,
+    });
+    return response.data;
+  }catch(error){
+      throw error;
+  }
+};

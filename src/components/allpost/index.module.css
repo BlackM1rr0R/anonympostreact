@@ -17,6 +17,168 @@
   color: var(--only-color);
   --only-title:black ;
 }
+/* ---------- SAVE BUTTON (no image, animated) ---------- */
+.saveButton {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .6rem;
+  width: 100%;
+  padding: 0.7rem 0;
+  font-size: 1.05rem;
+  font-weight: 700;
+  border-radius: 30px;
+  cursor: pointer;
+  border: 2px solid #4f46e5; /* indigo */
+  background: transparent;
+  color: #4f46e5;
+  transition: background .25s ease, color .25s ease, transform .15s ease, border-color .25s ease;
+  overflow: hidden;
+  user-select: none;
+}
+
+[data-theme=dark] .saveButton {
+  border-color: #60a5fa; /* light indigo in dark */
+  color: #60a5fa;
+}
+
+.saveButton:hover {
+  background: rgba(79,70,229,0.08);
+}
+
+.saveButton:active {
+  transform: translateY(1px) scale(0.99);
+}
+
+/* Kaydedildi durumunda dolu buton */
+.saved {
+  background: linear-gradient(135deg, #10b981, #059669); /* teal/emerald */
+  color: white;
+  border-color: transparent;
+}
+
+.saved:hover {
+  filter: brightness(1.03);
+}
+
+/* İkonu saf CSS ile "bookmark" gibi görselleştir (resim yok) */
+.saveIcon {
+  width: 14px;
+  height: 18px;
+  position: relative;
+  display: inline-block;
+  opacity: 0.9;
+  transition: transform .35s cubic-bezier(.2,.8,.2,1), opacity .2s ease;
+}
+
+/* Gövde */
+.saveIcon::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 2px solid currentColor;
+  border-bottom: none;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  transform-origin: center top;
+}
+
+/* Alt üçgen (şerit) */
+.saveIcon::after {
+  content: "";
+  position: absolute;
+  left: 2px;
+  right: 2px;
+  bottom: -2px;
+  height: 8px;
+  background: currentColor;
+  clip-path: polygon(0 0, 50% 100%, 100% 0);
+  transform-origin: center bottom;
+}
+
+/* Kaydedildiğinde hafif zıplama */
+.saving .saveIcon {
+  animation: save-bounce .6s cubic-bezier(.2,.6,.3,1.2);
+}
+
+@keyframes save-bounce {
+  0% { transform: scale(1) translateY(0); }
+  35% { transform: scale(1.15) translateY(-2px) rotate(-4deg); }
+  70% { transform: scale(0.98) translateY(0); }
+  100% { transform: scale(1) translateY(0); }
+}
+
+/* Metin */
+.saveText {
+  position: relative;
+  z-index: 1;
+  letter-spacing: .2px;
+}
+
+/* Konfeti/sparkle efekti (tek pseudo element ve box-shadow hilesi) */
+.sparkles {
+  pointer-events: none;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.2);
+  box-shadow:
+    0 -18px 0 0 #fbbf24,  /* amber */
+    16px -10px 0 0 #60a5fa, /* blue */
+    18px 8px 0 0 #34d399,   /* green */
+    0 18px 0 0 #f472b6,     /* pink */
+    -18px 8px 0 0 #f59e0b,  /* orange */
+    -16px -10px 0 0 #a78bfa;/* violet */
+}
+
+.saving .sparkles {
+  animation: spark-burst .65s ease-out forwards;
+}
+
+@keyframes spark-burst {
+  0%   { opacity: 0; transform: translate(-50%,-50%) scale(0.2); }
+  10%  { opacity: 1; }
+  100% { opacity: 0; transform: translate(-50%,-50%) scale(3.2); }
+}
+
+/* Ripple efekti (arka plan dalgası) */
+.ripple {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  border-radius: 30px;
+  background: currentColor;
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+.saving .ripple {
+  animation: ripple-pop .55s ease-out forwards;
+}
+
+@keyframes ripple-pop {
+  0%   { opacity: 0.12; transform: scale(0.8); }
+  70%  { opacity: 0.06; }
+  100% { opacity: 0; transform: scale(1.15); }
+}
+
+/* Aksiyon butonları satırı tutarlı kalsın */
+.actionButtons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: .6rem;
+  margin-top: auto;
+}
+
+/* Dark mode küçük dokunuş */
+[data-theme=dark] .saved {
+  background: linear-gradient(135deg, #10b981, #0ea5e9); /* emerald->sky */
+}
 
 .pageTitle {
   font-size: 2.5rem;

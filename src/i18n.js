@@ -69,7 +69,12 @@ i18n
                     removeComments: "Şərhi sil",
                     allcategories: "Bütün kateqoriyalar",
                     selectCategories: "Kateqoriya Seç",
-                    categoryPost: "Kateqoriyasındakı Postlar"
+                    categoryPost: "Kateqoriyasındakı Postlar",
+                    allsaved: "Yaddaşda saxlanılanlar",
+                    nosaved: "Hələ yaddaşda heçnə saxlamamısınız",
+                    inSave: "Yaddaşa vur",
+                    noSave: "Yaddaşdadır"
+
                 },
             },
             tr: {
@@ -128,6 +133,10 @@ i18n
                     allcategories: "Tüm Kategoriler",
                     selectCategories: "Kategori Seç",
                     categoryPost: "Kategorideki Postlar",
+                    allsaved: "Kaydedilenler",
+                    nosaved: "Henüz hiçbir şey kaydetmediniz.",
+                    inSave: "Kaydet",
+                    noSave: "Kaydedildi"
                 },
             },
 
@@ -187,6 +196,10 @@ i18n
                     allcategories: "Alle Kategorien",
                     selectCategories: "Kategorie auswählen",
                     categoryPost: "Beiträge in der Kategorie",
+                    allsaved: "Gespeicherte Inhalte",
+                    nosaved: "Du hast noch nichts gespeichert.",
+                    inSave: "Speichern",
+                    noSave: "Gespeichert"
                 },
             },
 
@@ -246,6 +259,10 @@ i18n
                     allcategories: "Все Категории",
                     selectCategories: "Выбрать категорию",
                     categoryPost: "Посты в категории",
+                    allsaved: "Сохранённые элементы",
+                    nosaved: "Вы ещё ничего не сохранили.",
+                    inSave: "Сохранить",
+                    noSave: "Сохранено"
                 },
             }, en: {
                 translation: {
@@ -303,6 +320,10 @@ i18n
                     allcategories: "All Categories",
                     selectCategories: "Select Category",
                     categoryPost: "Posts in Category",
+                    allsaved: "Saved items",
+                    nosaved: "You haven't saved anything yet.",
+                    inSave: "Save",
+                    noSave: "Saved"
                 },
             },
 
