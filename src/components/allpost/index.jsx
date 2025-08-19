@@ -173,7 +173,7 @@ const AllPosts = ({ newPost }) => {
                   <strong>{t("content")}:</strong> {post.content}
                 </p>
                 <p className={styles.postText}>
-                  <strong>Category</strong>: {post.categoryName || "No category"}
+                  <strong>{t("category")}</strong>: {post.categoryName || "No category"}
                 </p>
                 <p className={styles.postDate}>
                   <strong>{t("date")}:</strong>{" "}

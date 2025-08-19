@@ -139,7 +139,7 @@ const Header = () => {
                   window.location.href="/all-saved";
               }
             }
-              defaultValue=""
+              defaultValue="" 
             >
               <option value="">
                 {t("welcome")}, {user.username}

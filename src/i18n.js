@@ -73,7 +73,9 @@ i18n
                     allsaved: "Yaddaşda saxlanılanlar",
                     nosaved: "Hələ yaddaşda heçnə saxlamamısınız",
                     inSave: "Yaddaşa vur",
-                    noSave: "Yaddaşdadır"
+                    noSave: "Yaddaşdadır",
+                    category: "Kateqoriya",
+                    allDefend: "Bütün hüquqlar qorunur"
 
                 },
             },
@@ -136,7 +138,10 @@ i18n
                     allsaved: "Kaydedilenler",
                     nosaved: "Henüz hiçbir şey kaydetmediniz.",
                     inSave: "Kaydet",
-                    noSave: "Kaydedildi"
+                    noSave: "Kaydedildi",
+                    category: "Kategori",
+                    allDefend: "Tüm haklar saklıdır"
+
                 },
             },
 
@@ -199,7 +204,9 @@ i18n
                     allsaved: "Gespeicherte Inhalte",
                     nosaved: "Du hast noch nichts gespeichert.",
                     inSave: "Speichern",
-                    noSave: "Gespeichert"
+                    noSave: "Gespeichert",
+                    category: "Kategorie",
+                    allDefend: "Alle Rechte vorbehalten"
                 },
             },
 
@@ -262,7 +269,9 @@ i18n
                     allsaved: "Сохранённые элементы",
                     nosaved: "Вы ещё ничего не сохранили.",
                     inSave: "Сохранить",
-                    noSave: "Сохранено"
+                    noSave: "Сохранено",
+                    category: "Категория",
+                    allDefend: "Все права защищены"
                 },
             }, en: {
                 translation: {
@@ -323,7 +332,9 @@ i18n
                     allsaved: "Saved items",
                     nosaved: "You haven't saved anything yet.",
                     inSave: "Save",
-                    noSave: "Saved"
+                    noSave: "Saved",
+                    category: "Category",
+                    allDefend: "All rights reserved"
                 },
             },
 

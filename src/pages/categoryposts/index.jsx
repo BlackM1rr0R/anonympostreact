@@ -34,7 +34,7 @@ const CategoryPosts = () => {
         <h1 className={styles.pageTitle}>
           {categoryNameFromState
             ? `${categoryNameFromState} ${t("categoryPost")}`
-            : "Kategoriye Ait Postlar"}
+            : `${t("categoryPost")}`}
         </h1>
 
         {posts.length > 0 ? (
@@ -53,7 +53,7 @@ const CategoryPosts = () => {
                 </Link>
                 <p className={styles.postContent}>{post.content}</p>
                 <small className={styles.postAuthor}>
-                  Yazar: {post.author}
+                  {t("username")}: {post.author}
                 </small>
               </div>
             ))}

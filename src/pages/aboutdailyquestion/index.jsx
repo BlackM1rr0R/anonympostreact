@@ -66,9 +66,11 @@ const AboutDailyQuestion = () => {
                 <li key={ans.id} className={styles.answerItem}>
                   <strong className={styles.username}>{ans.username || "Anonim"}:</strong> {ans.answer}
                   {/* Sadece giriş yapan kullanıcının cevaplarında sil butonu gözüksün */}
+                  
                   {user && ans.username?.toLowerCase() === user.username?.toLowerCase() && (
                     <button
                       onClick={() => handleDeleteAnswer(ans.id)}
+                    
                       disabled={deletingAnswerId === ans.id}
                       className={styles.deleteButton}
                     >

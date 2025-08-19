@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
 import styles from "./index.module.css";
-import Logo from '../../../assets/images/673e7d618507b496c9abfece_Studio-Logo 2.png';
-import Wrapper from '../../UI/wrapper';
-import Info from '../../../assets/images/SVG.png';
-import { ThemeContext } from '../../../context/ThemeContext';
+import Logo from "../../../assets/images/673e7d618507b496c9abfece_Studio-Logo 2.png";
+import Wrapper from "../../UI/wrapper";
+import Info from "../../../assets/images/SVG.png";
+import { ThemeContext } from "../../../context/ThemeContext";
 import { useTranslation } from "react-i18next";
 
 const Footer = () => {
@@ -30,14 +30,12 @@ const Footer = () => {
               <div className={styles.icon}>
                 <img src={Info} alt="Info" />
               </div>
-
             </div>
           </div>
           <div className={styles.rightSide}>
-            <p>
-              {t("aboutUs")}
-            </p>
-            <h2>© formdom.az. Bütün hüquqlar qorunur.</h2>
+            <p>{t("aboutUs")}</p>
+            <h2>© formdom.pro</h2>
+            <h2>{t("allDefend")}</h2>
           </div>
         </div>
       </div>
