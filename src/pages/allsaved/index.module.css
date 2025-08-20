@@ -1,351 +1,84 @@
-/*# sourceMappingURL=index.module.css.map */ /* ===== AllSaved — deluxe animated styles ===== */
+/* Tema Renkleri */
+.light {
 
-/* Temel renk değişkenleri (light) */
+  color: #222;
+}
+
+.dark {
+
+  color: #f0f0f0;
+}
+
+/* Container */
 .savedPostsContainer {
-  --bg: #f8fafc;
-  --text: #0f172a;
-  --muted: #64748b;
-  --card-bg: rgba(255, 255, 255, 0.85);
-  --border: rgba(15, 23, 42, 0.08);
-  --ring: rgba(79, 70, 229, 0.15); /* indigo */
-  --accent: #4f46e5;
-  --accent-2: #22c55e; /* green */
-  position: relative;
-  padding: 1.6rem 0.8rem;
-  isolation: isolate;
+  padding: 2rem;
 }
 
-/* Dark mode */
-:global([data-theme="dark"]) .savedPostsContainer {
-  --bg: #0b1220;
-  --text: #e5ecff;
-  --muted: #93a5c6;
-  --card-bg: rgba(17, 26, 45, 0.7);
-  --border: rgba(148, 163, 184, 0.12);
-  --ring: rgba(34, 197, 94, 0.16);
-  --accent: #60a5fa; /* blue-400 */
-  --accent-2: #22c55e;
-}
-
-/* Arka planda yumuşak bir glow + hareket */
-.savedPostsContainer::before {
-  content: "";
-  position: absolute;
-
-  background: radial-gradient(
-      40% 35% at 15% 10%,
-      rgba(79, 70, 229, 0.1),
-      transparent 60%
-    ),
-    radial-gradient(45% 40% at 85% 0%, rgba(34, 197, 94, 0.1), transparent 55%),
-    radial-gradient(
-      40% 40% at 50% 100%,
-      rgba(99, 102, 241, 0.12),
-      transparent 60%
-    );
-  filter: blur(22px);
-  z-index: -1;
-  animation: floatBg 18s linear infinite;
-  pointer-events: none;
-}
-
-@keyframes floatBg {
-  0% {
-    transform: translate3d(0, 0, 0) scale(1);
-  }
-  50% {
-    transform: translate3d(0, -1%, 0) scale(1.02);
-  }
-  100% {
-    transform: translate3d(0, 0, 0) scale(1);
-  }
-}
-
-.savedPostsContainer h1 {
-  color: var(--accent);
-  text-align: center;
-  font-weight: 800;
+/* Başlık */
+.titleSaved {
   font-size: 2rem;
-  letter-spacing: 0.3px;
-  margin: 0 0 1.2rem 0;
-  margin-bottom: 20px;
-}
-
-/* Boş liste mesajı */
-.savedPostsContainer > p {
+  margin-bottom: 1.5rem;
   text-align: center;
-  color: var(--muted);
-  font-weight: 600;
 }
 
 /* Grid */
 .postsGrid {
   display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap: clamp(12px, 2.5vw, 22px);
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
 }
 
-/* Responsive kolonlar */
-@media (max-width: 520px) {
-  .postsGrid {
-    grid-template-columns: repeat(6, 1fr);
-  }
-  .savedPostsContainer h1 {
-  color: var(--accent);
-  text-align: center;
-  font-weight: 800;
-  font-size: 1.4rem;
-  letter-spacing: 0.3px;
-  margin: 0 0 1.2rem 0;
-  margin-bottom: 20px;
-}
-}
-@media (min-width: 521px) and (max-width: 900px) {
-  .postsGrid {
-    grid-template-columns: repeat(8, 1fr);
-  }
-}
-@media (min-width: 901px) and (max-width: 1280px) {
-  .postsGrid {
-    grid-template-columns: repeat(12, 1fr);
-  }
-}
-
-/* Kart */
-.postCard {
-  grid-column: span 6; /* default: 2 sütun */
-  background: var(--card-bg);
-  backdrop-filter: saturate(1.2) blur(6px);
-  -webkit-backdrop-filter: saturate(1.2) blur(6px);
-  border: 1px solid var(--border);
-  border-radius: 18px;
+/* Kartlar */
+.light .postCard {
+  background-color: inherit;
+  border: 1px solid #ccc;
+  border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.04), 0 8px 24px rgba(2, 6, 23, 0.1);
-  transition: transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1),
-    box-shadow 0.28s ease, border-color 0.28s ease;
-  transform: translateY(8px) scale(0.98);
-  animation: fadeUp 0.66s cubic-bezier(0.2, 0.8, 0.2, 1) both;
-  position: relative;
+  transition: transform 0.2s ease-in-out;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.438);
+}
+.dark .postCard {
+  background-color: inherit;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.2s ease-in-out;
+  box-shadow: 0 4px 8px rgba(255, 255, 255, 0.158);
 }
 
-/* Daha geniş ekranlarda kart genişlesin */
-@media (min-width: 901px) {
-  .postCard {
-    grid-column: span 4;
-  } /* 3’lü grid */
+.postCard:hover {
+  transform: scale(1.03);
 }
 
-/* Giriş animasyonu */
-@keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(18px) scale(0.98);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-/* Cascade delay (ilk 24 öğe için) */
-.postsGrid .postCard:nth-child(1) {
-  animation-delay: 0.04s;
-}
-.postsGrid .postCard:nth-child(2) {
-  animation-delay: 0.08s;
-}
-.postsGrid .postCard:nth-child(3) {
-  animation-delay: 0.12s;
-}
-.postsGrid .postCard:nth-child(4) {
-  animation-delay: 0.16s;
-}
-.postsGrid .postCard:nth-child(5) {
-  animation-delay: 0.2s;
-}
-.postsGrid .postCard:nth-child(6) {
-  animation-delay: 0.24s;
-}
-.postsGrid .postCard:nth-child(7) {
-  animation-delay: 0.28s;
-}
-.postsGrid .postCard:nth-child(8) {
-  animation-delay: 0.32s;
-}
-.postsGrid .postCard:nth-child(9) {
-  animation-delay: 0.36s;
-}
-.postsGrid .postCard:nth-child(10) {
-  animation-delay: 0.4s;
-}
-.postsGrid .postCard:nth-child(11) {
-  animation-delay: 0.44s;
-}
-.postsGrid .postCard:nth-child(12) {
-  animation-delay: 0.48s;
-}
-.postsGrid .postCard:nth-child(13) {
-  animation-delay: 0.52s;
-}
-.postsGrid .postCard:nth-child(14) {
-  animation-delay: 0.56s;
-}
-.postsGrid .postCard:nth-child(15) {
-  animation-delay: 0.6s;
-}
-.postsGrid .postCard:nth-child(16) {
-  animation-delay: 0.64s;
-}
-.postsGrid .postCard:nth-child(17) {
-  animation-delay: 0.68s;
-}
-.postsGrid .postCard:nth-child(18) {
-  animation-delay: 0.72s;
-}
-.postsGrid .postCard:nth-child(19) {
-  animation-delay: 0.76s;
-}
-.postsGrid .postCard:nth-child(20) {
-  animation-delay: 0.8s;
-}
-.postsGrid .postCard:nth-child(21) {
-  animation-delay: 0.84s;
-}
-.postsGrid .postCard:nth-child(22) {
-  animation-delay: 0.88s;
-}
-.postsGrid .postCard:nth-child(23) {
-  animation-delay: 0.92s;
-}
-.postsGrid .postCard:nth-child(24) {
-  animation-delay: 0.96s;
-}
-
-/* Hover/focus hareketleri */
-.postCard:hover,
-.postCard:focus-within {
-  transform: translateY(-6px) scale(1.008);
-  border-color: color-mix(in oklab, var(--accent) 28%, var(--border));
-  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.04), 0 18px 36px rgba(2, 6, 23, 0.16);
-}
-
-/* Kart parıltısı (hover’da sağdan sola kayar) */
-.postCard::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    120deg,
-    transparent 0%,
-    rgba(255, 255, 255, 0.18) 18%,
-    rgba(255, 255, 255, 0.04) 32%,
-    transparent 50%
-  );
-  transform: translateX(-120%);
-  pointer-events: none;
-}
-.postCard:hover::after {
-  animation: shine 900ms ease-out forwards;
-}
-
-@keyframes shine {
-  to {
-    transform: translateX(120%);
-  }
-}
-
-/* Görsel alanı */
+/* Görsel */
 .postImage {
   width: 100%;
-  height: clamp(160px, 26vh, 240px);
-  object-fit: cover;
-  display: block;
-  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
-}
+  height: 300px;
 
-/* Hover’da görsel hafif zoom */
-.postCard:hover .postImage {
-  transform: scale(1.035);
 }
 
 /* İçerik */
 .postContent {
-  display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
-  padding: 14px 14px 16px;
-  color: var(--text);
-  text-decoration: none;
+  padding: 1rem;
 }
 
-/* Başlık & yazar */
 .postTitle,
 .postAuthor {
-  margin: 0;
-  font-weight: 700;
-  color: var(--text);
+  margin: 0.5rem 0;
 }
 
-/* “Başlık:” / “Yazar:” etiketinin rengi */
-.postTitle strong,
-.postAuthor strong {
-  color: var(--accent);
-  font-weight: 800;
-  letter-spacing: 0.2px;
+/* Yükleniyor / Hata */
+.loader,
+.error {
+  text-align: center;
+  padding: 2rem;
+  font-size: 1.2rem;
 }
-
-/* Metin kısaltma */
-.postTitle {
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  overflow: hidden;
-}
-.postAuthor {
-  color: var(--muted);
-  font-weight: 700;
-}
-
-/* Klavye ile erişilebilirlik */
-.postCard :where(a):focus-visible,
-.postCard :where(button):focus-visible {
-  outline: none;
-  box-shadow: 0 0 0 3px var(--ring),
-    0 0 0 6px color-mix(in oklab, var(--accent) 44%, transparent);
-  border-radius: 14px;
+.light .postCard a{
   text-decoration: none;
+  color: black;
 }
-.postCard a {
+.dark .postCard a{
   text-decoration: none;
-  color: inherit; /* Link rengi, normal metin rengiyle aynı olsun */
-  display: block; /* Kartın tamamı tıklanabilir */
-}
-/* Mobil uyarlamalar */
-@media (max-width: 520px) {
-  .savedPostsContainer {
-    padding: 1rem 0.6rem;
-  }
-  .postContent {
-    padding: 12px;
-  }
-  .postTitle,
-  .postAuthor {
-    font-size: 0.96rem;
-  }
-  .postImage {
-    height: clamp(150px, 24vh, 200px);
-  }
-}
-
-/* Hareket azaltmayı tercih eden kullanıcılar için animasyonları kapat */
-@media (prefers-reduced-motion: reduce) {
-  .postCard,
-  .postCard:hover,
-  .postImage,
-  .postCard::after,
-  .savedPostsContainer::before {
-    animation: none !important;
-    transition: none !important;
-    transform: none !important;
-  }
+  color: rgb(255, 255, 255);
 }

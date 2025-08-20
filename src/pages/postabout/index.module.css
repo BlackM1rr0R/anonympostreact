@@ -1,237 +1,188 @@
 @charset "UTF-8";
-
-/* ================================
-   THEME TOKENS (Light / Dark)
-   - .light ve .dark sınıfları container’a eklenir
-===================================*/
 .light {
-  /* Temel yüzeyler */
-  --background: #f8fafc;          /* ana arka plan */
-  --surface: #ffffff;             /* kartlar */
-  --surface-variant: #f1f5f9;     /* açık yüzey */
-  --border-color: #e5e7eb;        /* sınırlar/ayırıcılar */
-
-  /* Tipografi */
-  --text-color-strong: #0f172a;   /* başlıklar */
-  --text-color: #111827;          /* ana metin */
-  --text-muted: #64748b;          /* ikincil metin */
-  --only-text-color: #0f172a;
-
-  /* Aksiyon / vurgu */
-  --primary: #3b82f6;             /* ana vurgu (blue-500) */
-  --primary-600: #2563eb;         /* hover */
-  --primary-700: #1d4ed8;         /* aktif */
-  --primary-contrast: #ffffff;
-
-  /* Butonlar ve inputlar */
-  --button-bg: #ffffff;
-  --button-color: #111827;
-  --button-hover: #f1f5f9;
+  --background: white;
+  --text-color: #3b82f6;
   --input-bg: #ffffff;
-  --file-name: #475569;
-
-  /* Özel alanlar */
-  --comment-bg: #eef6ff;          /* yorum kart yüzeyi */
-  --comment-username: #2563eb;
-
-  /* Gölge & radius */
-  --shadow-sm: 0 2px 10px rgba(0,0,0,.06);
-  --shadow: 0 8px 24px rgba(0,0,0,.08);
-  --shadow-lg: 0 16px 40px rgba(0,0,0,.12);
-  --radius: 18px;
-  --radius-md: 12px;
-  --radius-lg: 24px;
-
-  /* Gradientler */
-  --card-front-grad: linear-gradient(135deg, #2563eb, #60a5fa);
-  --button-grad: linear-gradient(135deg, #2563eb, #60a5fa);
-  --button-grad-hover: linear-gradient(135deg, #1d4ed8, #3b82f6);
+  --border-color: #ccc;
+  --button-bg: white;
+  --button-hover: #5c6581;
+  --file-name: #555;
+  --button-color: #121212;
+  --only-text-color: black;
 }
 
+/* Karanlık mod (dark mode) */
 .dark {
-  /* Temel yüzeyler */
-  --background: #0b0f14;          /* koyu, mavimsi siyah */
-  --surface: #10161d;             /* kartlar */
-  --surface-variant: #0f172a;     /* koyu yüzey */
-  --border-color: #1f2a37;
-
-  /* Tipografi */
-  --text-color-strong: #e5e7eb;
-  --text-color: #e2e8f0;
-  --text-muted: #94a3b8;
-  --only-text-color: #f1f5f9;
-
-  /* Aksiyon / vurgu */
-  --primary: #60a5fa;             /* blue-400 */
-  --primary-600: #3b82f6;         /* hover */
-  --primary-700: #2563eb;         /* aktif */
-  --primary-contrast: #0b1020;
-
-  /* Butonlar ve inputlar */
-  --button-bg: #1e293b;
-  --button-color: #e2e8f0;
-  --button-hover: #233145;
-  --input-bg: #0b1220;
-  --file-name: #cbd5e1;
-
-  /* Özel alanlar */
-  --comment-bg: #0e1a2b;
-  --comment-username: #93c5fd;
-
-  /* Gölge & radius */
-  --shadow-sm: 0 2px 10px rgba(0,0,0,.35);
-  --shadow: 0 8px 26px rgba(0,0,0,.45);
-  --shadow-lg: 0 18px 48px rgba(0,0,0,.55);
-  --radius: 18px;
-  --radius-md: 12px;
-  --radius-lg: 24px;
-
-  /* Gradientler (daha derin) */
-  --card-front-grad: linear-gradient(135deg, #1d4ed8, #7dd3fc);
-  --button-grad: linear-gradient(135deg, #2563eb, #7dd3fc);
-  --button-grad-hover: linear-gradient(135deg, #1e40af, #60a5fa);
+  --background: #1e1e1e;
+  --text-color: #3b82f6;
+  --input-bg: black;
+  --border-color: #444;
+  --button-bg: #3b82f6;
+  --button-hover: #000000;
+  --file-name: #ccc;
+  --button-color: white;
+  --only-text-color: white;
 }
 
-/* ================================
-   GENEL YAPI
-===================================*/
+.deleteButton {
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  padding: 4px 10px;
+  margin-left: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
 .postWrapper {
-  padding: 50px 0 50px;
+  padding-top: 50px;
+  padding-bottom: 50px;
   margin-top: 30px;
-  background: var(--background);
-  transition: background .25s ease, color .25s ease;
 }
 
 .postContainer {
-  max-width: 820px;
+  max-width: 800px;
   margin: 0 auto;
-  background: var(--surface);
-  padding: 30px 24px;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  animation: fadeInUp .6s ease forwards;
-  font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-  color: var(--text-color);
-  border: 1px solid var(--border-color);
+  background: #fff;
+  padding: 30px 25px;
+  border-radius: 18px;
+  box-shadow: 0 14px 30px rgba(255, 252, 252, 0.082);
+  animation: fadeInUp 0.6s ease forwards;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #222;
 }
 
-/* ================================
-   METİN BLOKLARI
-===================================*/
-.postTitle,
-.postAuthor,
+.postTitle {
+  font-size: 22px;
+  color: var(--text-color);
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+.postTitle strong {
+  color: var(--only-text-color);
+  font-size: 18px;
+}
+
+.postAuthor {
+  font-size: 22px;
+  color: var(--text-color);
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+.postAuthor strong {
+  color: var(--only-text-color);
+  font-size: 18px;
+}
+
 .postContent {
   font-size: 22px;
-  color: var(--primary);
+  color: var(--text-color);
   margin-bottom: 20px;
-  font-weight: 800;
-  letter-spacing: -.01em;
+  font-weight: 700;
 }
-.postTitle strong,
-.postAuthor strong,
 .postContent strong {
   color: var(--only-text-color);
   font-size: 18px;
 }
 
-.postDate {
-  font-style: italic;
-  font-size: 0.95rem;
-  color: var(--text-muted);
-  margin-bottom: 35px;
-  user-select: none;
-}
-
-/* ================================
-   RESİM
-===================================*/
 .postImageWrapper {
   display: flex;
   justify-content: center;
 }
 
 .postImage {
-  width: clamp(280px, 60vw, 560px);
+  width: 400px;
   height: auto;
-  border-radius: 16px;
+  border-radius: 15px;
   margin-bottom: 25px;
   opacity: 0;
-  animation: fadeIn .8s ease forwards .2s;
-  box-shadow: var(--shadow-lg);
-  border: 1px solid var(--border-color);
+  animation: fadeIn 0.8s ease forwards;
+  animation-delay: 0.3s;
+  box-shadow: 0 12px 30px rgba(41, 128, 185, 0.25);
 }
 
-/* ================================
-   YORUMLAR
-===================================*/
+.postDate {
+  font-style: italic;
+  font-size: 0.9rem;
+  color: #7f8c8d;
+  margin-bottom: 35px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+
+/* Yorumlar */
 .commentSection {
-  border-top: 2px solid var(--primary);
+  border-top: 2px solid #3498db;
   padding-top: 20px;
   margin-bottom: 40px;
 }
 
 .commentHeader {
-  font-weight: 900;
-  color: var(--text-color-strong);
-  font-size: 1.25rem;
-  margin-bottom: 16px;
-  letter-spacing: .01em;
-  user-select: none;
+  font-weight: 800;
+  color: #2980b9;
+  font-size: 1.3rem;
+  margin-bottom: 18px;
+  letter-spacing: 0.05em;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
 }
 
 .comment {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: var(--comment-bg);
+  background-color: #f1f9ff;
   border-radius: 12px;
   padding: 14px 18px;
-  margin-bottom: 14px;
-  box-shadow: var(--shadow-sm);
+  margin-bottom: 15px;
+  box-shadow: 0 8px 20px rgba(41, 128, 185, 0.15);
   font-size: 1rem;
-  line-height: 1.5;
-  animation: fadeInUp .45s ease forwards;
-  color: var(--text-color);
+  line-height: 1.4;
+  animation: fadeInUp 0.5s ease forwards;
+  color: #34495e;
   cursor: default;
-  border: 1px solid color-mix(in oklab, var(--primary) 18%, var(--comment-bg));
 }
 
 .commentUsername {
-  font-weight: 800;
-  color: var(--comment-username);
+  font-weight: 700;
+  color: #2471a3;
   margin-right: 8px;
 }
 
+/* Yorum yoksa */
 .noComment {
   font-style: italic;
-  color: var(--text-muted);
+  color: #95a5a6;
   font-size: 1rem;
   padding: 10px 0;
 }
 
-/* ================================
-   AYNI BAŞLIKLI POSTLAR
-===================================*/
+/* Aynı başlıklı postlar bölümü */
 .sameTitleSection {
-  border-top: 2px solid var(--primary-600);
+  border-top: 2px solid #2980b9;
   padding-top: 22px;
 }
 
 .sameTitleHeader {
-  font-weight: 800;
-  font-size: 1.15rem;
-  color: var(--text-color-strong);
-  margin-bottom: 14px;
-  user-select: none;
+  font-weight: 700;
+  font-size: 1.3rem;
+  color: #2980b9;
+  margin-bottom: 16px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
 }
 
 .sameTitleList {
   display: flex;
-  gap: 28px;
+  gap: 50px;
   flex-wrap: wrap;
   justify-content: center;
   padding-left: 0;
-  margin-top: 18px;
+  margin-top: 20px;
 }
 
 .sameTitleCard {
@@ -247,43 +198,43 @@
   display: block;
   height: 100%;
   border-radius: 16px;
-  box-shadow: var(--shadow);
-  transition: box-shadow .3s ease, transform .2s ease;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.15);
+  transition: box-shadow 0.3s ease;
   position: relative;
   outline: none;
-  border: 1px solid var(--border-color);
-  background: var(--surface);
-}
-.sameTitleLink:hover,
-.sameTitleLink:focus {
-  box-shadow: var(--shadow-lg);
-  transform: translateY(-2px);
 }
 
-/* Kart iç (flip) */
+.sameTitleLink:hover,
+.sameTitleLink:focus {
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.3);
+}
+
+/* Kart İç kısmı - döndürme animasyonu için */
 .cardInner {
   position: relative;
   width: 100%;
   height: 100%;
   text-align: center;
   border-radius: 16px;
-  transition: transform .8s cubic-bezier(.4,0,.2,1);
+  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
   transform-style: preserve-3d;
   box-sizing: border-box;
-  padding: 14px;
+  padding: 15px;
+  background: white;
 }
 
-/* Hover’da çevir */
+/* Hover olunca kartı çevir */
 .sameTitleLink:hover .cardInner,
 .sameTitleLink:focus .cardInner {
   transform: rotateY(180deg);
 }
 
-/* Ön/Arka yüz */
+/* Kart Ön Yüz */
 .cardFront,
 .cardBack {
   position: absolute;
-  inset: 0;
+  width: 100%;
+  height: 100%;
   border-radius: 16px;
   backface-visibility: hidden;
   box-sizing: border-box;
@@ -296,22 +247,21 @@
 }
 
 .cardFront {
-  background: var(--card-front-grad);
-  color: #fff;
-  box-shadow: var(--shadow);
+  background: linear-gradient(135deg, #2980b9, #6dd5fa);
+  color: white;
+  box-shadow: 0 12px 30px rgba(41, 128, 185, 0.6);
 }
 
 .cardBack {
-  background: var(--surface-variant);
-  color: var(--text-color);
+  background: #f0f4f8;
+  color: #34495e;
   transform: rotateY(180deg);
-  padding: 18px 14px;
+  padding: 20px 15px;
   font-size: 0.95rem;
-  line-height: 1.4;
+  line-height: 1.3;
   text-align: left;
-  box-shadow: var(--shadow-sm);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
   overflow-y: auto;
-  border: 1px solid var(--border-color);
 }
 
 /* Resim */
@@ -319,178 +269,183 @@
   width: 100%;
   height: 140px;
   border-radius: 12px;
-  object-fit: cover;
-  margin-bottom: 12px;
-  box-shadow: var(--shadow-sm);
-  border: 1px solid var(--border-color);
+  -o-object-fit: cover;
+     object-fit: cover;
+  margin-bottom: 15px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
 }
 
-/* Başlık / Yazar */
+/* Başlık */
 .cardTitle {
   font-weight: 900;
-  font-size: 1.1rem;
-  margin: 0 0 6px 0;
-  user-select: none;
+  font-size: 1.2rem;
+  margin: 0 0 8px 0;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
 }
+
+/* Yazar */
 .cardAuthor {
   font-weight: 600;
   font-size: 0.9rem;
-  opacity: .85;
-  user-select: none;
+  opacity: 0.85;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
 }
 
-/* Resim yoksa */
+/* Resim yoksa göster */
 .noImage {
   width: 100%;
   height: 140px;
   border-radius: 12px;
-  background: color-mix(in oklab, var(--surface-variant) 70%, var(--border-color));
+  background: #ccc;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: var(--text-muted);
+  color: #666;
   font-size: 0.95rem;
-  margin-bottom: 12px;
-  user-select: none;
-  border: 1px solid var(--border-color);
+  margin-bottom: 15px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
 }
 
-/* Scrollbar (cardBack) */
-.cardBack::-webkit-scrollbar { width: 7px; }
+/* Scroll çubuğu kart arkasında (back) */
+.cardBack::-webkit-scrollbar {
+  width: 7px;
+}
+
 .cardBack::-webkit-scrollbar-track {
-  background: color-mix(in oklab, var(--surface-variant) 70%, var(--surface));
+  background: #e1e8f0;
   border-radius: 10px;
 }
+
 .cardBack::-webkit-scrollbar-thumb {
-  background-color: var(--primary-600);
+  background-color: #2980b9;
   border-radius: 10px;
-  border: 2px solid color-mix(in oklab, var(--surface-variant) 70%, var(--surface));
+  border: 2px solid #e1e8f0;
 }
 
-/* ================================
-   FORM ALANI (Yorum input & buton)
-===================================*/
-.commentInput {
-  flex: 1;
-  padding: 12px 16px;
-  font-size: 1rem;
-  border: 2px solid color-mix(in oklab, var(--primary) 35%, var(--border-color));
-  border-radius: 12px;
-  outline: none;
-  transition: border-color .25s ease, box-shadow .25s ease, background .25s ease;
-  box-shadow: inset 0 2px 6px color-mix(in oklab, var(--primary) 10%, transparent);
-  font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-  color: var(--text-color);
-  background: var(--input-bg);
-}
-.commentInput:focus {
-  border-color: var(--primary-600);
-  box-shadow: 0 0 0 4px color-mix(in oklab, var(--primary-600) 25%, transparent);
-}
-.commentInput::placeholder {
-  color: var(--text-muted);
-  font-style: italic;
-}
-.commentInput:disabled {
-  background-color: color-mix(in oklab, var(--surface) 80%, var(--border-color));
-  cursor: not-allowed;
-  color: color-mix(in oklab, var(--text-muted) 80%, var(--text-color));
-}
-
-.commentButton {
-  padding: 12px 22px;
-  background: var(--button-grad);
-  border: none;
-  border-radius: 12px;
-  color: var(--primary-contrast);
-  font-weight: 800;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background .25s ease, box-shadow .25s ease, transform .15s ease;
-  user-select: none;
-  box-shadow: var(--shadow);
-}
-.commentButton:hover:not(:disabled) {
-  background: var(--button-grad-hover);
-  box-shadow: var(--shadow-lg);
-  transform: translateY(-1px);
-}
-.commentButton:active:not(:disabled) {
-  transform: translateY(0);
-}
-.commentButton:disabled {
-  background: #94a3b8;
-  cursor: not-allowed;
-  box-shadow: none;
-  color: #e5e7eb;
-}
-
-/* ================================
-   SİLME BUTONU (tekli)
-===================================*/
-.deleteButton {
-  background-color: #ef4444;
-  color: #fff;
-  border: none;
-  padding: 6px 12px;
-  margin-left: 10px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 12px;
-  font-weight: 700;
-  transition: transform .15s ease, background-color .25s ease, box-shadow .25s ease;
-  box-shadow: var(--shadow-sm);
-}
-.deleteButton:hover {
-  background-color: #dc2626;
-  transform: translateY(-1px);
-}
-
-/* ================================
-   TEMA SINIFI KAPSAYICILARI
-   (eski light/dark blokları korunur)
-===================================*/
-.dark {
-  background-color: var(--background);
-  color: var(--text-color);
-  border-radius: 30px;
-}
-.light {
-  background-color: var(--background);
-  color: var(--text-color);
-}
-
-/* Placeholders (dark özel dokunuş) */
-.dark .commentInput::placeholder { color: #aab2c5; }
-
-/* ================================
-   ANİMASYONLAR
-===================================*/
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(18px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to   { opacity: 1;  }
-}
-
-/* ================================
-   RESPONSIVE
-===================================*/
+/* Responsive (mobilde 1-2 kart) */
 @media (max-width: 720px) {
-  .sameTitleList { gap: 18px; }
+  .sameTitleList {
+    justify-content: center;
+  }
   .sameTitleCard {
     width: 180px;
     height: 260px;
   }
-  .cardBack { font-size: .9rem; }
+  .cardBack {
+    font-size: 0.85rem;
+  }
+}
+/* Animasyonlar */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+/* Responsive */
+@media (max-width: 600px) {
+  .postContainer {
+    padding: 20px 15px;
+  }
+  .postTitle {
+    font-size: 2rem;
+  }
+}
+.commentInput {
+  flex: 1;
+  padding: 12px 18px;
+  font-size: 1rem;
+  border: 2px solid #2980b9;
+  border-radius: 12px;
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: inset 0 2px 6px rgba(41, 128, 185, 0.15);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #34495e;
 }
 
-@media (max-width: 600px) {
-  .postContainer { padding: 22px 16px; }
-  .postTitle,
-  .postAuthor,
-  .postContent { font-size: 1.15rem; }
-  .postImage { width: 100%; }
+.commentInput:focus {
+  border-color: #3498db;
+  box-shadow: 0 0 8px rgba(52, 152, 219, 0.6);
 }
+
+.commentInput::-moz-placeholder {
+  color: #95a5a6;
+  font-style: italic;
+}
+
+.commentInput::placeholder {
+  color: #95a5a6;
+  font-style: italic;
+}
+
+.commentInput:disabled {
+  background-color: #ecf0f1;
+  cursor: not-allowed;
+  color: #bdc3c7;
+}
+
+.commentButton {
+  padding: 12px 24px;
+  background: linear-gradient(135deg, #2980b9, #6dd5fa);
+  border: none;
+  border-radius: 12px;
+  color: white;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.35s ease, box-shadow 0.35s ease;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  box-shadow: 0 6px 18px rgba(41, 128, 185, 0.5);
+}
+
+.commentButton:hover:not(:disabled) {
+  background: linear-gradient(135deg, #3498db, #85d0ff);
+  box-shadow: 0 8px 24px rgba(52, 152, 219, 0.7);
+}
+
+.commentButton:disabled {
+  background: #95a5a6;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* Tema class'ları */
+.dark {
+  background-color: #1e1e1e;
+  color: #f1f1f1;
+  border-radius: 30px;
+}
+
+.light {
+  background-color: #ffffff;
+  color: #222222;
+}
+
+/* İstersen özel alanlar için de koyu stil tanımlayabilirsin */
+.dark .commentInput::-moz-placeholder {
+  color: #aaa;
+}
+.dark .commentInput::placeholder {
+  color: #aaa;
+}/*# sourceMappingURL=index.module.css.map */

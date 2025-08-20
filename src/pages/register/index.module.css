@@ -51,15 +51,16 @@
   top: 20px;
   left: 20px;
 }
-.control .languageSelect:hover,
-.control .userMenu:hover {
-  transform: scale(1.02);
-}
-.control .dark .languageSelect,
-.control .dark .userMenu {
+.control.dark .languageSelect,
+.control.dark .userMenu {
   background-color: #333;
   color: #fff;
   border: 1px solid #555;
+}
+
+.control .languageSelect:hover,
+.control .userMenu:hover {
+  transform: scale(1.02);
 }
 .control .generatedUsername {
   font-size: 16px;
