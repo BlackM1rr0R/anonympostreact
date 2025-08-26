@@ -137,6 +137,8 @@ const Header = () => {
                 else if (e.target.value === "logout") handleLogOut();
                 else if (e.target.value === "all-saved")
                   window.location.href = "/all-saved";
+                else if (e.target.value === "chat")
+                  window.location.href = "/chat";
               }}
               defaultValue=""
             >
@@ -145,6 +147,7 @@ const Header = () => {
               </option>
               <option value="myProfile">{t("myProfile")}</option>
               <option value="all-saved">{t("allsaved")}</option>
+              <option value="chat">{t("Chat")}</option>
               <option value="logout">{t("logout")}</option>
             </select>
           ) : (
@@ -234,6 +237,12 @@ const Header = () => {
                 onClick={() => (window.location.href = "/all-saved")}
               >
                 {t("allsaved")}
+              </button>
+              <button
+                className={styles.menuBtn}
+                onClick={() => (window.location.href = "/chat")}
+              >
+                {t("Chat")}
               </button>
               <button className={styles.menuBtn} onClick={handleLogOut}>
                 {t("logout")}
