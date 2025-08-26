@@ -2,12 +2,14 @@
 .categoryPosts {
   padding: 2rem;
   transition: background-color 0.3s ease, color 0.3s ease;
+
 }
 
 /* Light tema */
 .categoryPosts[data-theme=light] {
   background-color: #f8f9fa;
   color: #2d2d2d;
+  border-radius: 30px;
 }
 
 /* Dark tema */

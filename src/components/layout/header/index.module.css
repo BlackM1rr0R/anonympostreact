@@ -18,16 +18,7 @@
   color: #f0f0f0;
   box-shadow: 0 2px 10px rgba(255, 255, 255, 0.15);
 }
-.dark .select {
-  background-color: #2a2a2a;
-  color: #f0f0f0;
-  border: 1px solid #555;
-}
 
-.dark .select option {
-  background-color: #2a2a2a;
-  color: #f0f0f0;
-}
 .topBarDesktop {
   display: flex;
   justify-content: space-between;

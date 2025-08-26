@@ -134,12 +134,11 @@ const Header = () => {
               onChange={(e) => {
                 if (e.target.value === "myProfile")
                   window.location.href = "/my-profile";
-                else if (e.target.value === "logout") handleLogOut()
-                else if(e.target.value==="all-saved")
-                  window.location.href="/all-saved";
-              }
-            }
-              defaultValue="" 
+                else if (e.target.value === "logout") handleLogOut();
+                else if (e.target.value === "all-saved")
+                  window.location.href = "/all-saved";
+              }}
+              defaultValue=""
             >
               <option value="">
                 {t("welcome")}, {user.username}
@@ -229,6 +228,12 @@ const Header = () => {
                 onClick={() => (window.location.href = "/my-profile")}
               >
                 {t("myProfile")}
+              </button>
+              <button
+                className={styles.menuBtn}
+                onClick={() => (window.location.href = "/all-saved")}
+              >
+                {t("allsaved")}
               </button>
               <button className={styles.menuBtn} onClick={handleLogOut}>
                 {t("logout")}
