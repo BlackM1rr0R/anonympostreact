@@ -101,9 +101,36 @@ const PostAbout = () => {
             darkMode ? styles.dark : styles.light
           }`}
         >
-          <p className={styles.postAuthor}>
-            <strong>{t("username")}:</strong> {post.author}
-          </p>
+          <div
+            className={styles.postAuthorRow}
+            
+          >
+            <Link
+              to={`/about-users/${post.authorId}`}
+              className={styles.postAuthor}
+            >
+              <strong>{t("username")}:</strong> {post.author}
+            </Link>
+            {user?.username !== post.author && (
+              <Link
+                to={`/chat?to=${post.author}`}
+                className={styles.messageButton}
+                style={{
+                  padding: "6px 10px",
+                  border: "1px solid var(--border)",
+                  borderRadius: "10px",
+                  background: "var(--card)",
+                  color: "var(--text)",
+                  textDecoration: "none",
+                  fontSize: "14px",
+                  fontWeight: "500",
+                }}
+              >
+                💬 {t("sendMessage") || "Mesaj yaz"}
+              </Link>
+            )}
+          </div>
+
           <h1 className={styles.postTitle}>
             <strong>{t("title")}</strong>: {post.title}
           </h1>
@@ -141,9 +168,9 @@ const PostAbout = () => {
                   user?.role === "ADMIN"; // sadece kendi yorumu veya ADMIN
                 return (
                   <div key={com.id} className={styles.comment}>
-                    <strong className={styles.commentUsername}>
+                    <Link to={`/about-users/${com.authorId}`} className={styles.commentUsername}>
                       {com.username || "User"}:
-                    </strong>{" "}
+                    </Link>{" "}
                     {com.comment}
                     {canDelete && (
                       <button
@@ -159,7 +186,9 @@ const PostAbout = () => {
                 );
               })
             ) : (
-              <p className={styles.noComment}>{t("noComments") || "No comments yet."}</p>
+              <p className={styles.noComment}>
+                {t("noComments") || "No comments yet."}
+              </p>
             )}
 
             <div style={{ marginTop: "15px", display: "flex", gap: "10px" }}>
@@ -189,7 +218,10 @@ const PostAbout = () => {
               <ul className={styles.sameTitleList}>
                 {sameTitlePosts.map((post) => (
                   <li key={post.id} className={styles.sameTitleCard}>
-                    <Link to={`/post/${post.id}`} className={styles.sameTitleLink}>
+                    <Link
+                      to={`/post/${post.id}`}
+                      className={styles.sameTitleLink}
+                    >
                       <div className={styles.cardInner}>
                         <div className={styles.cardFront}>
                           {post.imageUrl ? (

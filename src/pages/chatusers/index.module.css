@@ -1,0 +1,208 @@
+/* ---------- Tema değişkenleri ---------- */
+.shell {
+  --bg: #ffffff;
+  --panel: #fafafa;
+  --card: #ffffff;
+  --border: #e5e7eb;
+  --text: #111827;
+  --muted: #6b7280;
+  --accent: #e5e7eb;
+  --avatarBg: #dbeafe;
+  --avatarText: #1e40af;
+
+  width: 100%;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.dark {
+  --bg: #0b1020;
+  --panel: #0f172a;
+  --card: #0f172a;
+  --border: #1f2937;
+  --text: #e5e7eb;
+  --muted: #9ca3af;
+  --accent: #111827;
+  --avatarBg: #1e293b;
+  --avatarText: #93c5fd;
+}
+
+/* ---------- Layout ---------- */
+.container {
+  height: 80vh;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  background: var(--card);
+}
+
+/* Sidebar (desktop/tablet) */
+.userList {
+  width: 300px;
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  min-width: 240px;
+  background: var(--panel);
+}
+
+.userListHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 14px 12px;
+  border-bottom: 1px solid var(--border);
+  background: var(--card);
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+.heading {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.headerActions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.iconBtn {
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text);
+  padding: 6px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.userScroll {
+  flex: 1;
+  overflow-y: auto;
+  padding: 8px;
+  min-height: 0;
+}
+
+/* Partner row */
+.userItem {
+  width: 100%;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  text-align: left;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 6px;
+  background: transparent;
+  color: var(--text);
+  transition: background 0.2s ease;
+}
+.userItem:hover { background: rgba(0,0,0,0.04); }
+.dark .userItem:hover { background: rgba(255,255,255,0.05); }
+.userItemActive { background: var(--accent); }
+
+.avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--avatarBg);
+  color: var(--avatarText);
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+}
+
+.userMeta { flex: 1; min-width: 0; }
+
+.partnerLine {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.userName {
+  font-weight: 700;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.timeBadge { color: var(--muted); font-size: 12px; }
+
+/* Chat area */
+.chatPane {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  background: var(--panel);
+}
+
+.emptyState {
+  margin: auto;
+  color: var(--muted);
+  font-size: 16px;
+}
+.emptySmall {
+  color: var(--muted);
+  font-size: 14px;
+  padding: 12px;
+  text-align: center;
+}
+
+/* ---------- Mobile topbar (yalnız mobil) ---------- */
+.mobileTopbar {
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 10px 12px;
+  background: var(--card);
+  border-bottom: 1px solid var(--border);
+}
+
+.mobileLeft {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.mobileLabel {
+  color: var(--muted);
+  font-size: 12px;
+}
+.mobileSelect {
+  border: 1px solid var(--border);
+  background: var(--panel);
+  color: var(--text);
+  padding: 8px 10px;
+  border-radius: 8px;
+  max-width: 60vw;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 640px) {
+  .container {
+    height: calc(100dvh - 0px);
+    border-radius: 0;
+    flex-direction: column; /* üstte seçim çubuğu + altta chat */
+  }
+
+  .userList { display: none; } /* sidebar gizle */
+
+  .mobileTopbar { display: flex; position: sticky; top: 0; z-index: 3; }
+
+  .chatPane { flex: 1; }
+}
+
+/* Tablet uyumu */
+@media (min-width: 641px) and (max-width: 1024px) {
+  .userList { width: 240px; min-width: 220px; }
+}

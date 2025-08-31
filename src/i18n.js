@@ -75,7 +75,20 @@ i18n
                     inSave: "Yaddaşa vur",
                     noSave: "Yaddaşdadır",
                     category: "Kateqoriya",
-                    allDefend: "Bütün hüquqlar qorunur"
+                    allDefend: "Bütün hüquqlar qorunur",
+                    sendMessage: "Mesaj göndər",
+                    aboutUser: "İstifadəçi haqqında",
+                    allPosts: "Bütün paylaşımlar",
+                    withPhoto: "Şəkil ilə",
+                    onlyText: "Yalnız mətn",
+                    back: "Geri",
+                    allMessages: "Bütün mesajlar",
+                    noMessages: "Heç bir mesaj yoxdur",
+                    user: "İstifadəçi",
+                    openChat: "Söhbəti aç",
+                    withChat: "ilə söhbət",
+                    writeMessage: "Mesaj yazın...",
+                    send: "Göndər"
 
                 },
             },
@@ -140,7 +153,21 @@ i18n
                     inSave: "Kaydet",
                     noSave: "Kaydedildi",
                     category: "Kategori",
-                    allDefend: "Tüm haklar saklıdır"
+                    allDefend: "Tüm haklar saklıdır",
+                    sendMessage: "Mesaj gönder",
+                    aboutUser: "Kullanıcı hakkında",
+                    allPosts: "Tüm paylaşımlar",
+                    withPhoto: "Fotoğraflı",
+                    onlyText: "Sadece metin",
+                    back: "Geri",
+                    allMessages: "Tüm mesajlar",
+                    noMessages: "Hiç mesaj yok",
+                    user: "Kullanıcı",
+                    openChat: "Sohbeti aç",
+                    withChat: "ile sohbet",
+                    writeMessage: "Mesaj yaz...",
+                    send: "Gönder"
+
 
                 },
             },
@@ -206,7 +233,22 @@ i18n
                     inSave: "Speichern",
                     noSave: "Gespeichert",
                     category: "Kategorie",
-                    allDefend: "Alle Rechte vorbehalten"
+                    allDefend: "Alle Rechte vorbehalten",
+                    sendMessage: "Nachricht senden",
+                    aboutUser: "Über den Benutzer",
+                    allPosts: "Alle Beiträge",
+                    withPhoto: "Mit Bild",
+                    onlyText: "Nur Text",
+                    back: "Zurück",
+                    allMessages: "Alle Nachrichten",
+                    noMessages: "Keine Nachrichten vorhanden",
+                    user: "Benutzer",
+                    openChat: "Chat öffnen",
+                    withChat: "Chat mit",
+                    writeMessage: "Nachricht schreiben...",
+                    send: "Senden"
+
+
                 },
             },
 
@@ -271,7 +313,24 @@ i18n
                     inSave: "Сохранить",
                     noSave: "Сохранено",
                     category: "Категория",
-                    allDefend: "Все права защищены"
+                    allDefend: "Все права защищены",
+                    sendMessage: "Отправить сообщение",
+
+                    aboutUser: "О пользователе",
+                    allPosts: "Все публикации",
+                    withPhoto: "С фото",
+                    onlyText: "Только текст",
+                    back: "Назад",
+                    allMessages: "Все сообщения",
+                    noMessages: "Сообщений нет",
+                    user: "Пользователь",
+                    openChat: "Открыть чат",
+                    withChat: "чат с",
+                    writeMessage: "Напишите сообщение...",
+                    send: "Отправить"
+
+
+
                 },
             }, en: {
                 translation: {
@@ -334,7 +393,23 @@ i18n
                     inSave: "Save",
                     noSave: "Saved",
                     category: "Category",
-                    allDefend: "All rights reserved"
+                    allDefend: "All rights reserved",
+                    sendMessage: "Send message",
+
+                    aboutUser: "About user",
+                    allPosts: "All posts",
+                    withPhoto: "With photo",
+                    onlyText: "Text only",
+                    back: "Back",
+                    allMessages: "All messages",
+                    noMessages: "No messages",
+                    user: "User",
+                    openChat: "Open chat",
+                    withChat: "Chat with",
+                    writeMessage: "Write a message...",
+                    send: "Send"
+
+
                 },
             },
 

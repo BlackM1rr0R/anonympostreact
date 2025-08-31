@@ -5,7 +5,7 @@ import Wrapper from "../../components/UI/wrapper";
 import styles from './index.module.css';
 import { ThemeContext } from "../../context/ThemeContext";
 import { useTranslation } from "react-i18next";
-
+import { Link } from "react-router-dom";
 const AboutDailyQuestion = () => {
   const { id } = useParams();
   const [question, setQuestion] = useState(null);
@@ -64,9 +64,11 @@ const AboutDailyQuestion = () => {
               .reverse()
               .map((ans) => (
                 <li key={ans.id} className={styles.answerItem}>
-                  <strong className={styles.username}>{ans.username || "Anonim"}:</strong> {ans.answer}
-                  {/* Sadece giriş yapan kullanıcının cevaplarında sil butonu gözüksün */}
-                  
+                  <Link to={`/about-users/${ans.authorId}`} className={styles.username}>
+                    {ans.username || "Anonim"}:
+                  </Link>{" "}
+                  {ans.answer}
+
                   {user && ans.username?.toLowerCase() === user.username?.toLowerCase() && (
                     <button
                       onClick={() => handleDeleteAnswer(ans.id)}

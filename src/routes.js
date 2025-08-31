@@ -1,5 +1,6 @@
 import About from "./pages/about";
 import AboutDailyQuestion from "./pages/aboutdailyquestion";
+import AboutUser from "./pages/aboutuser";
 import AdminPage from "./pages/adminpage";
 import AllSaved from "./pages/allsaved";
 import CategoryPosts from "./pages/categoryposts";
@@ -51,7 +52,8 @@ const routes = {
     CategoryPosts
   ),
   allsaved: routeItem(12, "allsaved", "/all-saved", AllSaved),
-  chat: routeItem(13, "chat", "/chat", ChatUsers), // ✅ yeni rota
+  chat: routeItem(13, "chat", "/chat", ChatUsers),
+  aboutUsers: routeItem(14, "about-user", "/about-users/:id", AboutUser)
 };
 
 const routeArr = Object.values(routes);

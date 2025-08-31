@@ -1,0 +1,169 @@
+/* ---------- Tema değişkenleri ---------- */
+.chatContainer {
+  --bg: #ffffff;
+  --card: #f8fafc;
+  --border: #e5e7eb;
+  --text: #111827;
+  --muted: #6b7280;
+  --mineBg: #4f46e5;   /* gönderdiğim balon */
+  --mineText: #ffffff;
+  --theirsBg: #e5e7eb; /* karşı taraf balon */
+  --theirsText: #111827;
+
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  background: var(--bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* Dark tema */
+.dark {
+  --bg: #0b1020;
+  --card: #0f172a;   /* slate-900 civarı */
+  --border: #1f2937;
+  --text: #e5e7eb;
+  --muted: #9ca3af;
+  --mineBg: #6366f1;
+  --mineText: #ffffff;
+  --theirsBg: #1f2937;
+  --theirsText: #e5e7eb;
+}
+
+/* ---------- Header ---------- */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 10px 12px;
+  background: var(--card);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+.title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+}
+.themeToggle {
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text);
+  padding: 6px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* ---------- Mesaj alanı ---------- */
+.messagesContainer {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 10px 10px 80px 10px; /* altta input için boşluk */
+  background: var(--card);
+}
+
+/* Mesaj balonu */
+.message {
+  padding: 10px 12px;
+  border-radius: 12px;
+  max-width: 75%;
+  word-wrap: break-word;
+  width: fit-content;
+}
+
+.mine {
+  align-self: flex-end;
+  background: var(--mineBg);
+  color: var(--mineText);
+}
+.theirs {
+  align-self: flex-start;
+  background: var(--theirsBg);
+  color: var(--theirsText);
+}
+.sender {
+  opacity: 0.9;
+}
+
+/* ---------- Input bar (mobilde sabit) ---------- */
+.inputBar {
+  display: flex;
+  gap: 8px;
+  padding: 10px;
+  background: var(--bg);
+  border-top: 1px solid var(--border);
+
+  position: sticky;
+  bottom: 0;
+  z-index: 3;
+
+  /* iOS çentik için güvenli alan */
+  padding-bottom: calc(10px + env(safe-area-inset-bottom, 0px));
+}
+
+.input {
+  flex: 1;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  outline: none;
+  background: var(--card);
+  color: var(--text);
+}
+.input::placeholder {
+  color: var(--muted);
+}
+.sendButton {
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: none;
+  background: #10b981;
+  color: #fff;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+/* ---------- Mobil / Responsive ---------- */
+@media (max-width: 640px) {
+  .chatContainer {
+    border-radius: 0;
+    height: calc(100dvh - 0px); /* tam ekran yüksekliği */
+  }
+  .messagesContainer {
+    gap: 6px;
+    padding: 8px 8px 76px 8px;
+  }
+  .message {
+    max-width: 85%;
+    font-size: 14px;
+    border-radius: 10px;
+  }
+  .title {
+    font-size: 15px;
+  }
+  .input {
+    padding: 10px 12px;
+    font-size: 14px;
+  }
+  .sendButton {
+    padding: 10px 12px;
+    font-size: 14px;
+  }
+}
+
+/* Orta ekranlar */
+@media (min-width: 641px) and (max-width: 1024px) {
+  .message { max-width: 80%; }
+}

@@ -522,3 +522,17 @@ export const getSaved = async () => {
       throw error;
   }
 };
+
+export const getAboutUser = async (id) => {
+  const token = localStorage.getItem("token");
+  try {
+    const response = await axios.get(`${API_URL}/user/about-users/${id}`, {
+      headers: { Authorization: `Bearer ${token}` },
+      withCredentials: true,
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching about user:", error);
+    throw error;
+  }
+}
